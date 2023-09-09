@@ -6,5 +6,10 @@ return [
     "dark" => "Dark",
     "system" => "System",
     "lang" => "Language",
-    'Success'=>'Success'
+    'Success'=>'Success',  
+  'User successfully signed out' => 'User successfully signed out',  
+  'invalid data' => 'invalid data',  
+  'Profile updated successfully' => 'Profile updated successfully',  
+  'Invalid Unauthorized' => 'Invalid Unauthorized',  
+  'invalid code' => 'invalid code',
 ];

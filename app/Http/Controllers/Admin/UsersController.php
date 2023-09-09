@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -113,7 +114,8 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
             'is_active' => $request->is_active ?? '0',
         ]);
-
+        $user_role = Role::where('slug', 'user')->first();
+        $row->roles()->attach($user_role);
         // if($request->hasFile('photo') && $request->file('photo')->isValid()){
         //     $row->addMediaFromRequest('photo')->toMediaCollection('profile');
         // }

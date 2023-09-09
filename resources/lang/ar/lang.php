@@ -6,5 +6,6 @@ return [
     "dark" => "غامق",
     "system" => "حسب النظام",
     "lang" => "اللغة",
-    'Success'=>'تم بنجاح',
+    'Success'=>'تم بنجاح',  
+  'User successfully signed out' => 'User successfully signed out',
 ];

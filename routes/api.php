@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\GeneralApiController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,15 +18,17 @@ use App\Http\Controllers\Api\GeneralApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 //User Auth
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/login', [AuthApiController::class, 'login']);
     Route::post('/register', [AuthApiController::class, 'register']);
     Route::post('/logout', [AuthApiController::class, 'logout']);
     Route::get('/profile', [AuthApiController::class, 'userProfile']);
-    Route::post('/checkVerification', [AuthApiController::class, 'checkVerification']);
+    Route::get('/profile', [AuthApiController::class, 'userProfile']);
+    Route::post('/updateProfile', [AuthApiController::class, 'updateProfile']);
     Route::post('/checkPhone', [AuthApiController::class, 'checkPhone']);
+    Route::post('/updatePassword', [AuthApiController::class, 'updatePassword']);
+    Route::post('/checkVerification', [AuthApiController::class, 'checkVerification']);
 });
 //Return All Countries
 Route::get('/countries', [GeneralApiController::class, 'countries']);

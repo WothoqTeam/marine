@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             EmployeesSeeder::class,
             PermissionsSeeder::class,
             CitiesSeeder::class,
+            RolesSeeder::class,
         ]);
     }
 }

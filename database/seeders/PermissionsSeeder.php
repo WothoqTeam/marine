@@ -13,7 +13,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        // Managers
+        // Employees
         Permission::updateOrCreate(['name' => 'employees_index', /*'guard_name' => 'web',*/ 'slug' => 'employees.index']);
         Permission::updateOrCreate(['name' => 'employees_create', /*'guard_name' => 'web',*/ 'slug' => 'employees.create']);
         Permission::updateOrCreate(['name' => 'employees_update', /*'guard_name' => 'web',*/ 'slug' => 'employees.update']);
