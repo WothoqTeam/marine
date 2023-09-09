@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -36,6 +37,8 @@ class SocialController extends BaseApiController
                 'password'=>bcrypt($gUser->getEmail()),
                 'google_id'=>$gUser->getId(),
             ]);
+            $user_role = Role::where('slug','user')->first();
+            $user->roles()->attach($user_role);
             $token = auth('api')->attempt(['email' => $user->email, 'password' => $user->email]);
             $userData=[
                 'id'=>$user->id,
@@ -72,7 +75,10 @@ class SocialController extends BaseApiController
                 'password'=>bcrypt($tUser->getEmail()),
                 'twitter_id'=>$tUser->getId(),
             ]);
-            $token = auth('api')->attempt(['email' => $user->email, 'password' => $user->email]);
+            $user_role = Role::where('slug','user')->first();
+            $user->roles()->attach($user_role);
+            $jwt = app(JWT::class);
+            $token = $jwt->fromUser($user);
             $userData=[
                 'id'=>$user->id,
                 'name'=>$user->name,
