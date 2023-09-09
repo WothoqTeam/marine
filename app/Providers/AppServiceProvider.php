@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Setting;
 
@@ -20,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+        Schema::defaultStringLength(191);
         try {
             $Setting = Setting::find(1);
             view()->share('settings', $Setting);
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             //throw $th;
         }
         // if (Setting::exists()) {
-            
+
         // }
 
         if (!session()->get('locale')) {
