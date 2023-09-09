@@ -75,10 +75,10 @@ class SocialController extends BaseApiController
                 'password'=>bcrypt($tUser->getEmail()),
                 'twitter_id'=>$tUser->getId(),
             ]);
-            $user_role = Role::where('slug','user')->first();
-            $user->roles()->attach($user_role);
             $jwt = app(JWT::class);
             $token = $jwt->fromUser($user);
+            $user_role = Role::where('slug','user')->first();
+            $user->roles()->attach($user_role);
             $userData=[
                 'id'=>$user->id,
                 'name'=>$user->name,
