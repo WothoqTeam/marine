@@ -53,10 +53,32 @@ class SocialController extends BaseApiController
 
     public function handleTwitterCallback()
     {
-        $user = Socialite::driver('twitter')->user();
-        dd($user);
+        $tUser = Socialite::driver('twitter')->user();
         // Use $user to create or log in the user
-
-        return redirect('/home'); // Redirect to the home page
+        $check=User::where('twitter_id',$tUser->getId())->orWhere('email',$tUser->getEmail())->first();
+        if ($check){
+            $jwt = app(JWT::class);
+            $token = $jwt->fromUser($check);
+            $userData=[
+                'id'=>$check->id,
+                'name'=>$check->name,
+                'token'=>$token,
+            ];
+            return $this->generateResponse(true,'Success',$userData);
+        }else{
+            $user=User::create([
+                'name'=>$tUser->getName(),
+                'email'=>$tUser->getEmail(),
+                'password'=>bcrypt($tUser->getEmail()),
+                'twitter_id'=>$tUser->getId(),
+            ]);
+            $token = auth('api')->attempt(['email' => $user->email, 'password' => $user->email]);
+            $userData=[
+                'id'=>$user->id,
+                'name'=>$user->name,
+                'token'=>$token,
+            ];
+            return $this->generateResponse(true,'Success',$userData);
+        }
     }
 }
