@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->enum('is_active', [0, 1, 2, 3])->default(1)->comment("0 => not active, 1 => active, 2 => suspended , 3 => terminated");
             $table->text('fcm_token')->nullable();
             $table->enum('language', ['ar', 'en'])->default('en');
