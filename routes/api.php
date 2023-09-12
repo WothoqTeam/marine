@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\GeneralApiController;
+use App\Http\Controllers\Api\ProviderApiController;
+use App\Http\Controllers\Api\YachtsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,5 +50,11 @@ Route::get('/faqs', [GeneralApiController::class, 'faqs']);
 //Contact Us
 Route::post('/contactUs', [GeneralApiController::class, 'contactUs']);
 
-//Return Faqs
+//Return Settings
 Route::get('/settings', [GeneralApiController::class, 'settings']);
+
+//Return providers
+Route::get('/providers', [ProviderApiController::class, 'list']);
+
+//Return yachts
+Route::get('/yachts', [YachtsApiController::class, 'list']);

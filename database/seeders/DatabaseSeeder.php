@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             CitiesSeeder::class,
             RolesSeeder::class,
+            SpecificationsSeeder::class,
         ]);
     }
 }

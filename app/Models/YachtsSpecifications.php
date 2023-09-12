@@ -5,18 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cities extends Model
+class YachtsSpecifications extends Model
 {
     use HasFactory;
 
-    protected $hidden=[
-        'deleted_at','created_at','updated_at'
-    ];
-
     protected $fillable=[
-        'name_en',
-        'name_ar',
-        'country_id',
-        'status'
+        'specification_id',
+        'yacht_id',
     ];
 }

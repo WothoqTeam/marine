@@ -34,6 +34,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         'password','deleted_at','remember_token','created_at','updated_at'
     ];
 
+    protected $appends=[
+        'image'
+    ];
+
     /**
      * The attributes that should be cast.
      *
@@ -54,6 +58,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     public function getJWTCustomClaims() {
         return [];
     }
+    protected function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl('profile');
+    }
 
     public function registerMediaCollections(Media $media = null): void
     {
@@ -62,5 +70,11 @@ class User extends Authenticatable implements JWTSubject, HasMedia
 
         // $this->addMediaConversion('thumb')
         // ->crop('crop-center', 100, 100);
+    }
+
+    public function role_type() {
+
+        return $this->hasOne(UsersRoles::class,'user_id');
+
     }
 }

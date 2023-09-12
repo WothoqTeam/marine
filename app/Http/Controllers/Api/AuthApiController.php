@@ -29,7 +29,7 @@ class AuthApiController extends BaseApiController
             return $this->generateResponse(false,'Invalid Unauthorized',[],401);
         }
         $user=auth('api')->user();
-        if($user->hasRole('user')){
+        if($user->hasRole('user') || $user->hasRole('provider')){
             if ($request->fcm_token){
                 User::where('id',$user->id)->update(['fcm_token'=>$request->fcm_token]);
             }
@@ -54,12 +54,24 @@ class AuthApiController extends BaseApiController
             $inputs,
             ['password' => bcrypt($request->password)]
         ));
-        $user_role = Role::where('slug','user')->first();
+         if($request->hasFile('photo') && $request->file('photo')->isValid()){
+             $user->addMediaFromRequest('photo')->toMediaCollection('profile');
+         }
+        if($request->role == 'provider'){
+            $user_role = Role::where('slug','provider')->first();
+            $role='provider';
+        }else{
+            $user_role = Role::where('slug','user')->first();
+            $role='user';
+        }
+
         $user->roles()->attach($user_role);
         $token = auth('api')->attempt(['phone' => $request->phone, 'password' => $request->password]);
+
         $userData=[
             'id'=>$user->id,
             'name'=>$user->name,
+            'role'=>$role,
             'token'=>$token,
         ];
         return $this->generateResponse(true,'Success',$userData);
