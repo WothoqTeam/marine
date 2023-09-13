@@ -3,26 +3,15 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Responses\ListBanners;
 use App\Http\Controllers\Api\Responses\ListFaqs;
-use App\Http\Controllers\Api\Responses\ListNews;
 use App\Http\Requests\Api\ContactUsRequest;
 use App\Models\ContactUs;
 use App\Models\AdvBanners;
-use App\Models\Books;
 use App\Models\Cities;
 use App\Models\Countries;
-use App\Models\Courses;
 use App\Models\Faqs;
-use App\Models\News;
 use App\Models\Pages;
-use App\Models\Rates;
-use App\Models\Reviews;
 use App\Models\Setting;
-use App\Models\Teachers;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Mail;
-use Validator;
 class GeneralApiController extends BaseApiController
 {
     public function countries(){

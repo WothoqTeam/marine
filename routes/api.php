@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\GeneralApiController;
 use App\Http\Controllers\Api\ProviderApiController;
 use App\Http\Controllers\Api\YachtsApiController;
+use App\Http\Controllers\Api\RatingsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -58,3 +59,15 @@ Route::get('/providers', [ProviderApiController::class, 'list']);
 
 //Return yachts
 Route::get('/yachts', [YachtsApiController::class, 'list']);
+
+//User Route
+Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
+    //Add Rating
+    Route::post('/rate/store', [RatingsApiController::class, 'store']);
+});
+
+//Provider Route
+Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
+    //Add Rating
+    Route::post('/rate/store', [RatingsApiController::class, 'store']);
+});

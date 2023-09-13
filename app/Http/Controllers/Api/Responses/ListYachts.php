@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\Responses;
 
 use App\Http\Controllers\Api\Base\Interfaces\DataInterface;
-use App\Models\User;
+use App\Models\Ratings;
 use App\Models\Yachts;
-use PhpParser\Node\Expr\Cast\Int_;
 
 class ListYachts extends DataInterface
 {
@@ -48,7 +47,7 @@ class ListYachts extends DataInterface
         $this->booking_info = $language == 'en' ? $yacht->booking_info_en : $yacht->booking_info_ar;
         $this->image = $images;
         $this->reservations = 3;
-        $this->rate = 4.8;
+        $this->rate = number_format(Ratings::where('model_type',Yachts::class)->where('model_id',$yacht->id)->avg('stars'),1);
         $this->provider = [
             'id' => $yacht->provider->id,
             'name' => $yacht->provider->name,
