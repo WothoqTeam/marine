@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\Responses\ListRatings;
+use App\Http\Requests\Api\ListRateRequest;
 use App\Http\Requests\Api\StoreRateRequest;
 use App\Models\Employee;
 use App\Models\Ratings;
@@ -11,6 +13,17 @@ use Illuminate\Http\Request;
 
 class RatingsApiController extends BaseApiController
 {
+    public function list(ListRateRequest $request){
+        $model=$request->type;
+        if ($model=='User') $model=User::class; elseif ($model=='Yachts') $model=Yachts::class; elseif ($model=='Employee') $model=Employee::class;
+        $model_id=$request->type_id;
+
+        $ratings=Ratings::with('addBy')->where(['model_type'=>$model,'model_id'=>$model_id])->get();
+        $ratings = $ratings->map(function (Ratings $rate) {
+            return new ListRatings($rate);
+        })->values();
+        return $this->generateResponse(true,'Success',$ratings);
+    }
     public function store(StoreRateRequest $request){
         $user=auth('api')->user();
         $model=$request->type;

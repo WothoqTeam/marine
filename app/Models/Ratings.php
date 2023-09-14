@@ -17,4 +17,8 @@ class Ratings extends Model
         'stars',
         'comments',
     ];
+
+    public function addBy() {
+        return $this->belongsTo(User::class,'added_by_id');
+    }
 }

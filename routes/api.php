@@ -60,14 +60,17 @@ Route::get('/providers', [ProviderApiController::class, 'list']);
 //Return yachts
 Route::get('/yachts', [YachtsApiController::class, 'list']);
 
+//Rating
+Route::get('/rate/list', [RatingsApiController::class, 'list']);
+
 //User Route
 Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
-    //Add Rating
+    //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
 });
 
 //Provider Route
 Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
-    //Add Rating
+    //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
 });
