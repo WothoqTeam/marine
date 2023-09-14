@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\Responses\ListRatings;
-use App\Http\Requests\Api\ListRateRequest;
-use App\Http\Requests\Api\StoreRateRequest;
+use App\Http\Requests\Api\Rate\ListRateRequest;
+use App\Http\Requests\Api\Rate\StoreRateRequest;
 use App\Models\Employee;
 use App\Models\Ratings;
 use App\Models\User;
 use App\Models\Yachts;
-use Illuminate\Http\Request;
 
 class RatingsApiController extends BaseApiController
 {
