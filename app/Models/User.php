@@ -73,8 +73,15 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     }
 
     public function role_type() {
-
         return $this->hasOne(UsersRoles::class,'user_id');
+    }
 
+    public  function yachts(){
+        return $this->hasMany(Yachts::class,'provider_id');
+    }
+
+    public function reservations()
+    {
+        return $this->hasManyThrough(Reservations::class, Yachts::class,'provider_id','yacht_id')->orderBy('reservations.id','DESC');
     }
 }

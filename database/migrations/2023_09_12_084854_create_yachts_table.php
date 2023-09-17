@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

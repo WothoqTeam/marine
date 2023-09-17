@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Responses;
 
 use App\Http\Controllers\Api\Base\Interfaces\DataInterface;
 use App\Models\Ratings;
+use App\Models\Reservations;
 use App\Models\Yachts;
 
 class ListYachts extends DataInterface
@@ -46,7 +47,7 @@ class ListYachts extends DataInterface
         $this->add_info = $language == 'en' ? $yacht->add_info_en : $yacht->add_info_ar;
         $this->booking_info = $language == 'en' ? $yacht->booking_info_en : $yacht->booking_info_ar;
         $this->image = $images;
-        $this->reservations = 3;
+        $this->reservations = Reservations::where('yacht_id',$yacht->id)->count();
         $this->rate = number_format(Ratings::where('model_type',Yachts::class)->where('model_id',$yacht->id)->avg('stars'),1);
         $this->provider = [
             'id' => $yacht->provider->id,

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('tax_num')->nullable();
             $table->string('commercial_num')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('service_fee')->nullable();
             $table->string('currency')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

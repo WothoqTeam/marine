@@ -11,5 +11,6 @@ return [
     'invalid data' => 'invalid data',
     'Profile updated successfully' => 'Profile updated successfully',
     'Invalid Unauthorized' => 'Invalid Unauthorized',
-    'invalid code' => 'invalid code',
+    'invalid code' => 'invalid code',  
+  'User Cannot Take This Action' => 'User Cannot Take This Action',
 ];

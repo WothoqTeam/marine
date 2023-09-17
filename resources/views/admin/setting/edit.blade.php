@@ -4,7 +4,7 @@
 @endsection
 
 @section('style')
-    
+
 @endsection
 
 @section('breadcrumb')
@@ -173,6 +173,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <label class="fs-6 fw-semibold form-label mt-3">
+                                                <span>Vat</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="vat" value="{{$data->vat}}" class="form-control form-control-solid" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <label class="fs-6 fw-semibold form-label mt-3">
+                                                <span>Service Fee</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="service_fee" value="{{$data->service_fee}}" class="form-control form-control-solid" />
+                                        </div>
+                                    </div>
                                     <div class="row py-5">
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">
@@ -217,7 +238,7 @@
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                             </div>
-            
+
                                         </div>
                                     </div>
                                     <div class="row fv-row mb-7">
@@ -245,7 +266,7 @@
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                             </div>
-            
+
                                         </div>
                                     </div>
 
@@ -274,7 +295,7 @@
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                             </div>
-            
+
                                         </div>
                                     </div>
 
@@ -303,7 +324,7 @@
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                             </div>
-            
+
                                         </div>
                                     </div>
 
@@ -448,7 +469,7 @@
                                             <textarea name="description_en" class="form-control form-control-solid">{{$data->description_en}}</textarea>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row py-5">
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">

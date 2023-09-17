@@ -17,7 +17,7 @@ class Setting extends Model implements HasMedia
         'name_ar','name_en','email','email2','phone','phone2','whatsapp','address',
         'address2','location','facebook','twitter','youtube','linkedin','instagram','snapchat',
         'keywords_ar','keywords_en','description_ar','description_en','tax_num','commercial_num',
-        'currency',
+        'currency','vat','service_fee',
     ];
 
     public function registerMediaCollections(Media $media = null): void

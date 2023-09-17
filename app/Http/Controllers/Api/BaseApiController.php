@@ -18,6 +18,7 @@ class BaseApiController extends Controller
     {
         $this->language = strtolower(request()->header('Language', 'ar'));
         App::setLocale($this->language);
+        $this->user=auth('api')->user();
     }
 
     protected function generateResponse(bool $isSuccess = true, string $message = '',$data = [], $statusCode = 200, array $headers = [])

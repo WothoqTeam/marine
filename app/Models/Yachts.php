@@ -30,16 +30,18 @@ class Yachts extends Model implements HasMedia
         'city_id',
         'country_id',
         'address',
-        'status'
+        'status',
+        'longitude',
+        'latitude',
+    ];
+
+    protected $hidden=[
+        'deleted_at','created_at','updated_at'
     ];
 
     public function provider() {
         return $this->belongsTo(User::class,'provider_id');
     }
-
-    protected $hidden=[
-        'deleted_at','created_at','updated_at'
-    ];
 
     public function city()
     {
@@ -54,5 +56,9 @@ class Yachts extends Model implements HasMedia
     public function specifications()
     {
         return $this->belongsToMany(Specifications::class, 'yachts_specifications','yacht_id','specification_id');
+    }
+
+    public function reservations(){
+        return $this->hasMany(Reservations::class, 'yacht_id');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\GeneralApiController;
 use App\Http\Controllers\Api\ProviderApiController;
 use App\Http\Controllers\Api\YachtsApiController;
 use App\Http\Controllers\Api\RatingsApiController;
+use App\Http\Controllers\Api\ReservationsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,10 +68,21 @@ Route::get('/rate/list', [RatingsApiController::class, 'list']);
 Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
+
+    //Reservations
+    Route::get('/reservations/list', [ReservationsApiController::class, 'userList']);
+    Route::post('/reservations/store', [ReservationsApiController::class, 'store']);
+    Route::post('/reservations/update/{id}', [ReservationsApiController::class, 'update']);
+    Route::post('/reservations/cancel/{id}', [ReservationsApiController::class, 'cancel']);
+    Route::post('/reservations/pay/{id}', [ReservationsApiController::class, 'pay']);
 });
 
 //Provider Route
 Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
+
+    //Reservations
+    Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);
+    Route::post('/reservations/requests', [ReservationsApiController::class, 'providerRequests']);
 });

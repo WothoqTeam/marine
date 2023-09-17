@@ -17,6 +17,8 @@ class SettingsSeeder extends Seeder
             ['id' => 1],[
             'name_ar' => 'يونافيد مارين',
             'name_en' => 'Unified Marine',
+            'vat' => '3',
+            'service_fee' => '2',
         ]);
     }
 }
