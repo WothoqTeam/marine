@@ -12,5 +12,7 @@ return [
     'Profile updated successfully' => 'Profile updated successfully',
     'Invalid Unauthorized' => 'Invalid Unauthorized',
     'invalid code' => 'invalid code',  
-  'User Cannot Take This Action' => 'User Cannot Take This Action',
+  'User Cannot Take This Action' => 'User Cannot Take This Action',  
+  'Message sent successfully' => 'Message sent successfully',  
+  'Message Returned Successfully' => 'Message Returned Successfully',
 ];

@@ -84,4 +84,14 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     {
         return $this->hasManyThrough(Reservations::class, Yachts::class,'provider_id','yacht_id')->orderBy('reservations.id','DESC');
     }
+
+    public function messagesSent()
+    {
+        return $this->hasMany(Chats::class, 'sender_id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Chats::class, 'receiver_id');
+    }
 }

@@ -21,5 +21,6 @@ class ListProviders extends DataInterface
         $this->id = $user->id;
         $this->name = $user->name;
         $this->image=$user->getFirstMediaUrl('profile');
+        $this->role_name=$user->role_type->role->name;
     }
 }

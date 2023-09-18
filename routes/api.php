@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\YachtsApiController;
 use App\Http\Controllers\Api\RatingsApiController;
 use App\Http\Controllers\Api\ReservationsApiController;
 use App\Http\Controllers\Api\NotificationsApiController;
+use App\Http\Controllers\Api\ChatsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -73,6 +74,11 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
     //Notifications
     Route::get('/notifications', [NotificationsApiController::class, 'index']);
 
+    //Chats
+    Route::get('/chat', [ChatsApiController::class, 'index']);
+    Route::post('/chat/store', [ChatsApiController::class, 'store']);
+    Route::get('/chat/threads/{id}', [ChatsApiController::class, 'threads']);
+
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'userList']);
     Route::post('/reservations/store', [ReservationsApiController::class, 'store']);
@@ -88,6 +94,11 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
 
     //Notifications
     Route::get('/notifications', [NotificationsApiController::class, 'index']);
+
+    //Chats
+    Route::get('/chat', [ChatsApiController::class, 'index']);
+    Route::post('/chat/store', [ChatsApiController::class, 'store']);
+    Route::get('/chat/threads/{id}', [ChatsApiController::class, 'threads']);
 
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);

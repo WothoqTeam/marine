@@ -33,22 +33,27 @@ class BaseApiController extends Controller
         return response()->json($response, $statusCode, $headers);
     }
 
-    public function sendNotifications(string $model,array $ids=[],array $data=[]){
-        $arUsers = $model::where('language','en')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-        Notification::send(null,new SendPushNotification($data['title_ar'],$data['body_ar'],$arUsers));
+    public function sendNotifications(string $model,array $ids=[],array $data=[],string $send_to='all'){
 
-        $enUsers = $model::where('language','ar')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-        Notification::send(null,new SendPushNotification($data['title_en'],$data['body_en'],$enUsers));
+        if ($send_to=='all' || $send_to=='fcm'){
+            $arUsers = $model::where('language','en')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+            Notification::send(null,new SendPushNotification($data['title_ar'],$data['body_ar'],$arUsers));
 
-        foreach ($ids as $id){
-            Notifications::create([
-                'user_id' => $id,
-                'title_en' => $data['title_en'],
-                'title_ar' => $data['title_ar'],
-                'body_en' => $data['body_en'],
-                'body_ar' => $data['body_ar'],
-                'type'=>$model
-            ]);
+            $enUsers = $model::where('language','ar')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+            Notification::send(null,new SendPushNotification($data['title_en'],$data['body_en'],$enUsers));
+        }
+
+        if ($send_to=='all' || $send_to=='db') {
+            foreach ($ids as $id) {
+                Notifications::create([
+                    'user_id' => $id,
+                    'title_en' => $data['title_en'],
+                    'title_ar' => $data['title_ar'],
+                    'body_en' => $data['body_en'],
+                    'body_ar' => $data['body_ar'],
+                    'type' => $model
+                ]);
+            }
         }
 
     }
