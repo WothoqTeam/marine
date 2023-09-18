@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Notifications;
-//use App\Notifications\SendPushNotification;
+use App\Notifications\SendPushNotification;
+use Notification;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
 
@@ -31,12 +33,12 @@ class BaseApiController extends Controller
         return response()->json($response, $statusCode, $headers);
     }
 
-    public function sendEmployeesNotifications(array $ids=[],array $data=[]){
-//        $arUsers = Employee::where('language','en')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-//        Notification::send(null,new SendPushNotification($data['title_ar'],$data['body_ar'],$arUsers));
+    public function sendNotifications(string $model,array $ids=[],array $data=[]){
+        $arUsers = $model::where('language','en')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+        Notification::send(null,new SendPushNotification($data['title_ar'],$data['body_ar'],$arUsers));
 
-//        $enUsers = Employee::where('language','ar')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-//        Notification::send(null,new SendPushNotification($data['title_en'],$data['body_en'],$enUsers));
+        $enUsers = $model::where('language','ar')->wherein('id',$ids)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+        Notification::send(null,new SendPushNotification($data['title_en'],$data['body_en'],$enUsers));
 
         foreach ($ids as $id){
             Notifications::create([
@@ -45,7 +47,7 @@ class BaseApiController extends Controller
                 'title_ar' => $data['title_ar'],
                 'body_en' => $data['body_en'],
                 'body_ar' => $data['body_ar'],
-                'type'=>Employee::class
+                'type'=>$model
             ]);
         }
 

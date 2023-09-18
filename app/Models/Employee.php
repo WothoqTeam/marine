@@ -22,8 +22,8 @@ class Employee extends Authenticatable implements HasMedia
         'name_ar', 'name_en', 'phone',
         'email', 'password',
         'is_active', 'role_id',
-        'type', 'token',
-    ]; 
+        'type', 'token','fcm_token','language'
+    ];
 
     public function registerMediaCollections(Media $media = null): void
     {

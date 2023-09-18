@@ -8,6 +8,7 @@ use App\Models\ContactUs;
 use App\Models\AdvBanners;
 use App\Models\Cities;
 use App\Models\Countries;
+use App\Models\Employee;
 use App\Models\Faqs;
 use App\Models\Pages;
 use App\Models\Setting;
@@ -62,7 +63,7 @@ class GeneralApiController extends BaseApiController
             'body_en'=>'',
             'body_ar'=>'',
         ];
-        $this->sendEmployeesNotifications([1],$data);
+        $this->sendNotifications(Employee::class,[1],$data);
         return $this->generateResponse(true,'Success');
     }
 

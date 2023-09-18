@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProviderApiController;
 use App\Http\Controllers\Api\YachtsApiController;
 use App\Http\Controllers\Api\RatingsApiController;
 use App\Http\Controllers\Api\ReservationsApiController;
+use App\Http\Controllers\Api\NotificationsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -69,6 +70,9 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
 
+    //Notifications
+    Route::get('/notifications', [NotificationsApiController::class, 'index']);
+
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'userList']);
     Route::post('/reservations/store', [ReservationsApiController::class, 'store']);
@@ -81,6 +85,9 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
 Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
+
+    //Notifications
+    Route::get('/notifications', [NotificationsApiController::class, 'index']);
 
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);

@@ -12,7 +12,7 @@ Route::post('/login', [AdminLoginController::class ,'adminLogin'])->name('admin.
 Route::get('/logout', [AdminLoginController::class ,'logout'])->name('admin.logout');
 
 Route::name('admin.')->middleware(['auth:admin'])->group(function () {
-    
+
     Route::middleware(['emp-access:dash'])->group(function () {
 
         Route::get('/','HomeController@index')->name('index');
@@ -30,6 +30,7 @@ Route::name('admin.')->middleware(['auth:admin'])->group(function () {
             Route::post('/store','EmployeesController@store')->name('store');
             Route::get('/edit/{id}', 'EmployeesController@edit')->name('edit');
             Route::post('/update', 'EmployeesController@update')->name('update');
+            Route::PATCH('/updateFcm', 'EmployeesController@updateFcm')->name('updateFcm');
         });
 
         Route::name('users.')->prefix('users')->group(function(){
@@ -43,5 +44,5 @@ Route::name('admin.')->middleware(['auth:admin'])->group(function () {
         });
 
     });
-    
+
 });

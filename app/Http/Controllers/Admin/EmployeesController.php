@@ -33,9 +33,9 @@ class EmployeesController extends Controller
                     return $name;
                 })
                 ->addColumn('phone', function($row){
- 
+
                     $phone = $row->phone;
-                    
+
                     return $phone;
                 })
                 ->addColumn('is_active', function($row){
@@ -44,7 +44,7 @@ class EmployeesController extends Controller
                     } else {
                         $is_active = '<div class="badge badge-light-danger fw-bold">غير مفعل</div>';
                     }
-                    
+
                     return $is_active;
                 })
                 ->addColumn('actions', function($row){
@@ -99,10 +99,10 @@ class EmployeesController extends Controller
         ];
 
         $validate = Validator::make($request->all(), $rule);
-        if ($validate->fails()) { 
+        if ($validate->fails()) {
             return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error');
-        } 
-        
+        }
+
         $row = Employee::create([
             'name_ar' => $request->name_ar,
             'email' => $request->email,
@@ -137,10 +137,10 @@ class EmployeesController extends Controller
         ];
 
         $validate = Validator::make($request->all(), $rule);
-        if ($validate->fails()) { 
+        if ($validate->fails()) {
             return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error');
-        } 
-        
+        }
+
         $data = Employee::find($request->id);
         $data->update([
             'name_ar' => $request->name_ar,
@@ -160,7 +160,7 @@ class EmployeesController extends Controller
     }
 
     public function destroy(Request $request)
-    {   
+    {
 
         try{
             Employee::whereIn('id',$request->id)->delete();
@@ -169,5 +169,19 @@ class EmployeesController extends Controller
         }
         return response()->json(['message' => 'success']);
 
+    }
+
+    public function updateFcm(Request $request){
+        try{
+            $request->user()->update(['fcm_token'=>$request->token]);
+            return response()->json([
+                'success'=>true
+            ]);
+        }catch(\Exception $e){
+            report($e);
+            return response()->json([
+                'success'=>false
+            ],500);
+        }
     }
 }
