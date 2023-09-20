@@ -32,6 +32,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

@@ -18,6 +18,7 @@ class ListYachts extends DataInterface
     public string|null $description;
     public string|null $add_info;
     public string|null $booking_info;
+    public bool $status;
     public string $language;
     public array $image;
     public int $reservations;
@@ -46,6 +47,7 @@ class ListYachts extends DataInterface
         $this->description = $language == 'en' ? $yacht->description_en : $yacht->description_ar;
         $this->add_info = $language == 'en' ? $yacht->add_info_en : $yacht->add_info_ar;
         $this->booking_info = $language == 'en' ? $yacht->booking_info_en : $yacht->booking_info_ar;
+        $this->status=$yacht->status;
         $this->image = $images;
         $this->reservations = Reservations::where('yacht_id',$yacht->id)->count();
         $this->rate = number_format(Ratings::where('model_type',Yachts::class)->where('model_id',$yacht->id)->avg('stars'),1);

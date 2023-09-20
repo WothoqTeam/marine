@@ -103,4 +103,10 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);
     Route::post('/reservations/requests', [ReservationsApiController::class, 'providerRequests']);
+
+    //yachts
+    Route::get('/yachts', [YachtsApiController::class, 'providerYachts']);
+    Route::post('/yachts/store', [YachtsApiController::class, 'store']);
+    Route::post('/yachts/update/{id}', [YachtsApiController::class, 'update']);
+    Route::post('/yachts/updateStatus/{id}', [YachtsApiController::class, 'updateStatus']);
 });

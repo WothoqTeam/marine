@@ -29,10 +29,10 @@ class Yachts extends Model implements HasMedia
         'discount_value',
         'city_id',
         'country_id',
-        'address',
         'status',
         'longitude',
         'latitude',
+        'is_approved'
     ];
 
     protected $hidden=[
