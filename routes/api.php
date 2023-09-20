@@ -89,6 +89,9 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
 
 //Provider Route
 Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
+    //Dashboard
+    Route::get('/dashboard', [ProviderApiController::class, 'statistics']);
+
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
 
