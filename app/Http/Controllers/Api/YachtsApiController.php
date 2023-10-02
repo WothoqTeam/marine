@@ -7,6 +7,7 @@ use App\Http\Requests\Api\Yachts\StoreYachtsRequest;
 use App\Http\Requests\Api\Yachts\UpdateYachtsRequest;
 use App\Http\Requests\Api\Yachts\UpdateYachtsStatusRequest;
 use App\Models\Yachts;
+use App\Models\YachtsSpecifications;
 use Illuminate\Http\Request;
 
 class YachtsApiController extends BaseApiController
@@ -24,7 +25,7 @@ class YachtsApiController extends BaseApiController
         elseif ($request->sort_by=='top'){}
         $yachts=$yachts->get();
         $yachts = $yachts->map(function (Yachts $yacht) {
-            return new ListYachts($yacht,$this->language);
+            return new ListYachts($yacht,$this->language,$this->user);
         })->values();
         return $this->generateResponse(true,'Success',$yachts);
     }
@@ -55,6 +56,16 @@ class YachtsApiController extends BaseApiController
             foreach ($request->images as $image){
                 if($image->isFile() && $image->isValid()){
                     $yacht->addMedia($image)->toMediaCollection('cover');
+                }
+            }
+        }
+        if (is_array($request->specifications) && count($request->specifications)>0){
+            foreach ($request->specifications as $specification){
+                if ($specification){
+                    YachtsSpecifications::create([
+                        'specification_id'=>$specification,
+                        'yacht_id'=>$yacht->id,
+                    ]);
                 }
             }
         }

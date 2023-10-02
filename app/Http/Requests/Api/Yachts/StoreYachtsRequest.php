@@ -35,7 +35,9 @@ class StoreYachtsRequest extends FormRequest
             'longitude'=>'nullable|string',
             'latitude'=>'nullable|string',
             'images'=>'required',
-            'images.*' => 'required|mimes:jpg,jpeg,png,bmp|max:20000'
+            'images.*' => 'required|mimes:jpg,jpeg,png,bmp|max:20000',
+            'specifications'=>'nullable',
+            'specifications.*' => 'nullable|int|exists:specifications,id',
         ];
     }
 

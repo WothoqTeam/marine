@@ -7,9 +7,13 @@ use App\Http\Controllers\Api\GeneralApiController;
 use App\Http\Controllers\Api\ProviderApiController;
 use App\Http\Controllers\Api\YachtsApiController;
 use App\Http\Controllers\Api\RatingsApiController;
+use App\Http\Controllers\Api\FavouritesApiController;
 use App\Http\Controllers\Api\ReservationsApiController;
 use App\Http\Controllers\Api\NotificationsApiController;
 use App\Http\Controllers\Api\ChatsApiController;
+use App\Http\Controllers\Api\SpecificationsApiController;
+use App\Http\Controllers\Api\MarasiApiController;
+use App\Http\Controllers\Api\MarasiReservationsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +36,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::get('/profile', [AuthApiController::class, 'userProfile']);
     Route::get('/profile', [AuthApiController::class, 'userProfile']);
     Route::post('/updateProfile', [AuthApiController::class, 'updateProfile']);
+    Route::post('/updateLanguage', [AuthApiController::class, 'updateLanguage']);
+    Route::post('/updateStatus', [AuthApiController::class, 'updateStatus']);
     Route::post('/checkPhone', [AuthApiController::class, 'checkPhone']);
     Route::post('/updatePassword', [AuthApiController::class, 'updatePassword']);
     Route::post('/checkVerification', [AuthApiController::class, 'checkVerification']);
@@ -71,6 +77,10 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
     //Rating
     Route::post('/rate/store', [RatingsApiController::class, 'store']);
 
+    //Favourites
+    Route::get('/favourites', [FavouritesApiController::class, 'index']);
+    Route::post('/favourites/store', [FavouritesApiController::class, 'store']);
+
     //Notifications
     Route::get('/notifications', [NotificationsApiController::class, 'index']);
 
@@ -107,9 +117,22 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
     Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);
     Route::post('/reservations/requests', [ReservationsApiController::class, 'providerRequests']);
 
+    //Specifications
+    Route::get('/specifications', [SpecificationsApiController::class, 'list']);
+
     //yachts
     Route::get('/yachts', [YachtsApiController::class, 'providerYachts']);
     Route::post('/yachts/store', [YachtsApiController::class, 'store']);
     Route::post('/yachts/update/{id}', [YachtsApiController::class, 'update']);
     Route::post('/yachts/updateStatus/{id}', [YachtsApiController::class, 'updateStatus']);
+
+    //Return Marasi
+    Route::get('/marasi', [MarasiApiController::class, 'list']);
+
+    //Marasi Reservations
+    Route::get('/marasi/reservations/list', [MarasiReservationsApiController::class, 'List']);
+    Route::post('/marasi/reservations/store', [MarasiReservationsApiController::class, 'store']);
+    Route::post('/marasi/reservations/update/{id}', [MarasiReservationsApiController::class, 'update']);
+    Route::post('/marasi/reservations/cancel/{id}', [MarasiReservationsApiController::class, 'cancel']);
+    Route::post('/marasi/reservations/pay/{id}', [MarasiReservationsApiController::class, 'pay']);
 });

@@ -33,9 +33,16 @@ class AuthApiController extends BaseApiController
             if ($request->fcm_token){
                 User::where('id',$user->id)->update(['fcm_token'=>$request->fcm_token]);
             }
+            if($user->hasRole('provider')){
+                $role='provider';
+            }else{
+                $role='user';
+            }
             $userData=[
                 'id'=>$user->id,
                 'name'=>$user->name,
+                'status'=>$user->is_active,
+                'role'=>$role,
                 'token'=>$token,
             ];
             return $this->generateResponse(true,'Success',$userData);
@@ -64,13 +71,13 @@ class AuthApiController extends BaseApiController
             $user_role = Role::where('slug','user')->first();
             $role='user';
         }
-
         $user->roles()->attach($user_role);
         $token = auth('api')->attempt(['phone' => $request->phone, 'password' => $request->password]);
-
+        $user=User::find($user->id);
         $userData=[
             'id'=>$user->id,
             'name'=>$user->name,
+            'status'=>$user->is_active,
             'role'=>$role,
             'token'=>$token,
         ];
@@ -168,9 +175,20 @@ class AuthApiController extends BaseApiController
         $user = auth('api')->user();
         if($user){
             User::where('id',$user->id)->update(['language'=>$request->language]);
-            return $this->generateResponse(true,'Language updated successfully');
+            return $this->generateResponse(true,'Language Updated Successfully');
         }else{
             return $this->generateResponse(false,'invalid data',[],422);
         }
     }
+
+    public function updateStatus(Request $request){
+        $user = auth('api')->user();
+        if($user){
+            User::where('id',$user->id)->update(['is_active'=>$request->status]);
+            return $this->generateResponse(true,'Status Updated Successfully');
+        }else{
+            return $this->generateResponse(false,'invalid data',[],422);
+        }
+    }
+
 }
