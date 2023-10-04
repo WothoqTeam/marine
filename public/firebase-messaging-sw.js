@@ -2,10 +2,10 @@ importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js');
 
 firebase.initializeApp({
-    apiKey: "AIzaSyBOlTZQnd-unpJwr59TXr1LFYX2DgWzOOo",
-    projectId: "unified-marine",
-    messagingSenderId: "369415495916",
-    appId: "1:369415495916:web:4900c59aca3176092bc5c9"
+    apiKey: "AIzaSyDIfUD-GXmbl6gubV8i0XQ6Ij6XauaITjk",
+    projectId: "unified-marine-services",
+    messagingSenderId: "773504700054",
+    appId: "1:773504700054:web:2637a0f46a534ccdd3bcb7",
 });
 
 const messaging = firebase.messaging();
