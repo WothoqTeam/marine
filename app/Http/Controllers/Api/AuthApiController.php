@@ -34,19 +34,12 @@ class AuthApiController extends BaseApiController
                 User::where('id',$user->id)->update(['fcm_token'=>$request->fcm_token]);
             }
             if($user->hasRole('provider')){
-                $role='provider';
+                $user->role='provider';
             }else{
-                $role='user';
+                $user->role='user';
             }
-            $userData=[
-                'id'=>$user->id,
-                'name'=>$user->name,
-                'status'=>$user->is_active,
-                'image'=>$user->image,
-                'role'=>$role,
-                'token'=>$token,
-            ];
-            return $this->generateResponse(true,'Success',$userData);
+            $user->token=$token;
+            return $this->generateResponse(true,'Success',$user);
         }else{
             return $this->generateResponse(false,'invalid data',[],422);
         }
@@ -65,24 +58,16 @@ class AuthApiController extends BaseApiController
          if($request->hasFile('photo') && $request->file('photo')->isValid()){
              $user->addMediaFromRequest('photo')->toMediaCollection('profile');
          }
+        $userData=User::find($user->id);
         if($request->role == 'provider'){
             $user_role = Role::where('slug','provider')->first();
-            $role='provider';
+            $userData->role='provider';
         }else{
             $user_role = Role::where('slug','user')->first();
-            $role='user';
+            $userData->role='user';
         }
         $user->roles()->attach($user_role);
-        $token = auth('api')->attempt(['phone' => $request->phone, 'password' => $request->password]);
-        $user=User::find($user->id);
-        $userData=[
-            'id'=>$user->id,
-            'name'=>$user->name,
-            'status'=>$user->is_active,
-            'image'=>$user->image,
-            'role'=>$role,
-            'token'=>$token,
-        ];
+        $userData->token = auth('api')->attempt(['phone' => $request->phone, 'password' => $request->password]);
         return $this->generateResponse(true,'Success',$userData);
     }
 

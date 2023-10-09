@@ -31,7 +31,7 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     ];
 
     protected $hidden=[
-        'password','deleted_at','remember_token','created_at','updated_at'
+        'password','deleted_at','remember_token','created_at','updated_at','media','roles'
     ];
 
     protected $appends=[
