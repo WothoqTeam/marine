@@ -134,7 +134,7 @@ class AuthApiController extends BaseApiController
         Verification::create(['key'=>$request->phone,'code'=>$code]);
         //send otp here
         if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
-            $code=rand(100000,999999);
+            $code=rand(1000,9999);
             $lang=strtolower(request()->header('Language', 'ar'));
             //send Sms Here
 //            $sms= '';
