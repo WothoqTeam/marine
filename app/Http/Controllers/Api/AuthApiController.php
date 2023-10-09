@@ -42,6 +42,7 @@ class AuthApiController extends BaseApiController
                 'id'=>$user->id,
                 'name'=>$user->name,
                 'status'=>$user->is_active,
+                'image'=>$user->image,
                 'role'=>$role,
                 'token'=>$token,
             ];
@@ -78,6 +79,7 @@ class AuthApiController extends BaseApiController
             'id'=>$user->id,
             'name'=>$user->name,
             'status'=>$user->is_active,
+            'image'=>$user->image,
             'role'=>$role,
             'token'=>$token,
         ];
