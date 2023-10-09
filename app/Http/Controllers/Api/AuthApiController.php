@@ -130,7 +130,7 @@ class AuthApiController extends BaseApiController
 
     public function checkPhone(CheckPhoneRequest $request)
     {
-        $code=123456;
+        $code=1234;
         Verification::create(['key'=>$request->phone,'code'=>$code]);
         //send otp here
         if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
