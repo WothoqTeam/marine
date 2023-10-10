@@ -128,8 +128,21 @@ class AuthApiController extends BaseApiController
         }
     }
 
-    public function checkPhone(CheckPhoneRequest $request)
+    public function checkPhone(Request $request)
     {
+        if ($request->exist){
+            $validator = Validator::make($request->all(), [
+                'phone' => 'required|exists:users'
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'phone' => 'required|unique:users'
+            ]);
+        }
+
+        if ($validator->fails()) {
+            return $this->generateResponse(false,'Invalid credentials',$validator->errors(),422);
+        }
         $code=1234;
         Verification::create(['key'=>$request->phone,'code'=>$code]);
         //send otp here
