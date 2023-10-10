@@ -109,7 +109,7 @@ class AuthApiController extends BaseApiController
 
             // Save the changes to the user model
             $user->save();
-            return $this->generateResponse(true, 'Profile updated successfully', []);
+            return $this->generateResponse(true, 'Profile updated successfully', $user);
         }else{
             return $this->generateResponse(false,'invalid data',[],422);
         }
