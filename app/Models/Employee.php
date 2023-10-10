@@ -25,6 +25,9 @@ class Employee extends Authenticatable implements HasMedia
         'type', 'token','fcm_token','language'
     ];
 
+    protected $appends=[
+        'image'
+    ];
     public function registerMediaCollections(Media $media = null): void
     {
         $this->addMediaCollection('profile')
@@ -33,7 +36,10 @@ class Employee extends Authenticatable implements HasMedia
         // $this->addMediaConversion('thumb')
         // ->crop('crop-center', 100, 100);
     }
-
+    protected function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl('profile');
+    }
     public function getAppendNameAttribute()
     {
         if ($locale = App::getLocale() == "ar") {

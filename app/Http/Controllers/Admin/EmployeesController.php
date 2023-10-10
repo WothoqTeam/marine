@@ -3,43 +3,84 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployeesPermissions;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use DataTables;
+use Illuminate\Support\Facades\Lang;
 use Validator;
 
 class EmployeesController extends Controller
 {
+    public function transAdmin($key, $placeholder = [])
+    {
+        $locale = strtolower(request()->header('Language', 'en'));
+        $group = 'permissions';
+        if (is_null($locale))
+            $locale = config('app.locale');
+        $key = trim($key);
+        $word = $group . '.' . $key;
+        if (Lang::has($word))
+            return trans($word, $placeholder, $locale);
+
+        $messages = [
+            $word => $key,
+        ];
+
+
+        app('translator')->addLines($messages, $locale);
+        $translation_file = base_path() . '/resources/lang/' . $locale . '/' . $group . '.php';
+        $fh = fopen($translation_file, 'r+');
+        $new_key = "  \n  '" . $key . "' => '" . $key . "',\n];\n";
+        $saved_cursor = -1;
+        $end_with_comma = false;
+        $has_single_qoute = false;
+        for ($cursor = -1; $cursor < 100; $cursor--) {
+            fseek($fh, $cursor, SEEK_END);
+            if (fgetc($fh) == ',' && !$has_single_qoute) {
+                $end_with_comma = true;
+                fseek($fh, $cursor + 1, SEEK_END);
+                fwrite($fh, $new_key);
+                break;
+            } else if (fgetc($fh) == '\'' && !$end_with_comma) {
+                $has_single_qoute = true;
+                fseek($fh, $cursor + 2, SEEK_END);
+                fwrite($fh, ',' . $new_key);
+                break;
+            }
+        }
+        fclose($fh);
+        return trans($word, $placeholder, $locale);
+    }
 
     public function index(Request $request)
     {
-        $data = Employee::get();
-
         if ($request->ajax()) {
             $data = Employee::query();
             $data = $data->orderBy('id', 'DESC');
 
             return Datatables::of($data)
-                ->addColumn('checkbox', function($row){
+                ->addColumn('checkbox', function ($row) {
                     $checkbox = '<div class="form-check form-check-sm p-3 form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="'.$row->id.'" />
+                                    <input class="form-check-input" type="checkbox" value="' . $row->id . '" />
                                 </div>';
                     return $checkbox;
                 })
-                ->addColumn('name', function($row){
-                    $name = '<div class="d-flex flex-column"><a href="javascript:;" class="text-gray-800 text-hover-primary mb-1">'.$row->append_name.'</a>';
-                    $name .= '<span>'.$row->email.'</span></div>';
+                ->addColumn('name', function ($row) {
+                    $name = '<div class="d-flex flex-column"><a href="javascript:;" class="text-gray-800 text-hover-primary mb-1">' . $row->append_name . '</a>';
+                    $name .= '<span>' . $row->email . '</span></div>';
                     return $name;
                 })
-                ->addColumn('phone', function($row){
+                ->addColumn('phone', function ($row) {
 
                     $phone = $row->phone;
 
                     return $phone;
                 })
-                ->addColumn('is_active', function($row){
-                    if($row->is_active == 1) {
+                ->addColumn('is_active', function ($row) {
+                    if ($row->is_active == 1) {
                         $is_active = '<div class="badge badge-light-success fw-bold">مقعل</div>';
                     } else {
                         $is_active = '<div class="badge badge-light-danger fw-bold">غير مفعل</div>';
@@ -47,12 +88,12 @@ class EmployeesController extends Controller
 
                     return $is_active;
                 })
-                ->addColumn('actions', function($row){
+                ->addColumn('actions', function ($row) {
                     $actions = '<div class="ms-2">
-                                <a href="'.route('admin.employees.show', $row->id).'" class="btn btn-sm btn-icon btn-warning btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <a href="' . route('admin.employees.show', $row->id) . '" class="btn btn-sm btn-icon btn-warning btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <i class="bi bi-eye-fill fs-1x"></i>
                                 </a>
-                                <a href="'.route('admin.employees.edit', $row->id).'" class="btn btn-sm btn-icon btn-info btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <a href="' . route('admin.employees.edit', $row->id) . '" class="btn btn-sm btn-icon btn-info btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <i class="bi bi-pencil-square fs-1x"></i>
                                 </a>
                             </div>';
@@ -63,15 +104,15 @@ class EmployeesController extends Controller
                         $instance->where('is_active', $request->get('is_active'));
                     }
                     if (!empty($request->get('search'))) {
-                            $instance->where(function($w) use($request){
+                        $instance->where(function ($w) use ($request) {
                             $search = $request->get('search');
                             $w->orWhere('name_ar', 'LIKE', "%$search%")
-                            ->orWhere('phone', 'LIKE', "%$search%")
-                            ->orWhere('email', 'LIKE', "%$search%");
+                                ->orWhere('phone', 'LIKE', "%$search%")
+                                ->orWhere('email', 'LIKE', "%$search%");
                         });
                     }
                 })
-                ->rawColumns(['name','phone','is_active','checkbox','actions'])
+                ->rawColumns(['name', 'phone', 'is_active', 'checkbox', 'actions'])
                 ->make(true);
         }
         return view('admin.employee.index');
@@ -85,7 +126,13 @@ class EmployeesController extends Controller
 
     public function create()
     {
-        return view('admin.employee.create');
+        $data = [];
+        $permissions = Permission::all();
+        foreach ($permissions as $permission) {
+            $str = explode(".", $permission->slug);
+            $data[$str[0]][] = $str[1];
+        }
+        return view('admin.employee.create', compact('data'));
     }
 
     public function store(Request $request)
@@ -112,8 +159,15 @@ class EmployeesController extends Controller
             'type' => 'dash',
             'is_active' => $request->is_active ?? '0',
         ]);
-
-        if($request->hasFile('photo') && $request->file('photo')->isValid()){
+        if (is_array($request->permissions) and count($request->permissions)) {
+            foreach ($request->permissions as $permission) {
+                $getPermission = Permission::where('slug', $permission)->first();
+                if ($getPermission) {
+                    EmployeesPermissions::create(['employees_id' => $row->id, 'permission_id' => $getPermission->id]);
+                }
+            }
+        }
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $row->addMediaFromRequest('photo')->toMediaCollection('profile');
         }
 
@@ -122,16 +176,23 @@ class EmployeesController extends Controller
 
     public function edit($id)
     {
+        $permissions_arr = [];
+        $permissions = Permission::all();
+        foreach ($permissions as $permission) {
+            $str = explode(".", $permission->slug);
+            $checked = EmployeesPermissions::where(['employees_id' => $id, 'permission_id' => $permission->id])->count();
+            $permissions_arr[$str[0]][] = ['name' => $str[1], 'checked' => $checked];
+        }
         $data = Employee::find($id);
-        return view('admin.employee.edit', compact('data'));
+        return view('admin.employee.edit', compact('data', 'permissions_arr'));
     }
 
     public function update(Request $request)
     {
         $rule = [
             'name_ar' => 'required|string',
-            'email' => 'email|unique:employees,email,'.$request->id,
-            'phone' => 'required|unique:employees,phone,'.$request->id,
+            'email' => 'email|unique:employees,email,' . $request->id,
+            'phone' => 'required|unique:employees,phone,' . $request->id,
             'password' => 'nullable|min:6',
             'photo' => 'image|mimes:png,jpg,jpeg|max:2048'
         ];
@@ -146,13 +207,21 @@ class EmployeesController extends Controller
             'name_ar' => $request->name_ar,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => ($request->password) ? Hash::make($request->password): $data->password,
+            'password' => ($request->password) ? Hash::make($request->password) : $data->password,
             'role_id' => 1,
             'type' => 'dash',
             'is_active' => $request->is_active ?? '0',
         ]);
-
-        if($request->hasFile('photo') && $request->file('photo')->isValid()){
+        if (is_array($request->permissions) and count($request->permissions)) {
+            EmployeesPermissions::where(['employees_id' => $request->id])->delete();
+            foreach ($request->permissions as $permission) {
+                $getPermission = Permission::where('slug', $permission)->first();
+                if ($getPermission) {
+                    EmployeesPermissions::create(['employees_id' => $request->id, 'permission_id' => $getPermission->id]);
+                }
+            }
+        }
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $data->addMediaFromRequest('photo')->toMediaCollection('profile');
         }
 
@@ -162,8 +231,8 @@ class EmployeesController extends Controller
     public function destroy(Request $request)
     {
 
-        try{
-            Employee::whereIn('id',$request->id)->delete();
+        try {
+            Employee::whereIn('id', $request->id)->delete();
         } catch (\Exception $e) {
             return response()->json(['message' => 'error']);
         }
@@ -171,17 +240,18 @@ class EmployeesController extends Controller
 
     }
 
-    public function updateFcm(Request $request){
-        try{
-            $request->user()->update(['fcm_token'=>$request->token]);
+    public function updateFcm(Request $request)
+    {
+        try {
+            $request->user()->update(['fcm_token' => $request->token]);
             return response()->json([
-                'success'=>true
+                'success' => true
             ]);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             report($e);
             return response()->json([
-                'success'=>false
-            ],500);
+                'success' => false
+            ], 500);
         }
     }
 }

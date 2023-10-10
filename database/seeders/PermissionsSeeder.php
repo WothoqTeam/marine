@@ -62,5 +62,31 @@ class PermissionsSeeder extends Seeder
         // Contact Us
         Permission::updateOrCreate(['name' => 'contactUs_index', /*'guard_name' => 'web',*/ 'slug' => 'contactUs.index']);
         Permission::updateOrCreate(['name' => 'contactUs_delete', /*'guard_name' => 'web',*/ 'slug' => 'contactUs.delete']);
+
+        // Yachts
+        Permission::updateOrCreate(['name' => 'yachts_index', /*'guard_name' => 'web',*/ 'slug' => 'yachts.index']);
+        Permission::updateOrCreate(['name' => 'yachts_create', /*'guard_name' => 'web',*/ 'slug' => 'yachts.create']);
+        Permission::updateOrCreate(['name' => 'yachts_update', /*'guard_name' => 'web',*/ 'slug' => 'yachts.update']);
+        Permission::updateOrCreate(['name' => 'yachts_delete', /*'guard_name' => 'web',*/ 'slug' => 'yachts.delete']);
+
+        // Reservations
+        Permission::updateOrCreate(['name' => 'reservations_index', /*'guard_name' => 'web',*/ 'slug' => 'reservations.index']);
+
+        // Marasi
+        Permission::updateOrCreate(['name' => 'marasi_index', /*'guard_name' => 'web',*/ 'slug' => 'marasi.index']);
+        Permission::updateOrCreate(['name' => 'marasi_create', /*'guard_name' => 'web',*/ 'slug' => 'marasi.create']);
+        Permission::updateOrCreate(['name' => 'marasi_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi.update']);
+        Permission::updateOrCreate(['name' => 'marasi_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi.delete']);
+
+        //Marasi Reservations
+        Permission::updateOrCreate(['name' => 'marasi_reservations_index', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.index']);
+        Permission::updateOrCreate(['name' => 'marasi_reservations_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.update']);
+        Permission::updateOrCreate(['name' => 'marasi_reservations_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.delete']);
+
+        // Specifications
+        Permission::updateOrCreate(['name' => 'specifications_index', /*'guard_name' => 'web',*/ 'slug' => 'specifications.index']);
+        Permission::updateOrCreate(['name' => 'specifications_create', /*'guard_name' => 'web',*/ 'slug' => 'specifications.create']);
+        Permission::updateOrCreate(['name' => 'specifications_update', /*'guard_name' => 'web',*/ 'slug' => 'specifications.update']);
+        Permission::updateOrCreate(['name' => 'specifications_delete', /*'guard_name' => 'web',*/ 'slug' => 'specifications.delete']);
     }
 }
