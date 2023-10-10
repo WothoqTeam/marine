@@ -43,6 +43,75 @@ Route::name('admin.')->middleware(['auth:admin'])->group(function () {
             Route::post('/update', 'UsersController@update')->name('update');
         });
 
+        Route::name('providers.')->prefix('providers')->group(function(){
+            Route::get('/','ProvidersController@index')->name('index');
+            Route::get('/show/{id}','ProvidersController@show')->name('show');
+            Route::post('/delete', 'ProvidersController@destroy')->name('delete');
+            Route::get('/create','ProvidersController@create')->name('create');
+            Route::post('/store','ProvidersController@store')->name('store');
+            Route::get('/edit/{id}', 'ProvidersController@edit')->name('edit');
+            Route::post('/update', 'ProvidersController@update')->name('update');
+        });
+
+        Route::name('countries.')->prefix('countries')->group(function(){
+            Route::get('/','CountriesController@index')->name('index');
+            Route::post('/delete', 'CountriesController@destroy')->name('delete');
+            Route::get('/create','CountriesController@create')->name('create');
+            Route::post('/store','CountriesController@store')->name('store');
+            Route::get('/edit/{id}', 'CountriesController@edit')->name('edit');
+            Route::post('/update', 'CountriesController@update')->name('update');
+        });
+
+        Route::name('cities.')->prefix('cities')->group(function(){
+            Route::get('/','CitiesController@index')->name('index');
+            Route::post('/delete', 'CitiesController@destroy')->name('delete');
+            Route::get('/create','CitiesController@create')->name('create');
+            Route::post('/store','CitiesController@store')->name('store');
+            Route::get('/edit/{id}', 'CitiesController@edit')->name('edit');
+            Route::post('/update', 'CitiesController@update')->name('update');
+        });
+
+        Route::name('faqs.')->prefix('faqs')->group(function(){
+            Route::get('/','FaqsController@index')->name('index');
+            Route::get('/show/{id}','FaqsController@show')->name('show');
+            Route::post('/delete', 'FaqsController@destroy')->name('delete');
+            Route::get('/create','FaqsController@create')->name('create');
+            Route::post('/store','FaqsController@store')->name('store');
+            Route::get('/edit/{id}', 'FaqsController@edit')->name('edit');
+            Route::post('/update', 'FaqsController@update')->name('update');
+        });
+
+        Route::name('pages.')->prefix('pages')->group(function(){
+            Route::get('/','PagesController@index')->name('index');
+            Route::get('/show/{id}','PagesController@show')->name('show');
+//        Route::post('/delete', 'PagesController@destroy')->name('delete');
+//        Route::get('/create','PagesController@create')->name('create');
+//        Route::post('/store','PagesController@store')->name('store');
+            Route::get('/edit/{id}', 'PagesController@edit')->name('edit');
+            Route::post('/update', 'PagesController@update')->name('update');
+        });
+
+        Route::name('banners.')->prefix('banners')->group(function(){
+            Route::get('/','BannersController@index')->name('index');
+            Route::get('/show/{id}','BannersController@show')->name('show');
+            Route::post('/delete', 'BannersController@destroy')->name('delete');
+            Route::get('/create','BannersController@create')->name('create');
+            Route::post('/store','BannersController@store')->name('store');
+            Route::get('/edit/{id}', 'BannersController@edit')->name('edit');
+            Route::post('/update', 'BannersController@update')->name('update');
+        });
+
+        Route::name('contactUs.')->prefix('contactUs')->group(function(){
+            Route::get('/','ContactUsController@index')->name('index');
+            Route::post('/delete', 'ContactUsController@destroy')->name('delete');
+            Route::get('/show/{id}','ContactUsController@show')->name('show');
+        });
+
+        Route::name('notifications.')->prefix('notifications')->group(function(){
+            Route::get('/','NotificationsController@index')->name('index');
+            Route::get('/create','NotificationsController@create')->name('create');
+            Route::post('/store','NotificationsController@store')->name('store');
+        });
     });
 
 });

@@ -12,4 +12,5 @@ return [
     'Profile updated successfully' => 'تم تحديث الملف الشخصي بنجاح',
     'Invalid Unauthorized' => 'غير مصرح به غير صالح',
     'invalid code' => 'رمز غير صالح',
+    'sendOtpMessage'=>'من فضلك استخدم كلمة المرور المؤقتة، رمز: ',
 ];
