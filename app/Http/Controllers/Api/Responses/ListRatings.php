@@ -11,6 +11,7 @@ class ListRatings extends DataInterface
     public int $id;
     public float $stars;
     public string|null $comment;
+    public string|null $date;
     public array $user;
 
     /**
@@ -22,7 +23,8 @@ class ListRatings extends DataInterface
     {
         $this->id = $rate->id;
         $this->stars = $rate->stars;
-        $this->comment = $rate->comment;
+        $this->comment = $rate->comments;
+        $this->date = $rate->created_at;
         $this->user = [
             'id'=>$rate->addBy->id,
             'name'=>$rate->addBy->name,
