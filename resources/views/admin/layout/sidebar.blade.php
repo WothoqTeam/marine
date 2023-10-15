@@ -10,108 +10,164 @@
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">لوحة التحكم</span>
+                    <span class="menu-title">{{transAdmin('Dashboard')}}</span>
                 </a>
             </div>
 
+            @if(can_manager('marasi reservations.index'))
             <div class="menu-item">
                 <a class="menu-link" href="javascript:void()">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">الحجوزات</span>
+                    <span class="menu-title">{{transAdmin('Marasi Reservations')}}</span>
                 </a>
             </div>
+            @endif
 
+            @if(can_manager('reservations.index'))
+                <div class="menu-item">
+                    <a class="menu-link" href="javascript:void()">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Yachts Reservations')}}</span>
+                    </a>
+                </div>
+            @endif
+
+            @if(can_manager('yachts.index'))
             <div class="menu-item">
                 <a class="menu-link" href="javascript:void()">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">اليخوت</span>
+                    <span class="menu-title">{{transAdmin('Yachts')}}</span>
                 </a>
             </div>
+            @endif
 
+            @if(can_manager('marasi owners.index'))
             <div class="menu-item">
                 <a class="menu-link" href="javascript:void()">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">مقدمي الخدمة</span>
+                    <span class="menu-title">{{transAdmin('Marasi Owners')}}</span>
                 </a>
             </div>
+            @endif
 
+            @if(can_manager('banners.index'))
             <div class="menu-item">
                 <a class="menu-link" href="javascript:void()">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">الاعلانات</span>
+                    <span class="menu-title">{{transAdmin('Banners')}}</span>
                 </a>
             </div>
+            @endif
 
+            @if(can_manager('marasi.index'))
             <div class="menu-item">
                 <a class="menu-link" href="javascript:void()">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">المراسي</span>
+                    <span class="menu-title">{{transAdmin('Marasi')}}</span>
                 </a>
             </div>
+            @endif
 
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">المدن والاحياء</span>
-                </a>
-            </div>
-
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">الدعم</span>
-                </a>
-            </div>
-
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">الصفحات</span>
-                </a>
-            </div>
-
+            @if(can_manager('users.index'))
             <div class="menu-item">
                 <a class="menu-link" href="{{route('admin.users.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">العملاء</span>
+                    <span class="menu-title">{{transAdmin('Users')}}</span>
                 </a>
             </div>
+            @endif
 
+            @if(can_manager('employees.index'))
             <div class="menu-item">
                 <a class="menu-link" href="{{route('admin.employees.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">المديرين</span>
+                    <span class="menu-title">{{transAdmin('Employees')}}</span>
                 </a>
             </div>
+            @endif
 
-            <div class="menu-item">
-                <a class="menu-link" href="{{route('admin.settings.edit', 1)}}">
+            {{--settings--}}
+            @if(can_manager('settings.update') || can_manager('countries.index') || can_manager('cities.index') || can_manager('faq.index') || can_manager('pages.index'))
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::is('admin/settings*', 'admin/countries*', 'admin/cities*', 'admin/faqs*', 'admin/pages*')) show menu-accordion @endif">
+                <span class="menu-link">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">الاعدادات العامة</span>
-                </a>
-            </div>
+                    <span class="menu-title">{{transAdmin('Settings')}}</span>
+                    <span class="menu-arrow"></span>
+                </span>
+
+                    <div class="menu-sub menu-sub-accordion">
+                        @if(can_manager('settings.update'))
+                            <div class="menu-item">
+                                <a class="menu-link @if(Request::is('admin/settings*')) active @endif" href="{{route('admin.settings.edit', 1)}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                                    <span class="menu-title">{{transAdmin('Settings')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        @if(can_manager('countries.index'))
+                            <div class="menu-item">
+                                <a class="menu-link @if(Request::is('admin/countries*')) active @endif" href="{{route('admin.countries.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                                    <span class="menu-title">{{transAdmin('Countries')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        @if(can_manager('cities.index'))
+                            <div class="menu-item">
+                                <a class="menu-link @if(Request::is('admin/cities*')) active @endif" href="{{route('admin.cities.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                                    <span class="menu-title">{{transAdmin('Cities')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        @if(can_manager('faq.index'))
+                            <div class="menu-item">
+                                <a class="menu-link @if(Request::is('admin/faqs*')) active @endif" href="{{route('admin.faqs.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                                    <span class="menu-title">{{transAdmin('Faqs')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        @if(can_manager('pages.index'))
+                            <div class="menu-item">
+                                <a class="menu-link @if(Request::is('admin/pages*')) active @endif" href="{{route('admin.pages.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                                    <span class="menu-title">{{transAdmin('Pages')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+
+                </div>
+            @endif
 
         </div>
 
