@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\Responses\Reservations\ListUserReservations;
+use App\Http\Controllers\Api\Responses\Reservations\ReservationDetails;
 use App\Http\Requests\Api\Reservations\PayReservationsRequest;
 use App\Http\Requests\Api\Reservations\ReservationsRequest;
 use App\Http\Requests\Api\Reservations\StoreReservationsRequest;
@@ -29,6 +30,17 @@ class ReservationsApiController extends BaseApiController
             return new ListUserReservations($reservation,$this->language);
         })->values();
         return $this->generateResponse(true,'Success',$reservations);
+    }
+
+    public function details($id){
+        $user=auth('api')->user();
+        $reservation = Reservations::with('yacht','user')->where('user_id',$user->id)->find($id);
+        if ($reservation){
+            $details=new ReservationDetails($reservation,$this->language);
+            return $this->generateResponse(true,'Success',$details);
+        }else{
+            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+        }
     }
 
     public function store(StoreReservationsRequest $request){
