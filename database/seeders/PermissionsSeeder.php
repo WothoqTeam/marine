@@ -78,10 +78,16 @@ class PermissionsSeeder extends Seeder
         Permission::updateOrCreate(['name' => 'marasi_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi.update']);
         Permission::updateOrCreate(['name' => 'marasi_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi.delete']);
 
+        // Marasi Owners
+        Permission::updateOrCreate(['name' => 'marasi_owners_index', /*'guard_name' => 'web',*/ 'slug' => 'marasi owners.index']);
+        Permission::updateOrCreate(['name' => 'marasi_owners_create', /*'guard_name' => 'web',*/ 'slug' => 'marasi owners.create']);
+        Permission::updateOrCreate(['name' => 'marasi_owners_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi owners.update']);
+        Permission::updateOrCreate(['name' => 'marasi_owners_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi owners.delete']);
+
         //Marasi Reservations
-        Permission::updateOrCreate(['name' => 'marasi_reservations_index', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.index']);
-        Permission::updateOrCreate(['name' => 'marasi_reservations_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.update']);
-        Permission::updateOrCreate(['name' => 'marasi_reservations_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi_reservations.delete']);
+        Permission::updateOrCreate(['name' => 'marasi_reservations_index', /*'guard_name' => 'web',*/ 'slug' => 'marasi reservations.index']);
+        Permission::updateOrCreate(['name' => 'marasi_reservations_update', /*'guard_name' => 'web',*/ 'slug' => 'marasi reservations.update']);
+        Permission::updateOrCreate(['name' => 'marasi_reservations_delete', /*'guard_name' => 'web',*/ 'slug' => 'marasi reservations.delete']);
 
         // Specifications
         Permission::updateOrCreate(['name' => 'specifications_index', /*'guard_name' => 'web',*/ 'slug' => 'specifications.index']);

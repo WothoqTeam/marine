@@ -28,5 +28,12 @@ class PagesSeeder extends Seeder
             'content_en'=>'test',
             'content_ar'=>'تجريبي',
         ]);
+        Pages::updateOrCreate(
+            ['id' => 3],[
+            'name_en' => 'About Us',
+            'name_ar'=>'عننا',
+            'content_en'=>'test',
+            'content_ar'=>'تجريبي',
+        ]);
     }
 }

@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\App;
-
- function transAdmin($key, $placeholder = [],$group = 'lang')
+use \Illuminate\Support\Facades\Auth;
+use \App\Models\Permission;
+use \App\Models\EmployeesPermissions;
+function transAdmin($key, $placeholder = [], $group = 'admin')
 {
-    if (App::isLocale('en')){
-        $locale='en';
-    }else{
-        $locale='ar';
+    if (App::isLocale('en')) {
+        $locale = 'en';
+    } else {
+        $locale = 'ar';
     }
     $key = trim($key);
     $word = $group . '.' . $key;
@@ -43,4 +45,16 @@ use Illuminate\Support\Facades\App;
     }
     fclose($fh);
     return trans($word, $placeholder, $locale);
+}
+
+function can_manager($permission_name)
+{
+    $check = true;
+    if (Auth::guard('admin')->user()->id != 1) {
+        $permission = Permission::where('slug', $permission_name)->first();
+        if ($permission) {
+            $check = EmployeesPermissions::where(['employees_id' => Auth::guard('admin')->user()->id, 'permission_id' => $permission->id])->count();
+        }
+    }
+    return $check;
 }

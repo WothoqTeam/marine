@@ -6,7 +6,7 @@
 @endsection
 
 @section('style')
-    
+
 @endsection
 
 @section('breadcrumb')
@@ -15,18 +15,18 @@
     <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_header_nav'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
         <a  href="{{url('/admin')}}">
             <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
-                لوحة التحكم
+                {{transAdmin('Dashboard')}}
             </h1>
         </a>
         <span class="h-20px border-gray-300 border-start mx-4"></span>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
             <li class="breadcrumb-item text-muted px-2">
-                <a  href="#" class="text-muted text-hover-primary">العملاء</a>
+                <a  href="#" class="text-muted text-hover-primary">{{transAdmin('Users')}}</a>
             </li>
             {{-- <li class="breadcrumb-item">
                 <span class="bullet bg-gray-300 w-5px h-2px"></span>
             </li> --}}
-            
+
         </ul>
     </div>
     <!--end::Page title-->
@@ -36,7 +36,7 @@
 @section('content')
     <!--begin::Container-->
     <div id="kt_app_content_container" class="app-container container-fluid">
-            
+
             <div class="card no-border">
                 <!--begin::Card header-->
                 <div class="card-header border-0 pt-6">
@@ -82,11 +82,11 @@
                                         <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_datatable_table .form-check-input" value="1" />
                                     </div>
                                 </th>
-                                <th class="min-w-125px text-start">العملاء</th>
-                                <th class="min-w-125px text-start">رقم الهاتف</th>
+                                <th class="min-w-125px text-start">{{transAdmin('Users')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.phone')}}</th>
                                 <th class="min-w-125px text-start">تاريخ</th>
-                                <th class="min-w-125px text-start">الحالة</th>
-                                <th class="min-w-125px text-start">الاجراء</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.status')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.actions')}}</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -132,11 +132,11 @@
 
                                         <div class="fv-row mb-7">
 
-                                            <label class="required fw-semibold fs-6 mb-2">مفعل ؟</label>
+                                            <label class="required fw-semibold fs-6 mb-2">{{trans('labels.inputs.active')}} ؟</label>
                                             <select name="is_active" id="is_active" data-control="select2" data-placeholder="اختـر ..." data-hide-search="true" class="form-select form-select-solid fw-bold">
                                                 <option></option>
-                                                <option value="1">مفعل</option>
-                                                <option value="0">غير مفعل</option>
+                                                <option value="1">{{trans('labels.inputs.active')}}</option>
+                                                <option value="0">{{trans('labels.inputs.in_active')}}</option>
                                             </select>
                                         </div>
 
@@ -172,7 +172,7 @@
 
 <script>
     $(function () {
-      
+
         var table = $('#kt_datatable_table').DataTable({
             processing: false,
             serverSide: true,
@@ -214,12 +214,12 @@
         });
 
         table.buttons().container().appendTo($('.dbuttons'));
-        
+
         const filterSearch = document.querySelector('[data-kt-db-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             table.draw();
         });
-        
+
         $('#submit').click(function(){
             $("#kt_modal_filter").modal('hide');
             table.draw();
@@ -233,7 +233,7 @@
 
             if (checkIDs.length > 0) {
                 var token = $(this).data("token");
-                
+
                 Swal.fire({
                     title: 'هل انت متأكد ؟',
                     text: "لا يمكن استرجاع البيانات المحذوفه",
@@ -273,7 +273,7 @@
                 });
             } else {
                 toastr.error("", "حدد العناصر اولا");
-            }        
+            }
 
         });
     });

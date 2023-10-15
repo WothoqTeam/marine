@@ -23,5 +23,10 @@ return [
     'Search Providers' => 'Search Providers',
     'Invalid credentials' => 'Invalid credentials',
     'sendOtpMessage' => 'Use the temporary password, code: ',  
-  'Invalid Phone Number' => 'Invalid Phone Number',
+  'Invalid Phone Number' => 'Invalid Phone Number',  
+  'Reservations' => 'Reservations',  
+  'Yachts' => 'Yachts',  
+  'Marines Owners' => 'Marines Owners',  
+  'Banners' => 'Banners',  
+  'Marines' => 'Marines',
 ];

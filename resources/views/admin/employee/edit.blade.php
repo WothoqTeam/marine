@@ -4,7 +4,7 @@
 @endsection
 
 @section('style')
-    
+
 @endsection
 
 @section('breadcrumb')
@@ -13,19 +13,19 @@
     <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_header_nav'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
         <a  href="{{url('/admin')}}">
             <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
-                لوحة التحكم
+                {{transAdmin('Dashboard')}}
             </h1>
         </a>
         <span class="h-20px border-gray-300 border-start mx-4"></span>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
             <li class="breadcrumb-item text-muted px-2">
-                <a  href="{{route('admin.employees.index')}}" class="text-muted text-hover-primary">الموظفين</a>
+                <a  href="{{route('admin.employees.index')}}" class="text-muted text-hover-primary">{{transAdmin('Employees')}}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-300 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted px-2">
-                تعديل   
+                {{trans('labels.labels.edit')}}
             </li>
         </ul>
     </div>
@@ -73,32 +73,32 @@
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">الاسم</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}</label>
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="name_ar" placeholder="First name" value="{{$data->name_ar}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6"> البريد الالكتروني</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6"> {{trans('labels.inputs.email')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="email" placeholder="البريد الالكتروني" value="{{$data->email}}" class="form-control form-control-lg form-control-solid" />
+                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="{{$data->email}}" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">
-                                <span class="required">رقم الهاتف</span>
+                                <span class="required">{{trans('labels.inputs.phone')}}</span>
                             </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="tel" name="phone" placeholder="رقم الهاتف" value="{{$data->phone}}" class="form-control form-control-lg form-control-solid" />
+                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}" value="{{$data->phone}}" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">
-                                كلمة المرور
+                                {{trans('labels.inputs.password')}}
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Min 6 characters"></i>
                             </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="password" name="password" placeholder="كلمة المرور" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="password" name="password" placeholder="{{trans('labels.inputs.password')}}" value="" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
                         <div class="row mb-0">
@@ -110,7 +110,39 @@
                                 </div>
                             </div>
                         </div>
-
+                        @if($data->id!=1)
+                            <hr>
+                            <div class="row mb-6">
+                                <h1><center><u>{{ucwords(transAdmin('permissions',[],'permissions'))}}</u></center></h1>
+                            </div>
+                            @foreach($permissions_arr as $key=>$values)
+                                <div class="row mb-6">
+                                    <h3>{{ucwords(transAdmin($key,[],'permissions'))}}</h3>
+                                    <div class="col-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="{{$key}}.all" onchange="handlePermissionChange('{{$key}}')">
+                                            <label for="{{$key}}.all">
+                                                {{ucwords(transAdmin('all',[],'permissions'))}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @php $i=0; @endphp
+                                    @foreach($values as $value)
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]" value="{{$key}}.{{$value['name']}}" id="{{$key}}.{{$value['name']}}" @if($value['checked']) checked @endif>
+                                                <label for="{{$key}}.{{$value['name']}}">
+                                                    {{ucwords(transAdmin($value['name'],[],'permissions'))}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @php if($value['checked']){ $i++; }  @endphp
+                                    @endforeach
+                                    @if(count($values) == $i) <script>document.getElementById('{{$key}}.all').checked = true</script> @endif
+                                </div>
+                                <hr>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
@@ -126,5 +158,27 @@
 
 @endsection
 
+
 @section('script')
+    <script>
+        function handlePermissionChange(model) {
+            var allCheckbox = document.getElementById(model+'.all');
+            var createCheckbox = document.getElementById(model+'.index');
+            var readCheckbox = document.getElementById(model+'.create');
+            var updateCheckbox = document.getElementById(model+'.update');
+            var deleteCheckbox = document.getElementById(model+'.delete');
+
+            if (allCheckbox.checked) {
+                createCheckbox?createCheckbox.checked = true:'';
+                readCheckbox?readCheckbox.checked = true:'';
+                updateCheckbox?updateCheckbox.checked = true:'';
+                deleteCheckbox?deleteCheckbox.checked = true:'';
+            } else {
+                createCheckbox?createCheckbox.checked = false:'';
+                readCheckbox?readCheckbox.checked = false:'';
+                updateCheckbox?updateCheckbox.checked = false:'';
+                deleteCheckbox?deleteCheckbox.checked = false:'';
+            }
+        }
+    </script>
 @endsection

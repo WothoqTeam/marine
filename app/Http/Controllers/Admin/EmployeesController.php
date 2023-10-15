@@ -81,9 +81,9 @@ class EmployeesController extends Controller
                 })
                 ->addColumn('is_active', function ($row) {
                     if ($row->is_active == 1) {
-                        $is_active = '<div class="badge badge-light-success fw-bold">مقعل</div>';
+                        $is_active = '<div class="badge badge-light-success fw-bold">'.trans('labels.inputs.active').'</div>';
                     } else {
-                        $is_active = '<div class="badge badge-light-danger fw-bold">غير مفعل</div>';
+                        $is_active = '<div class="badge badge-light-danger fw-bold">'.trans('labels.inputs.in_active').'</div>';
                     }
 
                     return $is_active;

@@ -91,6 +91,7 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
 
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'userList']);
+    Route::get('/reservations/{id}', [ReservationsApiController::class, 'details']);
     Route::post('/reservations/store', [ReservationsApiController::class, 'store']);
     Route::post('/reservations/update/{id}', [ReservationsApiController::class, 'update']);
     Route::post('/reservations/cancel/{id}', [ReservationsApiController::class, 'cancel']);
@@ -115,6 +116,7 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
 
     //Reservations
     Route::get('/reservations/list', [ReservationsApiController::class, 'providerList']);
+    Route::get('/reservations/{id}', [ReservationsApiController::class, 'details']);
     Route::post('/reservations/requests', [ReservationsApiController::class, 'providerRequests']);
 
     //Specifications

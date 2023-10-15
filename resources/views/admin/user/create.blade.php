@@ -4,7 +4,7 @@
 @endsection
 
 @section('style')
-    
+
 @endsection
 
 @section('breadcrumb')
@@ -13,19 +13,19 @@
     <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_header_nav'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
         <a  href="{{url('/admin')}}">
             <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
-                لوحة التحكم
+                {{transAdmin('Dashboard')}}
             </h1>
         </a>
         <span class="h-20px border-gray-300 border-start mx-4"></span>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
             <li class="breadcrumb-item text-muted px-2">
-                <a  href="{{route('admin.users.index')}}" class="text-muted text-hover-primary">العملاء</a>
+                <a  href="{{route('admin.users.index')}}" class="text-muted text-hover-primary">{{transAdmin('Users')}}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-300 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted px-2">
-               اضف جديد  
+               {{trans('labels.labels.add_new')}}
             </li>
         </ul>
     </div>
@@ -35,7 +35,7 @@
 
 @section('content')
 
-    <div id="kt_app_content_container" class="app-container container-fluid">       
+    <div id="kt_app_content_container" class="app-container container-fluid">
 
         <div class="card mb-5 mb-xl-10">
             <!--begin::Content-->
@@ -47,34 +47,34 @@
 
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">اسم</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name" placeholder="الاسم" value="" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
-                                <span class="required">رقم الهاتف</span>
-                            </label>
-                            <div class="col-lg-8 fv-row">
-                                <input type="tel" name="phone" placeholder="رقم الهاتف" value="" class="form-control form-control-lg form-control-solid" />
-                            </div>
-                        </div>
-                        <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6 required">
-                                كلمة المرور
-                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="لا يقل عن 6 حروف"></i>
-                            </label>
-                            <div class="col-lg-8 fv-row">
-                                <input type="password" name="password" placeholder="كلمة المرور" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="text" name="name" placeholder="{{trans('labels.inputs.name')}}" value="" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6">البريد الالكتروني </label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
+                                <span class="required">{{trans('labels.inputs.phone')}}</span>
+                            </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="email" placeholder="البريد الالكتروني" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}" value="" class="form-control form-control-lg form-control-solid" />
+                            </div>
+                        </div>
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6 required">
+                                {{trans('labels.inputs.password')}}
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="لا يقل عن 6 حروف"></i>
+                            </label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="password" name="password" placeholder="{{trans('labels.inputs.password')}}" value="" class="form-control form-control-lg form-control-solid" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.email')}} </label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
 

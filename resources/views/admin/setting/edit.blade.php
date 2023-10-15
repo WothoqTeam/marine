@@ -90,7 +90,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>البريد الالكتروني</span>
+                                                <span>{{trans('labels.inputs.email')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -100,7 +100,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>البريد الالكتروني 2</span>
+                                                <span>{{trans('labels.inputs.email')}} 2</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -111,7 +111,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>رقم الهاتف</span>
+                                                <span>{{trans('labels.inputs.phone')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -121,7 +121,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>رقم الهاتف 2</span>
+                                                <span>{{trans('labels.inputs.phone')}} 2</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">

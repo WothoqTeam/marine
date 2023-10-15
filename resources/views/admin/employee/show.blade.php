@@ -1,11 +1,11 @@
 @extends('admin.layout.master')
 
 @section('css')
-    
+
 @endsection
 
 @section('style')
-    
+
 @endsection
 
 @section('breadcrumb')
@@ -17,7 +17,7 @@
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin.employees.index')}}" class="text-muted text-hover-primary">الموظفين</a>
+            <a href="{{route('admin.employees.index')}}" class="text-muted text-hover-primary">{{transAdmin('Employees')}}</a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -52,13 +52,13 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        
+
                     </div>
                 </div>
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">الاسم</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}}</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->append_name}}</div>
@@ -67,7 +67,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">البريد الالكتروني</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.email')}}</div>
                     </div>
                     <div class="col-xl-9 fv-row">
                         <div class="fw-bold fs-5">{{$data->email}}</div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">رقم الهاتف</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.phone')}}</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->phone}}</div>
