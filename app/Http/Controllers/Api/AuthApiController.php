@@ -8,7 +8,7 @@ use App\Http\Requests\Api\Auth\UserLoginRequest;
 use App\Http\Requests\Api\Auth\UserRegisterRequest;
 use App\Models\Role;
 use App\Models\Verification;
-//use App\Traits\DeewanSMSTrait;
+use App\Traits\DeewanSMSTrait;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +17,7 @@ use Validator;
 use Str;
 class AuthApiController extends BaseApiController
 {
-//    use DeewanSMSTrait;
+    use DeewanSMSTrait;
     public function __construct() {
         $this->middleware('api', ['except' => ['login', 'register','checkVerification','checkPhone']]);
     }
@@ -152,10 +152,10 @@ class AuthApiController extends BaseApiController
             $code=rand(1000,9999);
             $lang=strtolower(request()->header('Language', 'ar'));
             //send Sms Here
-//            $sms= $this->sendSms($code,$request->phone,$lang);
-//            if (!$sms){
-//                return $this->generateResponse(false,'Invalid Phone Number',[],422);
-//            }
+            $sms= $this->sendSms($code,$request->phone,$lang);
+            if (!$sms){
+                return $this->generateResponse(false,'Invalid Phone Number',[],422);
+            }
         }
         return $this->generateResponse(true,'Success',[]);
 
