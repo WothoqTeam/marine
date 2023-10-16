@@ -6,7 +6,7 @@
         <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false" class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-6 mb-5">
 
             <div class="menu-item">
-                <a class="menu-link" href="{{url('/admin')}}">
+                <a class="menu-link @if(Request::is('admin')) active @endif " href="{{url('/admin')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
@@ -14,92 +14,48 @@
                 </a>
             </div>
 
-            @if(can_manager('marasi reservations.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">{{transAdmin('Marasi Reservations')}}</span>
-                </a>
-            </div>
-            @endif
-
-            @if(can_manager('reservations.index'))
+            @if(can_manager('employees.index'))
                 <div class="menu-item">
-                    <a class="menu-link" href="javascript:void()">
+                    <a class="menu-link @if(Request::is('admin/employees*')) active @endif " href="{{route('admin.employees.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                        <span class="menu-title">{{transAdmin('Yachts Reservations')}}</span>
+                        <span class="menu-title">{{transAdmin('Employees')}}</span>
                     </a>
                 </div>
             @endif
 
-            @if(can_manager('yachts.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
+            @if(can_manager('providers.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/providers*')) active @endif " href="{{route('admin.providers.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">{{transAdmin('Yachts')}}</span>
-                </a>
-            </div>
-            @endif
-
-            @if(can_manager('marasi owners.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">{{transAdmin('Marasi Owners')}}</span>
-                </a>
-            </div>
-            @endif
-
-            @if(can_manager('banners.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">{{transAdmin('Banners')}}</span>
-                </a>
-            </div>
-            @endif
-
-            @if(can_manager('marasi.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="javascript:void()">
-                    <span class="menu-icon">
-                        <i class="fonticon-setting fs-2"></i>
-                    </span>
-                    <span class="menu-title">{{transAdmin('Marasi')}}</span>
-                </a>
-            </div>
+                        <span class="menu-title">{{transAdmin('Providers')}}</span>
+                    </a>
+                </div>
             @endif
 
             @if(can_manager('users.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="{{route('admin.users.index')}}">
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/users*')) active @endif " href="{{route('admin.users.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">{{transAdmin('Users')}}</span>
-                </a>
-            </div>
+                        <span class="menu-title">{{transAdmin('Users')}}</span>
+                    </a>
+                </div>
             @endif
 
-            @if(can_manager('employees.index'))
-            <div class="menu-item">
-                <a class="menu-link" href="{{route('admin.employees.index')}}">
+            @if(can_manager('banners.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/banners*')) active @endif " href="{{route('admin.banners.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">{{transAdmin('Employees')}}</span>
-                </a>
-            </div>
+                        <span class="menu-title">{{transAdmin('Banners')}}</span>
+                    </a>
+                </div>
             @endif
 
             {{--settings--}}
@@ -169,6 +125,60 @@
                 </div>
             @endif
 
+            @if(can_manager('yachts.index'))
+            <div class="menu-item">
+                <a class="menu-link @if(Request::is('admin/yachts*')) active @endif " href="{{route('admin.yachts.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                    <span class="menu-title">{{transAdmin('Yachts')}}</span>
+                </a>
+            </div>
+            @endif
+
+            @if(can_manager('reservations.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/reservations*')) active @endif " href="javascript:void()">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Yachts Reservations')}}</span>
+                    </a>
+                </div>
+            @endif
+
+            @if(can_manager('marasi owners.index'))
+            <div class="menu-item">
+                <a class="menu-link @if(Request::is('admin/marasi_owners*')) active @endif " href="javascript:void()">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                    <span class="menu-title">{{transAdmin('Marasi Owners')}}</span>
+                </a>
+            </div>
+            @endif
+
+            @if(can_manager('marasi.index'))
+            <div class="menu-item">
+                <a class="menu-link @if(Request::is('admin/marasi*')) active @endif "  href="javascript:void()">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                    <span class="menu-title">{{transAdmin('Marasi')}}</span>
+                </a>
+            </div>
+            @endif
+
+            @if(can_manager('marasi reservations.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/marasi_reservations*')) active @endif " href="javascript:void()">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Marasi Reservations')}}</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
     </div>
