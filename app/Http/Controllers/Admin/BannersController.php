@@ -27,15 +27,15 @@ class BannersController extends Controller
                     return $checkbox;
                 })
                 ->addColumn('name', function($row){
-                        $name=trans('admin.banners_tap').' #'.$row->id;
+                        $name=trans('labels.banners_tap').' #'.$row->id;
                     $name = '<div class="d-flex flex-column"><a href="javascript:;" class="text-gray-800 text-hover-primary mb-1">'.$name.'</a>';
                     return $name;
                 })
                 ->addColumn('status', function($row){
                     if($row->status == 1) {
-                        $is_active = '<div class="badge badge-light-success fw-bold">'.trans('admin.inputs.active').'</div>';
+                        $is_active = '<div class="badge badge-light-success fw-bold">'.trans('labels.inputs.active').'</div>';
                     } else {
-                        $is_active = '<div class="badge badge-light-danger fw-bold">'.trans('admin.inputs.in_active').'</div>';
+                        $is_active = '<div class="badge badge-light-danger fw-bold">'.trans('labels.inputs.in_active').'</div>';
                     }
 
                     return $is_active;
@@ -90,7 +90,7 @@ class BannersController extends Controller
         if($request->hasFile('cover') && $request->file('cover')->isValid()){
             $row->addMediaFromRequest('cover')->toMediaCollection('cover');
         }
-        return redirect('admin/banners')->with('message', trans('admin.labels.added_successfully'))->with('status', 'success');
+        return redirect('admin/banners')->with('message', trans('labels.labels.added_successfully'))->with('status', 'success');
     }
 
     /**
@@ -125,7 +125,7 @@ class BannersController extends Controller
             Media::where('model_type',AdvBanners::class)->where('model_id',$request->id)->where('collection_name','cover')->delete();
             $data->addMediaFromRequest('cover')->toMediaCollection('cover');
         }
-        return redirect('admin/banners')->with('message', trans('admin.labels.modified_successfully'))->with('status', 'success');
+        return redirect('admin/banners')->with('message', trans('labels.labels.modified_successfully'))->with('status', 'success');
     }
 
     /**

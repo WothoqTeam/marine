@@ -10,13 +10,13 @@
 @section('breadcrumb')
 <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
     <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('admin.labels.add_new')}}</h1>
+    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.add_new')}}</h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin.banners.index')}}" class="text-muted text-hover-primary">{{trans('admin.banners_tap')}}</a>
+            <a href="{{route('admin.banners.index')}}" class="text-muted text-hover-primary">{{trans('labels.banners_tap')}}</a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -25,7 +25,7 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">{{trans('admin.labels.add_new')}}</li>
+        <li class="breadcrumb-item text-muted">{{trans('labels.labels.add_new')}}</li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                     <div class="card-body border-top p-9">
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('admin.inputs.image')}}</label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.image')}}</label>
                             <div class="col-lg-8">
                                 <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
                                     <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{asset('dash/assets/media/avatars/blank.png')}})"></div>
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="row mb-0">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6"> {{trans('admin.inputs.status')}}</label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6"> {{trans('labels.inputs.status')}}</label>
                             <div class="col-lg-8 d-flex align-items-center">
                                 <div class="form-check form-check-solid form-switch form-check-custom fv-row">
                                     <input class="form-check-input w-45px h-30px" type="checkbox" name="status" value="1" id="allowmarketing" checked="checked" />
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">{{trans('admin.inputs.save')}}</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">{{trans('labels.inputs.save')}}</button>
                     </div>
                     <!--end::Actions-->
                 </form>

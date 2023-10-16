@@ -11,13 +11,13 @@
 @section('breadcrumb')
 <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
     <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('admin.labels.profile')}} </h1>
+    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.profile')}} </h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin.banners.index')}}" class="text-muted text-hover-primary">{{trans('admin.banners_tap')}} </a>
+            <a href="{{route('admin.banners.index')}}" class="text-muted text-hover-primary">{{trans('labels.banners_tap')}} </a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -26,7 +26,7 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">{{trans('admin.labels.profile')}} </li>
+        <li class="breadcrumb-item text-muted">{{trans('labels.labels.profile')}} </li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -58,7 +58,7 @@
 
 {{--                <div class="row mb-8">--}}
 {{--                    <div class="col-xl-2">--}}
-{{--                        <div class="fs-6 fw-semibold">{{trans('admin.inputs.name')}} EN</div>--}}
+{{--                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} EN</div>--}}
 {{--                    </div>--}}
 {{--                    <div class="col-lg-9">--}}
 {{--                        <div class="fw-bold fs-5">{{$data->name_en}}</div>--}}
@@ -67,7 +67,7 @@
 
 {{--                <div class="row mb-8">--}}
 {{--                    <div class="col-xl-2">--}}
-{{--                        <div class="fs-6 fw-semibold">{{trans('admin.inputs.name')}} AR</div>--}}
+{{--                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} AR</div>--}}
 {{--                    </div>--}}
 {{--                    <div class="col-lg-9">--}}
 {{--                        <div class="fw-bold fs-5">{{$data->name_ar}}</div>--}}
@@ -76,7 +76,7 @@
 
 {{--                <div class="row mb-8">--}}
 {{--                    <div class="col-xl-2">--}}
-{{--                        <div class="fs-6 fw-semibold">{{trans('admin.inputs.content')}} EN</div>--}}
+{{--                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.content')}} EN</div>--}}
 {{--                    </div>--}}
 {{--                    <div class="col-lg-9">--}}
 {{--                        <div class="fw-bold fs-5">{{$data->content_en}}</div>--}}
@@ -85,7 +85,7 @@
 
 {{--                <div class="row mb-8">--}}
 {{--                    <div class="col-xl-2">--}}
-{{--                        <div class="fs-6 fw-semibold">{{trans('admin.inputs.content')}} AR</div>--}}
+{{--                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.content')}} AR</div>--}}
 {{--                    </div>--}}
 {{--                    <div class="col-lg-9">--}}
 {{--                        <div class="fw-bold fs-5">{{$data->content_ar}}</div>--}}
@@ -95,7 +95,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('admin.inputs.created_at')}}</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.created_at')}}</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->created_at}}</div>

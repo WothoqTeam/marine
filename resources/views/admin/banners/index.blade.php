@@ -28,7 +28,7 @@
                                     <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
                                 </svg>
                             </span>
-                            <input type="text" data-kt-db-table-filter="search" id="search" name="search" class="form-control form-control-solid bg-light-dark text-dark w-250px ps-14" placeholder="{{trans('admin.inputs.search')}}" />
+                            <input type="text" data-kt-db-table-filter="search" id="search" name="search" class="form-control form-control-solid bg-light-dark text-dark w-250px ps-14" placeholder="{{trans('labels.inputs.search')}}" />
                         </div>
                     </div>
                     <div class="card-toolbar">
@@ -61,9 +61,9 @@
                                         <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_datatable_table .form-check-input" value="1" />
                                     </div>
                                 </th>
-                                <th class="min-w-125px text-start">{{trans('admin.banners_tap')}}</th>
-                                <th class="min-w-125px text-start">{{trans('admin.inputs.status')}}</th>
-                                <th class="min-w-125px text-start">{{trans('admin.inputs.actions')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.banners_tap')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.status')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.actions')}}</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -85,7 +85,7 @@
                             <!--begin::Modal header-->
                             <div class="modal-header" id="kt_modal_filter_header">
                                 <!--begin::Modal title-->
-                                <h2 class="fw-bold">{{trans('admin.inputs.filter')}}</h2>
+                                <h2 class="fw-bold">{{trans('labels.inputs.filter')}}</h2>
                                 <!--end::Modal title-->
                                 <!--begin::Close-->
                                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
@@ -109,21 +109,21 @@
 
                                         <div class="fv-row mb-7">
 
-                                            <label class="required fw-semibold fs-6 mb-2">{{trans('admin.inputs.status')}}</label>
-                                            <select name="status" id="status" data-control="select2" data-placeholder="{{trans('admin.inputs.select')}}" data-hide-search="true" class="form-select form-select-solid fw-bold">
+                                            <label class="required fw-semibold fs-6 mb-2">{{trans('labels.inputs.status')}}</label>
+                                            <select name="status" id="status" data-control="select2" data-placeholder="{{trans('labels.inputs.select')}}" data-hide-search="true" class="form-select form-select-solid fw-bold">
                                                 <option></option>
-                                                <option value="1">{{trans('admin.inputs.active')}}</option>
-                                                <option value="0">{{trans('admin.inputs.in_active')}}</option>
+                                                <option value="1">{{trans('labels.inputs.active')}}</option>
+                                                <option value="0">{{trans('labels.inputs.in_active')}}</option>
                                             </select>
                                         </div>
 
                                     </div>
 
                                     <div class="text-center pt-15">
-                                        <button type="button" class="btn btn-light me-3" data-bs-dismiss="modal">{{trans('admin.inputs.discard')}}</button>
+                                        <button type="button" class="btn btn-light me-3" data-bs-dismiss="modal">{{trans('labels.inputs.discard')}}</button>
                                         <button type="submit" class="btn btn-primary" id="submit">
-                                            <span class="indicator-label">{{trans('admin.inputs.submit')}}</span>
-                                            <span class="indicator-progress">{{trans('admin.labels.please_wait')}}...
+                                            <span class="indicator-label">{{trans('labels.inputs.submit')}}</span>
+                                            <span class="indicator-progress">{{trans('labels.labels.please_wait')}}...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
                                     </div>
