@@ -11,7 +11,7 @@
 @section('breadcrumb')
 <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
     <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">البروفايل </h1>
+    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.profile')}} </h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
@@ -26,7 +26,7 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">البروفايل</li>
+        <li class="breadcrumb-item text-muted">{{trans('labels.labels.profile')}}</li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
