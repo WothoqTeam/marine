@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faqs;
 use Illuminate\Http\Request;
 use DataTables;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Validator;
 use Illuminate\Support\Facades\App;
 class FaqsController extends Controller
