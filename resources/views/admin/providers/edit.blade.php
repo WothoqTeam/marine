@@ -19,7 +19,7 @@
         <span class="h-20px border-gray-300 border-start mx-4"></span>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
             <li class="breadcrumb-item text-muted px-2">
-                <a  href="{{route('admin.users.index')}}" class="text-muted text-hover-primary">{{transAdmin('Users')}}</a>
+                <a  href="{{route('admin.providers.index')}}" class="text-muted text-hover-primary">{{transAdmin('Providers')}}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -40,7 +40,7 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                <form action="{{route('admin.users.update')}}" method="POST" enctype="multipart/form-data" id="kt_account_profile_details_form" class="form">
+                <form action="{{route('admin.providers.update')}}" method="POST" enctype="multipart/form-data" id="kt_account_profile_details_form" class="form">
                     @csrf
                     <input type="hidden" name="id" value="{{$data->id}}" />
                     <!--begin::Card body-->
@@ -70,12 +70,12 @@
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Min 6 characters"></i>
                             </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="password" name="password" placeholder="كلمة المرور" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="password" name="password" placeholder="{{trans('labels.inputs.password')}}" value="" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6"> {{trans('labels.inputs.email')}}</label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.email')}}</label>
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="{{$data->email}}" class="form-control form-control-lg form-control-solid" />
                             </div>

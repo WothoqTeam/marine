@@ -57,8 +57,11 @@
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">
                                 <span class="required">{{trans('labels.inputs.phone')}}</span>
                             </label>
-                            <div class="col-lg-8 fv-row">
-                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}" value="" class="form-control form-control-lg form-control-solid" />
+                            <div class="col-lg-1 fv-row">
+                                <input type="tel" name="code" value="966" placeholder="{{trans('labels.inputs.phoneCode')}}" maxlength="3"  class="form-control form-control-lg form-control-solid"/>
+                            </div>
+                            <div class="col-lg-7 fv-row">
+                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}"  value="{{old('phone')}}" maxlength="9" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
                         <div class="row mb-6">

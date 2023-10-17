@@ -10,7 +10,7 @@ use App\Models\User;
 use DataTables;
 use Validator;
 
-class UsersController extends Controller
+class ProvidersController extends Controller
 {
 
     public function index(Request $request)
@@ -20,7 +20,7 @@ class UsersController extends Controller
         if ($request->ajax()) {
             $data = User::query();
             $data=$data->whereHas('role_type',function ($q) use ($request){
-                $q->where('role_id',1);
+                $q->where('role_id',2);
             })->orderBy('id', 'DESC');
 
             return Datatables::of($data)
@@ -57,10 +57,10 @@ class UsersController extends Controller
                 })
                 ->addColumn('actions', function($row){
                     $actions = '<div class="ms-2">
-                                <a href="'.route('admin.users.show', $row->id).'" class="btn btn-sm btn-icon btn-warning btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <a href="'.route('admin.providers.show', $row->id).'" class="btn btn-sm btn-icon btn-warning btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <i class="bi bi-eye-fill fs-1x"></i>
                                 </a>
-                                <a href="'.route('admin.users.edit', $row->id).'" class="btn btn-sm btn-icon btn-info btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <a href="'.route('admin.providers.edit', $row->id).'" class="btn btn-sm btn-icon btn-info btn-active-dark me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <i class="bi bi-pencil-square fs-1x"></i>
                                 </a>
                             </div>';
@@ -71,29 +71,29 @@ class UsersController extends Controller
                         $instance->where('is_active', $request->get('is_active'));
                     }
                     if (!empty($request->get('search'))) {
-                            $instance->where(function($w) use($request){
+                        $instance->where(function($w) use($request){
                             $search = $request->get('search');
                             $w->orWhere('name', 'LIKE', "%$search%")
-                            ->orWhere('phone', 'LIKE', "%$search%")
-                            ->orWhere('email', 'LIKE', "%$search%");
+                                ->orWhere('phone', 'LIKE', "%$search%")
+                                ->orWhere('email', 'LIKE', "%$search%");
                         });
                     }
                 })
                 ->rawColumns(['name','phone','start_date','is_active','checkbox','actions'])
                 ->make(true);
         }
-        return view('admin.user.index');
+        return view('admin.providers.index');
     }
 
     public function show($id)
     {
         $data = User::find($id);
-        return view('admin.user.show', compact('data'));
+        return view('admin.providers.show', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.providers.create');
     }
 
     public function store(Request $request)
@@ -119,19 +119,19 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
             'is_active' => $request->is_active ?? '0',
         ]);
-        $user_role = Role::where('slug', 'user')->first();
+        $user_role = Role::where('slug', 'provider')->first();
         $row->roles()->attach($user_role);
-        // if($request->hasFile('photo') && $request->file('photo')->isValid()){
-        //     $row->addMediaFromRequest('photo')->toMediaCollection('profile');
-        // }
+         if($request->hasFile('photo') && $request->file('photo')->isValid()){
+             $row->addMediaFromRequest('photo')->toMediaCollection('profile');
+         }
 
-        return redirect('admin/users')->with('message', 'تم الاضافة بنجاح')->with('status', 'success');
+        return redirect('admin/providers')->with('message', 'تم الاضافة بنجاح')->with('status', 'success');
     }
 
     public function edit($id)
     {
         $data = User::find($id);
-        return view('admin.user.edit', compact('data'));
+        return view('admin.providers.edit', compact('data'));
     }
 
     public function update(Request $request)
@@ -159,11 +159,11 @@ class UsersController extends Controller
             'is_active' => $request->is_active ?? '0',
         ]);
 
-        // if($request->hasFile('photo') && $request->file('photo')->isValid()){
-        //     $data->addMediaFromRequest('photo')->toMediaCollection('profile');
-        // }
+         if($request->hasFile('photo') && $request->file('photo')->isValid()){
+             $data->addMediaFromRequest('photo')->toMediaCollection('profile');
+         }
 
-        return redirect('admin/users')->with('message', 'تم التعديل بنجاح')->with('status', 'success');
+        return redirect('admin/providers')->with('message', 'تم التعديل بنجاح')->with('status', 'success');
     }
 
     public function destroy(Request $request)

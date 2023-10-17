@@ -19,13 +19,13 @@
         <span class="h-20px border-gray-300 border-start mx-4"></span>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
             <li class="breadcrumb-item text-muted px-2">
-                <a  href="{{route('admin.users.index')}}" class="text-muted text-hover-primary">{{transAdmin('Users')}}</a>
+                <a  href="{{route('admin.providers.index')}}" class="text-muted text-hover-primary">{{transAdmin('Providers')}}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-300 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted px-2">
-                {{trans('labels.labels.edit')}}
+               {{trans('labels.labels.add_new')}}
             </li>
         </ul>
     </div>
@@ -36,20 +36,20 @@
 @section('content')
 
     <div id="kt_app_content_container" class="app-container container-fluid">
+
         <div class="card mb-5 mb-xl-10">
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
-                <!--begin::Form-->
-                <form action="{{route('admin.users.update')}}" method="POST" enctype="multipart/form-data" id="kt_account_profile_details_form" class="form">
+                <form action="{{route('admin.providers.store')}}" method="POST" enctype="multipart/form-data" id="kt_account_profile_details_form" class="form">
                     @csrf
-                    <input type="hidden" name="id" value="{{$data->id}}" />
                     <!--begin::Card body-->
-                    <div class="card-body border-top p-9">
+                    <div class="card-body  p-9">
+
 
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name" placeholder="{{trans('labels.inputs.name')}}" value="{{$data->name}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name" placeholder="{{trans('labels.inputs.name')}}" value="" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
@@ -58,26 +58,26 @@
                                 <span class="required">{{trans('labels.inputs.phone')}}</span>
                             </label>
                             <div class="col-lg-1 fv-row">
-                                <input type="tel" name="code" value="{{substr($data->phone,0,3)}}" placeholder="{{trans('labels.inputs.phoneCode')}}" maxlength="3"  class="form-control form-control-lg form-control-solid"/>
+                                <input type="tel" name="code" value="966" placeholder="{{trans('labels.inputs.phoneCode')}}" maxlength="3"  class="form-control form-control-lg form-control-solid"/>
                             </div>
                             <div class="col-lg-7 fv-row">
-                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}"  value="{{substr($data->phone,3)}}" maxlength="9" class="form-control form-control-lg form-control-solid" />
+                                <input type="tel" name="phone" placeholder="{{trans('labels.inputs.phone')}}"  value="{{old('phone')}}" maxlength="9" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6 required">
                                 {{trans('labels.inputs.password')}}
-                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Min 6 characters"></i>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="لا يقل عن 6 حروف"></i>
                             </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="password" name="password" placeholder="كلمة المرور" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="password" name="password" placeholder="{{trans('labels.inputs.password')}}" value="" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6"> {{trans('labels.inputs.email')}}</label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.email')}} </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="{{$data->email}}" class="form-control form-control-lg form-control-solid" />
+                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                             <label class="col-lg-2 col-form-label fw-semibold fs-6"> is_active</label>
                             <div class="col-lg-8 d-flex align-items-center">
                                 <div class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                    <input class="form-check-input w-45px h-30px" type="checkbox" name="is_active" value="1" id="allowmarketing" @if($data->is_active == 1) checked="checked" @endif />
+                                    <input class="form-check-input w-45px h-30px" type="checkbox" name="is_active" value="1" id="allowmarketing" checked="checked" />
                                     <label class="form-check-label" for="allowmarketing"></label>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">حفظ</button>
                     </div>
                     <!--end::Actions-->
                 </form>
@@ -107,4 +107,5 @@
 @endsection
 
 @section('script')
+
 @endsection
