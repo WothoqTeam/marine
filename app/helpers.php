@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\App;
 use \Illuminate\Support\Facades\Auth;
@@ -57,4 +58,10 @@ function can_manager($permission_name)
         }
     }
     return $check;
+}
+
+function settings()
+{
+    $settings = Setting::find(1);
+    return $settings;
 }

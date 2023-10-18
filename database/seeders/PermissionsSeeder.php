@@ -56,6 +56,12 @@ class PermissionsSeeder extends Seeder
         Permission::updateOrCreate(['name' => 'users_update', /*'guard_name' => 'web',*/ 'slug' => 'users.update']);
         Permission::updateOrCreate(['name' => 'users_delete', /*'guard_name' => 'web',*/ 'slug' => 'users.delete']);
 
+        // Providers
+        Permission::updateOrCreate(['name' => 'providers_index', /*'guard_name' => 'web',*/ 'slug' => 'providers.index']);
+        Permission::updateOrCreate(['name' => 'providers_create', /*'guard_name' => 'web',*/ 'slug' => 'providers.create']);
+        Permission::updateOrCreate(['name' => 'providers_update', /*'guard_name' => 'web',*/ 'slug' => 'providers.update']);
+        Permission::updateOrCreate(['name' => 'providers_delete', /*'guard_name' => 'web',*/ 'slug' => 'providers.delete']);
+
         // Notifications
         Permission::updateOrCreate(['name' => 'notifications_create', /*'guard_name' => 'web',*/ 'slug' => 'notifications.create']);
 

@@ -24,5 +24,6 @@ return [
   'specifications' => 'specifications',  
   'marasi_owners' => 'marasi_owners',  
   'marasi reservations' => 'marasi reservations',  
-  'marasi owners' => 'marasi owners',
+  'marasi owners' => 'marasi owners',  
+  'providers' => 'providers',
 ];

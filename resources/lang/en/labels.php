@@ -70,6 +70,10 @@ return [
         'end_date' => 'End Date',
         'qty' => 'Quantity',
         'code' => 'Code',
+        'add_info'=>'Additional Info',
+        'booking_info'=>'Booking Info',
+        'longitude'=>'Longitude',
+        'latitude'=>'Latitude',
     ],
     'labels' => [
         'please_wait' => 'Please Wait',
@@ -88,5 +92,6 @@ return [
         'reply_mail' => 'Reply by email',
         'Dashboard' => 'Dashboard',
         'Search Providers' => 'Search Providers',
+        'specifications'=>'Specifications',
     ]
 ];

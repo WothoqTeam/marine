@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use DataTables;
-use Illuminate\Support\Facades\Lang;
 use Validator;
 
 class EmployeesController extends Controller
@@ -18,7 +17,7 @@ class EmployeesController extends Controller
     {
         if ($request->ajax()) {
             $data = Employee::query();
-            $data = $data->orderBy('id', 'DESC');
+            $data = $data->where('role_id',1)->orderBy('id', 'DESC');
 
             return Datatables::of($data)
                 ->addColumn('checkbox', function ($row) {
