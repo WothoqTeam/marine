@@ -78,7 +78,7 @@ class EmployeesController extends Controller
 
     public function show($id)
     {
-        $data = Employee::find($id);
+        $data = Employee::where('role_id',1)->findorFail($id);
         return view('admin.employee.show', compact('data'));
     }
 
@@ -141,7 +141,7 @@ class EmployeesController extends Controller
             $checked = EmployeesPermissions::where(['employees_id' => $id, 'permission_id' => $permission->id])->count();
             $permissions_arr[$str[0]][] = ['name' => $str[1], 'checked' => $checked];
         }
-        $data = Employee::find($id);
+        $data = Employee::where('role_id',1)->findorFail($id);
         return view('admin.employee.edit', compact('data', 'permissions_arr'));
     }
 
@@ -166,7 +166,6 @@ class EmployeesController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => ($request->password) ? Hash::make($request->password) : $data->password,
-            'role_id' => 1,
             'type' => 'dash',
             'is_active' => $request->is_active ?? '0',
         ]);

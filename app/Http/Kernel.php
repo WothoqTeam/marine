@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'emp-access' => \App\Http\Middleware\EmployeeAccess::class,
         'CheckUserAuth' => \App\Http\Middleware\CheckUserAuth::class,
         'CheckProviderAuth' => \App\Http\Middleware\CheckProviderAuth::class,
+        'CheckPermission' => \App\Http\Middleware\CheckPermission::class,
     ];
 }

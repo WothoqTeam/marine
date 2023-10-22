@@ -11,7 +11,7 @@ Route::get('/login', [AdminLoginController::class, 'showAdminLoginForm'])->name(
 Route::post('/login', [AdminLoginController::class, 'adminLogin'])->name('admin.login.submit');
 Route::get('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-Route::name('admin.')->middleware(['auth:admin'])->group(function () {
+Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(function () {
 
     Route::middleware(['emp-access:dash'])->group(function () {
 
@@ -130,7 +130,7 @@ Route::name('admin.')->middleware(['auth:admin'])->group(function () {
             Route::post('/updateStatus', 'MarasiController@updateStatus')->name('updateStatus');
         });
 
-        Route::name('marasi_owner.')->prefix('marasi_owner')->group(function () {
+        Route::name('owners.')->prefix('owners')->group(function () {
             Route::get('/', 'MarasiOwnerController@index')->name('index');
             Route::get('/show/{id}', 'MarasiOwnerController@show')->name('show');
             Route::post('/delete', 'MarasiOwnerController@destroy')->name('delete');
@@ -138,6 +138,16 @@ Route::name('admin.')->middleware(['auth:admin'])->group(function () {
             Route::post('/store', 'MarasiOwnerController@store')->name('store');
             Route::get('/edit/{id}', 'MarasiOwnerController@edit')->name('edit');
             Route::post('/update', 'MarasiOwnerController@update')->name('update');
+        });
+
+        Route::name('specifications.')->prefix('specifications')->group(function () {
+            Route::get('/', 'SpecificationsController@index')->name('index');
+            Route::get('/show/{id}', 'SpecificationsController@show')->name('show');
+            Route::post('/delete', 'SpecificationsController@destroy')->name('delete');
+            Route::get('/create', 'SpecificationsController@create')->name('create');
+            Route::post('/store', 'SpecificationsController@store')->name('store');
+            Route::get('/edit/{id}', 'SpecificationsController@edit')->name('edit');
+            Route::post('/update', 'SpecificationsController@update')->name('update');
         });
     });
 

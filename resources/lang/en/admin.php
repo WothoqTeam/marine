@@ -28,5 +28,8 @@ return [
   'Owner Name' => 'Owner Name',  
   'Is Discount ?' => 'Is Discount ?',  
   'Owner' => 'Owner',  
-  'Cover Images' => 'Cover Images',
+  'Cover Images' => 'Cover Images',  
+  'Marasi Owner' => 'Marasi Owner',  
+  'Owner Image' => 'Owner Image',  
+  'Specifications' => 'Specifications',
 ];

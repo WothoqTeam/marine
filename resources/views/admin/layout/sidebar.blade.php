@@ -125,6 +125,17 @@
                 </div>
             @endif
 
+            @if(can_manager('specifications.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/specifications*')) active @endif " href="{{route('admin.specifications.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Specifications')}}</span>
+                    </a>
+                </div>
+            @endif
+
             @if(can_manager('yachts.index'))
             <div class="menu-item">
                 <a class="menu-link @if(Request::is('admin/yachts*')) active @endif " href="{{route('admin.yachts.index')}}">
@@ -149,7 +160,7 @@
 
             @if(can_manager('marasi owners.index'))
             <div class="menu-item">
-                <a class="menu-link @if(Request::is('admin/marasi_owners*')) active @endif " href="javascript:void()">
+                <a class="menu-link @if(Request::is('admin/owners*')) active @endif " href="{{route('admin.owners.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
