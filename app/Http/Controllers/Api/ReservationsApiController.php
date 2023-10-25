@@ -36,7 +36,7 @@ class ReservationsApiController extends BaseApiController
         $user=auth('api')->user();
         $reservation = Reservations::with('yacht','user')->where('user_id',$user->id)->find($id);
         if ($reservation){
-            $details=new ReservationDetails($reservation,$this->language);
+            $details=new ReservationDetails($reservation,$this->language,$this->user);
             return $this->generateResponse(true,'Success',$details);
         }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
