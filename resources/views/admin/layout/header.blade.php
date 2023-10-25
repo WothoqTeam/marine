@@ -29,7 +29,7 @@
             </div>
             <!--end::Sidebar mobile toggle-->
             <!--begin::Logo-->
-            <a href="{{url('/dashboard')}}" class="app-sidebar-logo">
+            <a href="{{url('/admin')}}" class="app-sidebar-logo">
                 <img alt="Logo" src="{{$settings->getFirstMediaUrl('logo')}}" class="h-50px theme-light-show" />
                 <img alt="Logo" src="{{$settings->getFirstMediaUrl('logoDark')}}" class="h-50px theme-dark-show" />
             </a>
@@ -198,14 +198,14 @@
                                 <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{asset('dash/assets/media/flags/united-kingdom.svg')}}" alt="" />
                                 </span>English</a>
-                            </div> 
+                            </div>
                             <div class="menu-item px-3">
                                 <a href="{{url('admin/lang-change?lang=ar')}}" class="menu-link d-flex px-5">
                                 <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{asset('dash/assets/media/flags/saudi-arabia.svg')}}" alt="" />
                                 </span>عربي</a>
                             </div>
-    
+
                         </div>
                         <!--end::Menu sub-->
                     </div>

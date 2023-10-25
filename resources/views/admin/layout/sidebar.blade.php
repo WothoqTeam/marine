@@ -149,7 +149,7 @@
 
             @if(can_manager('reservations.index'))
                 <div class="menu-item">
-                    <a class="menu-link @if(Request::is('admin/reservations*')) active @endif " href="javascript:void()">
+                    <a class="menu-link @if(Request::is('admin/reservations*')) active @endif " href="{{route('admin.reservations.index')}}">
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
