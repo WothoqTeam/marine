@@ -143,13 +143,16 @@ class ReservationsApiController extends BaseApiController
         $status=$request->status;
 
         $checkYacht=Yachts::where('provider_id',$this->user->id)->find($yacht_id);
-        $reservations=Reservations::WhereIn('reservations_status',['pending'])->find($id);
+        $reservations=Reservations::find($id);
         if($reservations && $checkYacht){
             $reservations->update([
                 'reservations_status'=>$status,
             ]);
             if($status=='in progress'){
                 $statusNameAr='الموافقه على';
+                $statusNameEn=$status;
+            }elseif($status=='completed'){
+                $statusNameAr='اكتمال';
                 $statusNameEn=$status;
             }else{
                 $statusNameAr='رفض';

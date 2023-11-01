@@ -61,5 +61,9 @@ return [
   'Reservation' => 'Reservation',
   'Reservation Summary' => 'Reservation Summary',
   'Reservation Details' => 'Reservation Details',
-  'Reservations Status' => 'Reservations Status',
+  'Reservations Status' => 'Reservations Status',  
+  'Provider Details' => 'Provider Details',  
+  'Accept' => 'Accept',  
+  'Rejected' => 'Rejected',  
+  'User Cannot Take This Action' => 'User Cannot Take This Action',
 ];

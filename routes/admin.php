@@ -154,6 +154,12 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::get('/', 'ReservationsController@index')->name('index');
             Route::get('/show/{id}', 'ReservationsController@show')->name('show');
         });
+
+        Route::name('mReservations.')->prefix('mReservations')->group(function () {
+            Route::get('/', 'MarasiReservationsController@index')->name('index');
+            Route::get('/show/{id}', 'MarasiReservationsController@show')->name('show');
+            Route::post('/update', 'MarasiReservationsController@updateRequests')->name('update');
+        });
     });
 
 });
