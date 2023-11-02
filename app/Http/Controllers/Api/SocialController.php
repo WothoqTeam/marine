@@ -29,7 +29,7 @@ class SocialController extends BaseApiController
                 'name'=>$check->name,
                 'token'=>$token,
             ];
-            return $this->generateResponse(true,'Success',$userData);
+            return $token;
         }else{
             $user=User::create([
                 'name'=>$gUser->getName(),
@@ -45,7 +45,7 @@ class SocialController extends BaseApiController
                 'name'=>$user->name,
                 'token'=>$token,
             ];
-            return $this->generateResponse(true,'Success',$userData);
+            return $token;
         }
     }
 
@@ -67,7 +67,7 @@ class SocialController extends BaseApiController
                 'name'=>$check->name,
                 'token'=>$token,
             ];
-            return $this->generateResponse(true,'Success',$userData);
+            return $token;
         }else{
             $user=User::create([
                 'name'=>$tUser->getName(),
@@ -84,7 +84,7 @@ class SocialController extends BaseApiController
                 'name'=>$user->name,
                 'token'=>$token,
             ];
-            return $this->generateResponse(true,'Success',$userData);
+            return $token;
         }
     }
 }
