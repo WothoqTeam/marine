@@ -37,6 +37,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::get('/profile', [AuthApiController::class, 'userProfile']);
     Route::post('/updateProfile', [AuthApiController::class, 'updateProfile']);
     Route::post('/updateLanguage', [AuthApiController::class, 'updateLanguage']);
+    Route::post('/updateUserImage', [AuthApiController::class, 'updateUserImage']);
     Route::post('/updateStatus', [AuthApiController::class, 'updateStatus']);
     Route::post('/checkPhone', [AuthApiController::class, 'checkPhone']);
     Route::post('/updatePassword', [AuthApiController::class, 'updatePassword']);

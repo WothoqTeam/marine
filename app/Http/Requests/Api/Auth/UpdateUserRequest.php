@@ -20,7 +20,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6',
-            'phone' =>'required|string|max:100|unique:users,phone,'.$user->id,
+//            'phone' =>'required|string|max:100|unique:users,phone,'.$user->id,
         ];
     }
 

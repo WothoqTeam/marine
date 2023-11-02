@@ -58,7 +58,11 @@ class SocialController extends BaseApiController
     {
         $tUser = Socialite::driver('twitter')->user();
         // Use $user to create or log in the user
-        $check=User::where('twitter_id',$tUser->getId())->orWhere('email',$tUser->getEmail())->first();
+        $check=User::where('twitter_id',$tUser->getId());
+        if (!empty($tUser->getEmail())){
+            $check->orWhere('email',$tUser->getEmail());
+        }
+        $check=$check->first();
         if ($check){
             $jwt = app(JWT::class);
             $token = $jwt->fromUser($check);

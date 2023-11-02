@@ -7,12 +7,14 @@ use App\Http\Requests\Api\Auth\UpdateUserRequest;
 use App\Http\Requests\Api\Auth\UserLoginRequest;
 use App\Http\Requests\Api\Auth\UserRegisterRequest;
 use App\Models\Role;
+use App\Models\Specifications;
 use App\Models\Verification;
 use App\Traits\DeewanSMSTrait;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Validator;
 use Str;
 class AuthApiController extends BaseApiController
@@ -102,7 +104,7 @@ class AuthApiController extends BaseApiController
             // Update the user's name and email
             $user->name = $request->input('name');
             $user->email = $request->input('email');
-            $user->phone = $request->input('phone');
+//            $user->phone = $request->input('phone');
 
             // Update the user's password if provided
             if ($request->input('password')) {
@@ -177,6 +179,20 @@ class AuthApiController extends BaseApiController
         $user = auth('api')->user();
         if($user){
             User::where('id',$user->id)->update(['language'=>$request->language]);
+            return $this->generateResponse(true,'Language Updated Successfully');
+        }else{
+            return $this->generateResponse(false,'invalid data',[],422);
+        }
+    }
+
+    public function updateUserImage(Request $request){
+        $user = auth('api')->user();
+        if($user){
+            $user=User::find($user->id);
+             if($request->hasFile('image') && $request->file('image')->isValid()){
+                 Media::where('model_type',User::class)->where('model_id',$user->id)->where('collection_name','profile')->delete();
+                 $user->addMediaFromRequest('image')->toMediaCollection('profile');
+             }
             return $this->generateResponse(true,'Language Updated Successfully');
         }else{
             return $this->generateResponse(false,'invalid data',[],422);
