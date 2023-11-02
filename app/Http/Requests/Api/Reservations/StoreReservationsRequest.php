@@ -16,7 +16,7 @@ class StoreReservationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'yacht_id' => 'required|Int',
+            'yacht_id' => 'required|Int|exists:yachts,id',
             'start_day' => 'required|date',
             'end_day' => 'required|date',
             'note' => 'nullable|string',
