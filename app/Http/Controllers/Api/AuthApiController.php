@@ -193,6 +193,7 @@ class AuthApiController extends BaseApiController
                  Media::where('model_type',User::class)->where('model_id',$user->id)->where('collection_name','profile')->delete();
                  $user->addMediaFromRequest('image')->toMediaCollection('profile');
              }
+            $user=User::find($user->id);
             return $this->generateResponse(true,'Image Updated Successfully',$user);
         }else{
             return $this->generateResponse(false,'invalid data',[],422);
