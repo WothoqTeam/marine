@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'wothoq' => 'وثوق',
+    'wothoq' => 'وثوق',  
+  'Employee' => 'Employee',  
+  'Notifications' => 'Notifications',  
+  'pages' => 'pages',
 ];
