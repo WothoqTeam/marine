@@ -18,6 +18,7 @@ class UserLoginRequest extends FormRequest
         return [
             'phone' => 'required',
             'password' => 'required',
+            'role' => 'required|in:user,provider',
         ];
     }
 

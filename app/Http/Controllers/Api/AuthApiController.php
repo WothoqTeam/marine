@@ -33,7 +33,7 @@ class AuthApiController extends BaseApiController
             return $this->generateResponse(false,'Invalid Unauthorized',[],401);
         }
         $user=auth('api')->user();
-        if($user->hasRole('user') || $user->hasRole('provider')){
+        if($user->hasRole($request->role)){
             if ($request->fcm_token){
                 User::where('id',$user->id)->update(['fcm_token'=>$request->fcm_token]);
             }
