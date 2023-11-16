@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Marasi;
 use App\Models\Yachts;
+use App\Models\YachtsMarasi;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class YachtsController extends Controller
 {
     public function index(Request $request)
     {
-
+        $emp=Auth::guard('admin')->user();
         if ($request->ajax()) {
             $data = Yachts::query();
+            if ($emp->role_id==2){
+                $marasi_ids=Marasi::where('employee_id',$emp->id)->pluck('id')->toArray();
+                $yacht_ids=YachtsMarasi::wherein('marasi_id',$marasi_ids)->pluck('yacht_id')->toArray();
+                $data->wherein('id',$yacht_ids);
+            }
             $data = $data->orderBy('id', 'DESC');
 
             return Datatables::of($data)
@@ -40,11 +48,16 @@ class YachtsController extends Controller
                     return $price;
                 })
                 ->addColumn('is_approved', function ($row) {
-                    $is_approved = '<select name="is_approved" id="changeStatus" data-control="select2" data-hide-search="true" class="form-select form-select-solid fw-bold" onchange="changeYachtsStatus(' . $row->id . ')"> <option value="1"';
-                    $is_approved .= $row->is_approved == 1 ? "selected" : "";
-                    $is_approved .= '>' . trans("labels.inputs.active") . '</option> <option value="0"';
-                    $is_approved .= $row->is_approved == 0 ? "selected" : "";
-                    $is_approved .= '>' . trans("labels.inputs.in_active") . '</option></select>';
+                    $emp=Auth::guard('admin')->user();
+                    if ($emp->role_id==2) {
+                        $is_approved= $row->is_approved == 1 ? trans("labels.inputs.active") : trans("labels.inputs.in_active");
+                    }else{
+                        $is_approved = '<select name="is_approved" id="changeStatus" data-control="select2" data-hide-search="true" class="form-select form-select-solid fw-bold" onchange="changeYachtsStatus(' . $row->id . ')"> <option value="1"';
+                        $is_approved .= $row->is_approved == 1 ? "selected" : "";
+                        $is_approved .= '>' . trans("labels.inputs.active") . '</option> <option value="0"';
+                        $is_approved .= $row->is_approved == 0 ? "selected" : "";
+                        $is_approved .= '>' . trans("labels.inputs.in_active") . '</option></select>';
+                    }
 
                     return $is_approved;
                 })

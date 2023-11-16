@@ -15,7 +15,7 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $pathName=trim(request()->route()->getName(), "admin.");
+        $pathName=substr(request()->route()->getName(), 6);
         if (can_manager($pathName)){
             return $next($request);
         }else{

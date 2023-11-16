@@ -7,9 +7,11 @@ use App\Models\Cities;
 use App\Models\Countries;
 use App\Models\Employee;
 use App\Models\Marasi;
+use App\Models\YachtsMarasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -20,6 +22,10 @@ class MarasiController extends Controller
 
         if ($request->ajax()) {
             $data = Marasi::query();
+            $emp=Auth::guard('admin')->user();
+            if ($emp->role_id==2){
+                $data->where('employee_id',$emp->id);
+            }
             $data = $data->orderBy('id', 'DESC');
 
             return Datatables::of($data)
@@ -84,7 +90,12 @@ class MarasiController extends Controller
 
     public function show($id)
     {
-        $data = Marasi::with('city', 'country', 'employee')->find($id);
+        $emp=Auth::guard('admin')->user();
+        $data = Marasi::with('city', 'country', 'employee');
+        if ($emp->role_id==2){
+            $data->where('employee_id',$emp->id);
+        }
+        $data=$data->findOrFail($id);
         return view('admin.marasi.show', compact('data'));
     }
 
@@ -160,7 +171,12 @@ class MarasiController extends Controller
      */
     public function edit($id)
     {
-        $data['marasi'] =Marasi::find($id);
+        $emp=Auth::guard('admin')->user();
+        if ($emp->role_id==2){
+            $data['marasi'] =Marasi::where('employee_id',$emp->id)->FindOrFail($id);
+        }else{
+            $data['marasi'] =Marasi::FindOrFail($id);
+        }
         $data['countries'] = Countries::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
         $data['cities'] = Cities::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
         return view('admin.marasi.edit', compact('data'));

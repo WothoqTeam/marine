@@ -47,36 +47,40 @@ class MarasiReservationsController extends Controller
     }
 
     public function updateRequests(UpdateRequest $request){
-        $id=$request->id;
-        $marasi_id=$request->marasi_id;
-        $employee_id=2;
-        $status=$request->status;
+        $emp=Auth::guard('admin')->user();
+        if ($emp->role_id==2) {
+            $id = $request->id;
+            $marasi_id = $request->marasi_id;
+            $employee_id = $emp->id;
+            $status = $request->status;
+            $checkMarasi = Marasi::where('employee_id', $employee_id)->find($marasi_id);
+            $reservations = MarasiReservations::find($id);
+            if ($reservations && $checkMarasi) {
+                $reservations->update([
+                    'reservations_status' => $status,
+                ]);
 
-        $checkMarasi=Marasi::where('employee_id',$employee_id)->find($marasi_id);
-        $reservations=MarasiReservations::find($id);
-        if($reservations && $checkMarasi){
-            $reservations->update([
-                'reservations_status'=>$status,
-            ]);
-
-            if($status=='in progress'){
-                $statusNameAr='الموافقه على';
-                $statusNameEn=$status;
-            }elseif($status=='completed'){
-                $statusNameAr='اكتمال';
-                $statusNameEn=$status;
-            }else{
-                $statusNameAr='رفض';
-                $statusNameEn=$status;
+                if ($status == 'in progress') {
+                    $statusNameAr = 'الموافقه على';
+                    $statusNameEn = $status;
+                } elseif ($status == 'completed') {
+                    $statusNameAr = 'اكتمال';
+                    $statusNameEn = $status;
+                } else {
+                    $statusNameAr = 'رفض';
+                    $statusNameEn = $status;
+                }
+                $data = [
+                    'title_en' => 'Reservations ' . $statusNameEn . ' #' . $reservations->id,
+                    'title_ar' => 'تم ' . $statusNameAr . ' الحجز #' . $reservations->id,
+                    'body_en' => 'Reservation num #' . $reservations->id . ' has been ' . $statusNameEn,
+                    'body_ar' => 'تم ' . $statusNameAr . ' الحجز رقم #' . $reservations->id,
+                ];
+                $this->sendNotifications(User::class, [$reservations->provider_id], $data);
+                return response()->json(['message' => 'success']);
+            } else {
+                return response()->json(['message' => 'error']);
             }
-            $data=[
-                'title_en'=>'Reservations '.$statusNameEn.' #'.$reservations->id,
-                'title_ar'=>'تم '.$statusNameAr.' الحجز #'.$reservations->id,
-                'body_en'=>'Reservation num #'.$reservations->id.' has been '.$statusNameEn,
-                'body_ar'=>'تم '.$statusNameAr.' الحجز رقم #'.$reservations->id,
-            ];
-            $this->sendNotifications(User::class,[$reservations->provider_id],$data);
-            return response()->json(['message' => 'success']);
         }else{
             return response()->json(['message' => 'error']);
         }

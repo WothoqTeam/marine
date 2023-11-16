@@ -113,14 +113,22 @@ class MarasiOwnerController extends Controller
             'type' => 'dash',
             'is_active' => $request->is_active ?? '0',
         ]);
-//        if (is_array($request->permissions) and count($request->permissions)) {
-//            foreach ($request->permissions as $permission) {
-//                $getPermission = Permission::where('slug', $permission)->first();
-//                if ($getPermission) {
-//                    EmployeesPermissions::create(['employees_id' => $row->id, 'permission_id' => $getPermission->id]);
-//                }
-//            }
-//        }
+        $permissions=[
+            'yachts.index',
+            'marasi.index',
+            'marasi.create',
+            'marasi.update',
+            'marasi.delete',
+            'marasi reservations.index',
+            'marasi reservations.update',
+            'marasi reservations.delete',
+        ];
+        foreach ($permissions as $permission) {
+            $getPermission = Permission::where('slug', $permission)->first();
+            if ($getPermission) {
+                EmployeesPermissions::create(['employees_id' => $row->id, 'permission_id' => $getPermission->id]);
+            }
+        }
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $row->addMediaFromRequest('photo')->toMediaCollection('profile');
         }

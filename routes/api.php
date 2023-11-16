@@ -138,4 +138,5 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
     Route::post('/marasi/reservations/update/{id}', [MarasiReservationsApiController::class, 'update']);
     Route::post('/marasi/reservations/cancel/{id}', [MarasiReservationsApiController::class, 'cancel']);
     Route::post('/marasi/reservations/pay/{id}', [MarasiReservationsApiController::class, 'pay']);
+    Route::get('marasi/reservations/{id}', [MarasiReservationsApiController::class, 'details']);
 });

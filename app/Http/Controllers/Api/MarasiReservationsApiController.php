@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\Responses\Reservations\ListProviderReservations;
+use App\Http\Controllers\Api\Responses\Reservations\MarasiReservationsDetails;
+use App\Http\Controllers\Api\Responses\Reservations\ReservationDetails;
 use App\Http\Requests\Api\Reservations\Provider\PayMarasiReservationsRequest;
 use App\Http\Requests\Api\Reservations\Provider\StoreMarasiReservationsRequest;
 use App\Http\Requests\Api\Reservations\Provider\UpdateMarasiReservationsRequest;
 use App\Models\Employee;
 use App\Models\MarasiReservations;
+use App\Models\Reservations;
 use Illuminate\Http\Request;
 
 class MarasiReservationsApiController extends BaseApiController
@@ -101,6 +104,17 @@ class MarasiReservationsApiController extends BaseApiController
             ];
             $this->sendNotifications(Employee::class,[1],$data);
             return $this->generateResponse(true,'Success');
+        }else{
+            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+        }
+    }
+
+    public function details($id){
+        $user=auth('api')->user();
+        $reservation = MarasiReservations::with('provider','marasi')->where('provider_id',$user->id)->find($id);
+        if ($reservation){
+            $details=new MarasiReservationsDetails($reservation,$this->language,$this->user);
+            return $this->generateResponse(true,'Success',$details);
         }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
         }
