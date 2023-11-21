@@ -100,5 +100,11 @@ class PermissionsSeeder extends Seeder
         Permission::updateOrCreate(['name' => 'specifications_create', /*'guard_name' => 'web',*/ 'slug' => 'specifications.create']);
         Permission::updateOrCreate(['name' => 'specifications_update', /*'guard_name' => 'web',*/ 'slug' => 'specifications.update']);
         Permission::updateOrCreate(['name' => 'specifications_delete', /*'guard_name' => 'web',*/ 'slug' => 'specifications.delete']);
+
+        // Gas Stations
+        Permission::updateOrCreate(['name' => 'gas_stations_index', /*'guard_name' => 'web',*/ 'slug' => 'gas stations.index']);
+        Permission::updateOrCreate(['name' => 'gas_stations_create', /*'guard_name' => 'web',*/ 'slug' => 'gas stations.create']);
+        Permission::updateOrCreate(['name' => 'gas_stations_update', /*'guard_name' => 'web',*/ 'slug' => 'gas stations.update']);
+        Permission::updateOrCreate(['name' => 'gas_stations_delete', /*'guard_name' => 'web',*/ 'slug' => 'gas stations.delete']);
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\ChatsApiController;
 use App\Http\Controllers\Api\SpecificationsApiController;
 use App\Http\Controllers\Api\MarasiApiController;
 use App\Http\Controllers\Api\MarasiReservationsApiController;
+use App\Http\Controllers\Api\GasStationsApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -139,4 +140,7 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
     Route::post('/marasi/reservations/cancel/{id}', [MarasiReservationsApiController::class, 'cancel']);
     Route::post('/marasi/reservations/pay/{id}', [MarasiReservationsApiController::class, 'pay']);
     Route::get('marasi/reservations/{id}', [MarasiReservationsApiController::class, 'details']);
+
+    //Return Marasi
+    Route::get('/gasStations', [GasStationsApiController::class, 'list']);
 });

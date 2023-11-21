@@ -190,6 +190,17 @@
                     </a>
                 </div>
             @endif
+
+            @if(can_manager('gas stations.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/gasStations*')) active @endif "  href="{{route('admin.gasStations.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Gas Stations')}}</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
     </div>

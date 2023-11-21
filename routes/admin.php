@@ -160,6 +160,16 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::get('/show/{id}', 'MarasiReservationsController@show')->name('show');
             Route::post('/update', 'MarasiReservationsController@updateRequests')->name('update');
         });
+
+        Route::name('gasStations.')->prefix('gasStations')->group(function () {
+            Route::get('/', 'GasStationsController@index')->name('index');
+            Route::get('/show/{id}', 'GasStationsController@show')->name('show');
+            Route::post('/delete', 'GasStationsController@destroy')->name('delete');
+            Route::get('/create', 'GasStationsController@create')->name('create');
+            Route::post('/store', 'GasStationsController@store')->name('store');
+            Route::get('/edit/{id}', 'GasStationsController@edit')->name('edit');
+            Route::post('/update', 'GasStationsController@update')->name('update');
+        });
     });
 
 });
