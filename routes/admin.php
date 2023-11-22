@@ -170,6 +170,10 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::get('/edit/{id}', 'GasStationsController@edit')->name('edit');
             Route::post('/update', 'GasStationsController@update')->name('update');
         });
+
+        Route::name('ratings.')->prefix('ratings')->group(function () {
+            Route::get('/', 'RatingsController@index')->name('index');
+        });
     });
 
 });

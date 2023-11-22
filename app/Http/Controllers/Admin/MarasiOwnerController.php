@@ -122,6 +122,7 @@ class MarasiOwnerController extends Controller
             'marasi reservations.index',
             'marasi reservations.update',
             'marasi reservations.delete',
+            'ratings.index',
         ];
         foreach ($permissions as $permission) {
             $getPermission = Permission::where('slug', $permission)->first();

@@ -21,5 +21,7 @@ return [
   'reservations' => 'reservations',  
   'marasi' => 'marasi',  
   'marasi_reservations' => 'marasi_reservations',  
-  'specifications' => 'specifications',
+  'specifications' => 'specifications',  
+  'gas stations' => 'gas stations',  
+  'ratings' => 'ratings',
 ];

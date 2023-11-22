@@ -201,6 +201,16 @@
                     </a>
                 </div>
             @endif
+            @if(can_manager('ratings.index') && Auth::guard('admin')->user()->role_id==2)
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/ratings*')) active @endif "  href="{{route('admin.ratings.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('Ratings')}}</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
     </div>

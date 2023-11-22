@@ -85,7 +85,7 @@ class EmployeesController extends Controller
     public function create()
     {
         $data = [];
-        $permissions = Permission::all();
+        $permissions = Permission::where('status',true)->get();
         foreach ($permissions as $permission) {
             $str = explode(".", $permission->slug);
             $data[$str[0]][] = $str[1];
@@ -135,7 +135,7 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         $permissions_arr = [];
-        $permissions = Permission::all();
+        $permissions = Permission::where('status',true)->get();
         foreach ($permissions as $permission) {
             $str = explode(".", $permission->slug);
             $checked = EmployeesPermissions::where(['employees_id' => $id, 'permission_id' => $permission->id])->count();

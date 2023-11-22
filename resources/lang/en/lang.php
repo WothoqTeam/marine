@@ -28,5 +28,11 @@ return [
   'Yachts' => 'Yachts',  
   'Marines Owners' => 'Marines Owners',  
   'Banners' => 'Banners',  
-  'Marines' => 'Marines',
+  'Marines' => 'Marines',  
+  'Payment Failed' => 'Payment Failed',  
+  'Reservation Placed Successfully' => 'Reservation Placed Successfully',  
+  'Payment Already Done' => 'Payment Already Done',  
+  'Payment Successfully' => 'Payment Successfully',  
+  'Payment Failure' => 'Payment Failure',  
+  'Purchase Placed Successfully' => 'Purchase Placed Successfully',
 ];
