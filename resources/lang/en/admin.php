@@ -79,5 +79,7 @@ return [
     'Orders Number' => 'Orders Number',
     'Month' => 'Month',
     'Active Yachts' => 'Active Yachts',
-    'All Yachts' => 'All Yachts',
+    'All Yachts' => 'All Yachts',  
+  'Gas Stations' => 'Gas Stations',  
+  'Search Gas Stations' => 'Search Gas Stations',
 ];
