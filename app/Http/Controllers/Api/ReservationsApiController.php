@@ -9,10 +9,12 @@ use App\Http\Requests\Api\Reservations\ReservationsRequest;
 use App\Http\Requests\Api\Reservations\StoreReservationsRequest;
 use App\Http\Requests\Api\Reservations\UpdateReservationsRequest;
 use App\Models\Employee;
+use App\Models\Payments;
 use App\Models\Reservations;
 use App\Models\User;
 use App\Models\Yachts;
 use Illuminate\Http\Request;
+use URWay\Client;
 
 class ReservationsApiController extends BaseApiController
 {
@@ -103,10 +105,57 @@ class ReservationsApiController extends BaseApiController
         if($reservations){
             $reservations->update([
                 'payment_method'=>$request->payment_method,
+                'payment_status'=>false,
                 'sub_total'=>$request->sub_total,
                 'vat'=>$request->vat,
                 'service_fee'=>$request->service_fee,
                 'total'=>$request->total
+            ]);
+            $client = new Client();
+            $client->setTrackId($reservations->id)
+                ->setCustomerEmail($reservations->user->email)
+                ->setCustomerIp($request->ip())
+                ->setCurrency('SAR')
+                ->setCountry('SA')
+                ->setAmount($request->total)
+                ->setRedirectUrl(Url('api/user/reservation/status'));
+            $result = $client->pay();
+            if ($result->payid && $result->targetUrl) {
+                $redirect_url = $result->getPaymentUrl();
+                $data = [
+                    'reservation_id' => $reservations->id,
+                    'payment_link' => $redirect_url
+                ];
+                return $this->generateResponse(true, 'Reservation Placed Successfully', $data);
+            }else{
+                return $this->generateResponse(false, 'Payment Failed');
+            }
+        }else{
+            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+        }
+    }
+
+    public function UrwayPaymentStatus(Request $request){
+        $check=Payments::where('reservation_id',$request->TrackId)->where('reservation_type' , Reservations::class)->first();
+        if ($check){
+            return $this->generateResponse(false,'Payment Already Done');
+        }
+        $client = new Client();
+        $client->setTrackId($request->TrackId);
+        $client->setAmount($request->amount);
+        $client->setCurrency('SAR');
+        $body = $client->find($request->TranId);
+        if($body->isSuccess()){
+            Payments::create([
+                'reservation_id' => $request->TrackId,
+                'reservation_type' => Reservations::class,
+                'response' => (array) $body,
+                'status'=> true
+            ]);
+
+            $reservations=Reservations::find($request->TrackId);
+            $reservations->update([
+                'payment_status'=>true,
             ]);
             $data=[
                 'title_en'=>'New reservations #'.$reservations->id,
@@ -115,12 +164,17 @@ class ReservationsApiController extends BaseApiController
                 'body_ar'=>'تم اضافة حجز جديد #'.$reservations->id,
             ];
             $this->sendNotifications(Employee::class,[1],$data);
-            return $this->generateResponse(true,'Success');
+            return $this->generateResponse(true,'Payment Successfully');
         }else{
-            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+            Payments::create([
+                'reservation_id' => $request->TrackId,
+                'reservation_type' => Reservations::class,
+                'response' => (array) $body,
+                'status'=> false
+            ]);
+            return $this->generateResponse(false,'Payment Failure');
         }
     }
-
     public function providerList(Request $request){
         $yachts = $this->user->yachts->pluck('id');
         $reservations = Reservations::with('yacht','user')->whereIn('yacht_id',$yachts);

@@ -185,6 +185,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        URWay\URWayServiceProvider::class,
         /*
          * Package Service Providers...
          */

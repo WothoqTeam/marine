@@ -17,6 +17,7 @@ class MarasiReservations extends Model
         'end_day',
         'note',
         'payment_method',
+        'payment_status',
         'reservations_status',
         'sub_total',
         'vat',

@@ -18,6 +18,7 @@ class ListUserReservations extends DataInterface
     public array|null $user;
     public float $total;
     public string|null $payment_method;
+    public string|null $payment_status;
     public string|null $reservations_status;
 
     /**
@@ -41,6 +42,7 @@ class ListUserReservations extends DataInterface
         ];
         $this->reservations_status = $reservation->reservations_status;
         $this->payment_method = $reservation->payment_method;
+        $this->payment_status = $reservation->payment_status;
         $this->total = $reservation->total;
     }
 }

@@ -21,6 +21,7 @@ class ReservationDetails extends DataInterface
     public string|null $end_day;
     public string|null $reservations_status;
     public string|null $payment_method;
+    public string|null $payment_status;
     public float $total;
     public string|null $note;
     public object|null $yacht;
@@ -57,6 +58,7 @@ class ReservationDetails extends DataInterface
         $this->end_day = $reservation->end_day;
         $this->reservations_status = $reservation->reservations_status;
         $this->payment_method = $reservation->payment_method;
+        $this->payment_status = $reservation->payment_status;
         $this->total = $reservation->total;
         $this->note = $reservation->note;
         $this->yacht =  new ListYachts($reservation->yacht,$language,$user);

@@ -99,6 +99,7 @@ Route::group(['middleware' => 'CheckUserAuth','prefix' => 'user'], function () {
     Route::post('/reservations/cancel/{id}', [ReservationsApiController::class, 'cancel']);
     Route::post('/reservations/pay/{id}', [ReservationsApiController::class, 'pay']);
 });
+Route::get('user/reservation/status', [ReservationsApiController::class, 'UrwayPaymentStatus']);
 
 //Provider Route
 Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], function () {
@@ -144,3 +145,4 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
     //Return Marasi
     Route::get('/gasStations', [GasStationsApiController::class, 'list']);
 });
+Route::get('/provider/marasi/reservation/status', [MarasiReservationsApiController::class, 'UrwayPaymentStatus']);

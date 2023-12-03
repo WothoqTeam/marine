@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45f2a495c5323ce3d48120a31cf3435a",
+    "content-hash": "4def302638861ccbc102b139d7189755",
     "packages": [
+        {
+            "name": "abdallahmohammed/urway-laravel",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AbdallaMohammed/laravel-urway.git",
+                "reference": "1ed9b81f45dc26dfc15ae6a3eb3e03f018c10fc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AbdallaMohammed/laravel-urway/zipball/1ed9b81f45dc26dfc15ae6a3eb3e03f018c10fc3",
+                "reference": "1ed9b81f45dc26dfc15ae6a3eb3e03f018c10fc3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": ">=6.0",
+                "illuminate/support": "^5.2|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.4|8.*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0|^4.0|^5.0",
+                "phpunit/phpunit": "^5.3|~6.0|~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "URWay\\URWayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "URWay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AbdallahMohammed",
+                    "email": "abdallah.r660@gmail.com"
+                }
+            ],
+            "description": "URWAY REST API package for Laravel",
+            "support": {
+                "issues": "https://github.com/AbdallaMohammed/laravel-urway/issues",
+                "source": "https://github.com/AbdallaMohammed/laravel-urway/tree/1.2.3"
+            },
+            "time": "2023-07-31T00:23:16+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "2.0.8",

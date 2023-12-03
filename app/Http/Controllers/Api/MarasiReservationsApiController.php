@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\Responses\Reservations\ListProviderReservations;
 use App\Http\Controllers\Api\Responses\Reservations\MarasiReservationsDetails;
-use App\Http\Controllers\Api\Responses\Reservations\ReservationDetails;
 use App\Http\Requests\Api\Reservations\Provider\PayMarasiReservationsRequest;
 use App\Http\Requests\Api\Reservations\Provider\StoreMarasiReservationsRequest;
 use App\Http\Requests\Api\Reservations\Provider\UpdateMarasiReservationsRequest;
 use App\Models\Employee;
 use App\Models\MarasiReservations;
-use App\Models\Reservations;
+use App\Models\Payments;
 use Illuminate\Http\Request;
+use URWay\Client;
 
 class MarasiReservationsApiController extends BaseApiController
 {
@@ -91,10 +91,58 @@ class MarasiReservationsApiController extends BaseApiController
         if($reservations){
             $reservations->update([
                 'payment_method'=>$request->payment_method,
+                'payment_status'=>false,
                 'sub_total'=>$request->sub_total,
                 'vat'=>$request->vat,
                 'service_fee'=>$request->service_fee,
                 'total'=>$request->total
+            ]);
+            $client = new Client();
+            $client->setTrackId($reservations->id)
+                ->setCustomerEmail($reservations->provider->email)
+                ->setCustomerIp($request->ip())
+                ->setCurrency('SAR')
+                ->setCountry('SA')
+                ->setAmount($request->total)
+                ->setRedirectUrl(Url('api/provider/marasi/reservation/status'));
+            $result = $client->pay();
+            if ($result->payid && $result->targetUrl) {
+                $redirect_url = $result->getPaymentUrl();
+                $data = [
+                    'purchase_id' => $reservations->id,
+                    'payment_link' => $redirect_url
+                ];
+                return $this->generateResponse(true, 'Purchase Placed Successfully', $data);
+            }else{
+                return $this->generateResponse(false, 'Payment Failed');
+            }
+        }else{
+            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+        }
+    }
+
+    public function UrwayPaymentStatus(Request $request){
+        $check=Payments::where('reservation_id',$request->TrackId)->where('reservation_type' , MarasiReservations::class,)->first();
+        if ($check){
+            return $this->generateResponse(false,'Payment Already Done');
+        }
+        $client = new Client();
+        $client->setTrackId($request->TrackId);
+        $client->setAmount($request->amount);
+        $client->setCurrency('SAR');
+        $body = $client->find($request->TranId);
+
+        if($body->isSuccess()){
+            Payments::create([
+                'reservation_id' => $request->TrackId,
+                'reservation_type' => MarasiReservations::class,
+                'response' => (array) $body,
+                'status'=> true,
+            ]);
+
+            $reservations=MarasiReservations::find($request->TrackId);
+            $reservations->update([
+                'payment_status'=>true,
             ]);
             $data=[
                 'title_en'=>'New Marasi Reservations #'.$reservations->id,
@@ -102,10 +150,16 @@ class MarasiReservationsApiController extends BaseApiController
                 'body_en'=>'A New Marasi Reservations has been added #'.$reservations->id,
                 'body_ar'=>'تم اضافة حجز مرسى جديد #'.$reservations->id,
             ];
-            $this->sendNotifications(Employee::class,[1],$data);
-            return $this->generateResponse(true,'Success');
+            $this->sendNotifications(Employee::class,[1,$reservations->marasi->employee_id],$data);
+            return $this->generateResponse(true,'Payment Successfully');
         }else{
-            return $this->generateResponse(false,"User Cannot Take This Action",[],410);
+            Payments::create([
+                'reservation_id' => $request->TrackId,
+                'reservation_type' => MarasiReservations::class,
+                'response' => (array) $body,
+                'status'=> false
+            ]);
+            return $this->generateResponse(false,'Payment Failure');
         }
     }
 
