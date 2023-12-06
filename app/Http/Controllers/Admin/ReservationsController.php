@@ -23,4 +23,10 @@ class ReservationsController extends Controller
         $data=Reservations::with('user','yacht')->find($id)->toArray();
         return view('admin.reservations.show', compact('data'));
     }
+
+    public function print($id)
+    {
+        $data=Reservations::with('user','yacht')->find($id)->toArray();
+        return view('admin.reservations.print', compact('data'));
+    }
 }

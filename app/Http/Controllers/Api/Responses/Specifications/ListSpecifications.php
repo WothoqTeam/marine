@@ -21,6 +21,6 @@ class ListSpecifications extends DataInterface
     {
         $this->id = $specification->id;
         $this->name = $language == 'en' ? $specification->name_en : $specification->name_ar;
-        $this->image=$specification->getFirstMediaUrl('icon');
+//        $this->image=$specification->getFirstMediaUrl('icon');
     }
 }

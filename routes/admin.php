@@ -153,11 +153,13 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
         Route::name('reservations.')->prefix('reservations')->group(function () {
             Route::get('/', 'ReservationsController@index')->name('index');
             Route::get('/show/{id}', 'ReservationsController@show')->name('show');
+            Route::get('/print/{id}', 'ReservationsController@print')->name('print');
         });
 
         Route::name('mReservations.')->prefix('mReservations')->group(function () {
             Route::get('/', 'MarasiReservationsController@index')->name('index');
             Route::get('/show/{id}', 'MarasiReservationsController@show')->name('show');
+            Route::get('/print/{id}', 'MarasiReservationsController@print')->name('print');
             Route::post('/update', 'MarasiReservationsController@updateRequests')->name('update');
         });
 

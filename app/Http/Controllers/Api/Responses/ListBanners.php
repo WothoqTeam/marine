@@ -21,6 +21,6 @@ class ListBanners extends DataInterface
 
     {
         $this->id = $banner->id;
-        $this->image=$banner->getFirstMediaUrl('cover');
+        $this->image=$banner->getFirstMediaUrl('cover','thumb');
     }
 }

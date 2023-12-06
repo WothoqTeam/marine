@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                                <div class="form-text" style="color: red">Allowed size width:327 , height:180</div>
+                                <div class="form-text" style="color: red">Allowed size width:1024 , height:500</div>
                             </div>
                         </div>
 

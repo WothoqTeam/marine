@@ -98,6 +98,7 @@ class ProvidersController extends Controller
 
     public function store(Request $request)
     {
+        $phone=$request->phone;
         $request->request->set('phone',$request->code . $request->phone);
         $rule = [
             'name' => 'required|string',
@@ -110,6 +111,7 @@ class ProvidersController extends Controller
 
         $validate = Validator::make($request->all(), $rule);
         if ($validate->fails()) {
+            $request->request->set('phone',$phone);
             return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error');
         }
         $row = User::create([
@@ -136,6 +138,7 @@ class ProvidersController extends Controller
 
     public function update(Request $request)
     {
+        $phone=$request->phone;
         $request->request->set('phone',$request->code . $request->phone);
         $rule = [
             'name' => 'required|string',
@@ -147,6 +150,7 @@ class ProvidersController extends Controller
 
         $validate = Validator::make($request->all(), $rule);
         if ($validate->fails()) {
+            $request->request->set('phone',$phone);
             return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error');
         }
 

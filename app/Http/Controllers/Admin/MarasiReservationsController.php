@@ -46,6 +46,23 @@ class MarasiReservationsController extends Controller
         }
     }
 
+    public function print($id)
+    {
+        $emp=Auth::guard('admin')->user();
+        $data=MarasiReservations::with('provider','marasi');
+        if ($emp->role_id==2){
+            $marasi_ids=Marasi::where('employee_id',$emp->id)->pluck('id')->toArray();
+            $data->wherein('marasi_id',$marasi_ids);
+        }
+        $data=$data->find($id);
+        if ($data){
+            $data=$data->toArray();
+            return view('admin.marasiReservations.print', compact('data'));
+        }else{
+            abort(403, 'Unauthorized');
+        }
+    }
+
     public function updateRequests(UpdateRequest $request){
         $emp=Auth::guard('admin')->user();
         if ($emp->role_id==2) {

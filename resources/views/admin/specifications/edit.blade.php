@@ -44,33 +44,6 @@
                     <input type="hidden" name="id" value="{{$data->id}}" />
                     <!--begin::Card body-->
                     <div class="card-body border-top p-9">
-
-                        <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.image')}}</label>
-                            <div class="col-lg-8">
-                                <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
-                                    @if ($data->getMedia('icon')->count())
-                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{$data->getFirstMediaUrl('icon', 'thumb')}})"></div>
-                                    @else
-                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{asset('dash/assets/media/avatars/blank.png')}})"></div>
-                                    @endif
-                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="cover" accept=".png, .jpg, .jpeg" />
-                                        <input type="hidden" name="avatar_remove" />
-                                    </label>
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                </div>
-
-                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                                <div class="form-text" style="color: red">Allowed size width:327 , height:180</div>
-                            </div>
-                        </div>
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}} EN</label>
                             <div class="col-lg-8 fv-row">

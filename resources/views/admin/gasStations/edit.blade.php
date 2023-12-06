@@ -141,18 +141,11 @@
                             </div>
                         </div>
 
-                        <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.longitude')}}</label>
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="longitude" placeholder="{{trans('labels.inputs.longitude')}}" value="{{$data['gasStations']->longitude}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
-                            </div>
+                        <div class="fv-row mb-6">
+                            <div id="map" style="height: 300px;"></div>
                         </div>
-                        <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.latitude')}}</label>
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="latitude" placeholder="{{trans('labels.inputs.latitude')}}" value="{{$data['gasStations']->latitude}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
-                            </div>
-                        </div>
+                        <input type="hidden" name="latitude" id="lat" placeholder="LAT" value="{{$data['gasStations']->latitude}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                        <input type="hidden" name="longitude" id="lng" placeholder="LNG" value="{{$data['gasStations']->longitude}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
 
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{transAdmin('Cover Images')}}</label>
@@ -197,5 +190,43 @@
                 divElement.classList.add("hidden");
             }
         }
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsoJSU4k6RgH8tO2gM1WLZBjOFwUF4TcY&callback=initMap&v=weekly&language=ar"
+        defer
+    ></script>
+    <script>
+        function initMap() {
+            const myLatlng = { lat: {{$data['gasStations']->latitude}}, lng: {{$data['gasStations']->longitude}} };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13.3,
+                center: myLatlng,
+            });
+            // Create the initial InfoWindow.
+            let infoWindow = new google.maps.InfoWindow({
+                content: "حدد المكان على الخريطة",
+                position: myLatlng,
+            });
+
+            infoWindow.open(map);
+            // Configure the click listener.
+            map.addListener("click", (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                infoWindow.close();
+                // Create a new InfoWindow.
+                infoWindow = new google.maps.InfoWindow({
+                    position: mapsMouseEvent.latLng,
+                });
+                infoWindow.setContent(
+                    // JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2),
+                    JSON.stringify('تم تحديد الموقع', null, 2),
+                );
+                $('#lat').val(mapsMouseEvent.latLng.toJSON().lat);
+                $('#lng').val(mapsMouseEvent.latLng.toJSON().lng);
+                infoWindow.open(map);
+            });
+        }
+
+        window.initMap = initMap;
     </script>
 @endsection

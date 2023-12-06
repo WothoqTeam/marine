@@ -83,7 +83,7 @@ class SpecificationsController extends Controller
         $rule = [
             'name_en' => 'required|string',
             'name_ar' => 'required|string',
-            'cover' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+//            'cover' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ];
 
         $validate = Validator::make($request->all(), $rule);
@@ -95,9 +95,9 @@ class SpecificationsController extends Controller
             'name_ar' => $request->name_ar,
             'status' => $request->status ?? 0,
         ]);
-        if($request->hasFile('cover') && $request->file('cover')->isValid()){
-            $row->addMediaFromRequest('cover')->toMediaCollection('icon');
-        }
+//        if($request->hasFile('cover') && $request->file('cover')->isValid()){
+//            $row->addMediaFromRequest('cover')->toMediaCollection('icon');
+//        }
         return redirect('admin/specifications')->with('message', trans('labels.labels.added_successfully'))->with('status', 'success');
     }
 
@@ -131,10 +131,10 @@ class SpecificationsController extends Controller
             'status' => $request->status ?? 0,
         ]);
 
-        if($request->hasFile('cover') && $request->file('cover')->isValid()){
-            Media::where('model_type',Specifications::class)->where('model_id',$request->id)->where('collection_name','icon')->delete();
-            $data->addMediaFromRequest('cover')->toMediaCollection('icon');
-        }
+//        if($request->hasFile('cover') && $request->file('cover')->isValid()){
+//            Media::where('model_type',Specifications::class)->where('model_id',$request->id)->where('collection_name','icon')->delete();
+//            $data->addMediaFromRequest('cover')->toMediaCollection('icon');
+//        }
         return redirect('admin/specifications')->with('message', trans('labels.labels.modified_successfully'))->with('status', 'success');
     }
 

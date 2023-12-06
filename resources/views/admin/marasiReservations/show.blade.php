@@ -371,7 +371,7 @@
                                         @endif
                                     @endif
                                     <!-- begin::Pint-->
-                                    <button type="button" class="btn btn-warning my-1 me-12" onclick="window.print();">{{transAdmin('Print Invoice')}}</button>
+                                        <a type="button" class="btn btn-success my-1 me-12" href="{{route('admin.mReservations.print',$data['id'])}}" target="_blank">{{transAdmin('Print Invoice')}}</a>
                                     <!-- end::Pint-->
                                 </div>
                             </div>

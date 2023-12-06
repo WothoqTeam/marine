@@ -37,25 +37,7 @@
 
 <div id="kt_app_content_container" class="app-container container-fluid">
     <div class="card">
-
-
             <div class="card-body p-9">
-
-                <div class="row mb-8">
-                    <div class="col-xl-3">
-                        <div class="symbol symbol-100px">
-                            @if ($data->getMedia('icon')->count())
-                                <img src="{{$data->getFirstMediaUrl('icon')}}" >
-                            @else
-                                <img src="assets/media/svg/avatars/blank.svg" >
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-
-                    </div>
-                </div>
-
                 <div class="row mb-8">
                     <div class="col-xl-2">
                         <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} EN</div>
