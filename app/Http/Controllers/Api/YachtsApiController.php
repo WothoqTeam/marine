@@ -30,6 +30,11 @@ class YachtsApiController extends BaseApiController
         return $this->generateResponse(true,'Success',$yachts);
     }
 
+    public function details($id){
+        $yacht = Yachts::with('city','country','provider','specifications')->where('provider_id',$this->user->id)->findOrFail($id);
+        return $this->generateResponse(true,'Success',$yacht);
+    }
+
     public function providerYachts(Request $request){
         $yachts = Yachts::with('city','country','provider','specifications')->where('provider_id',$this->user->id)->orderBy('id','DESC');
         //Filter By Name

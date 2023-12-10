@@ -127,6 +127,7 @@ Route::group(['middleware' => 'CheckProviderAuth','prefix' => 'provider'], funct
 
     //yachts
     Route::get('/yachts', [YachtsApiController::class, 'providerYachts']);
+    Route::get('/yachts/{id}', [YachtsApiController::class, 'details']);
     Route::post('/yachts/store', [YachtsApiController::class, 'store']);
     Route::post('/yachts/update/{id}', [YachtsApiController::class, 'update']);
     Route::post('/yachts/updateStatus/{id}', [YachtsApiController::class, 'updateStatus']);
