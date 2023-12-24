@@ -97,24 +97,32 @@ class MarasiReservationsApiController extends BaseApiController
                 'service_fee'=>$request->service_fee,
                 'total'=>$request->total
             ]);
-            $client = new Client();
-            $client->setTrackId($reservations->id)
-                ->setCustomerEmail($reservations->provider->email)
-                ->setCustomerIp($request->ip())
-                ->setCurrency('SAR')
-                ->setCountry('SA')
-                ->setAmount($request->total)
-                ->setRedirectUrl(Url('api/provider/marasi/reservation/status'));
-            $result = $client->pay();
-            if ($result->payid && $result->targetUrl) {
-                $redirect_url = $result->getPaymentUrl();
+            if ($request->payment_method=='credit'){
+                $client = new Client();
+                $client->setTrackId($reservations->id)
+                    ->setCustomerEmail($reservations->provider->email)
+                    ->setCustomerIp($request->ip())
+                    ->setCurrency('SAR')
+                    ->setCountry('SA')
+                    ->setAmount($request->total)
+                    ->setRedirectUrl(Url('api/provider/marasi/reservation/status'));
+                $result = $client->pay();
+                if ($result->payid && $result->targetUrl) {
+                    $redirect_url = $result->getPaymentUrl();
+                    $data = [
+                        'purchase_id' => $reservations->id,
+                        'payment_link' => $redirect_url
+                    ];
+                    return $this->generateResponse(true, 'Purchase Placed Successfully', $data);
+                }else{
+                    return $this->generateResponse(false, 'Payment Failed');
+                }
+            }else{
                 $data = [
                     'purchase_id' => $reservations->id,
-                    'payment_link' => $redirect_url
+                    'payment_link' => null
                 ];
                 return $this->generateResponse(true, 'Purchase Placed Successfully', $data);
-            }else{
-                return $this->generateResponse(false, 'Payment Failed');
             }
         }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
