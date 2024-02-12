@@ -91,6 +91,33 @@
                                     </td>
                                     <td class="fw-bold text-end">{{date('Y-m-d H:i:s', strtotime($data['created_at']))}}</td>
                                 </tr>
+
+                                <tr>
+                                    <td class="text-muted">
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::Svg Icon | path: icons/duotune/files/fil002.svg-->
+                                            <span class="svg-icon svg-icon-2 me-2">
+                                                <svg width="800px" height="800px" viewBox="0 0 32 32"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <defs>
+                                                    <style>.cls-1 {
+                                                            fill: #606161;
+                                                        }</style>
+
+                                                    </defs>
+                                                    <title/>
+                                                    <g data-name="Layer 7" id="Layer_7">
+
+                                                    <path class="cls-1"
+                                                          d="M19.75,15.67a6,6,0,1,0-7.51,0A11,11,0,0,0,5,26v1H27V26A11,11,0,0,0,19.75,15.67ZM12,11a4,4,0,1,1,4,4A4,4,0,0,1,12,11ZM7.06,25a9,9,0,0,1,17.89,0Z"/>
+
+                                                    </g>
+                                                    </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->{{transAdmin('Guest Number')}}</div>
+                                    </td>
+                                    <td class="fw-bold text-end">{{$data['num_guests']}}</td>
+                                </tr>
                                 <!--end::Date-->
                                 <!--begin::Payment method-->
                                 <tr>
@@ -304,15 +331,22 @@
                                                     <a href="{{route('admin.yachts.show', $data['yacht']['id'])}}"
                                                        class="symbol symbol-50px">
                                                         @if ($data['yacht']->getMedia('cover')->count())
-                                                            <span class="symbol-label" style="background-image:url({{$data['yacht']->getFirstMediaUrl('cover')}});"></span>
+                                                            <span class="symbol-label"
+                                                                  style="background-image:url({{$data['yacht']->getFirstMediaUrl('cover')}});"></span>
                                                         @else
-                                                            <span class="symbol-label" style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
+                                                            <span class="symbol-label"
+                                                                  style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
                                                         @endif
                                                     </a>
                                                     <!--end::Thumbnail-->
                                                     <!--begin::Title-->
                                                     <div class="ms-5">
-                                                        <a href="{{route('admin.yachts.show', $data['yacht']['id'])}}" class="fw-bold text-gray-600 text-hover-primary">@if (\Illuminate\Support\Facades\App::getLocale() == 'en') {{$data['yacht']['name_en']}} @else {{$data['yacht']['name_ar']}} @endif</a>
+                                                        <a href="{{route('admin.yachts.show', $data['yacht']['id'])}}"
+                                                           class="fw-bold text-gray-600 text-hover-primary">@if (\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                {{$data['yacht']['name_en']}}
+                                                            @else
+                                                                {{$data['yacht']['name_ar']}}
+                                                            @endif</a>
                                                     </div>
                                                     <!--end::Title-->
                                                 </div>
@@ -340,11 +374,11 @@
                                             <td colspan="4" class="text-end">{{transAdmin('Service Fee')}}</td>
                                             <td class="text-end">{{$data['service_fee']}}</td>
                                         </tr>
-{{--                                        <!--end::Shipping-->--}}
-{{--                                        <!--begin::Grand total-->--}}
-{{--                                        <tr>--}}
-                                            <td colspan="4" class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
-                                            <td class="text-dark fs-3 fw-bolder text-end">{{$data['total']}} {{transAdmin('Sar')}}</td>
+                                        {{--                                        <!--end::Shipping-->--}}
+                                        {{--                                        <!--begin::Grand total-->--}}
+                                        {{--                                        <tr>--}}
+                                        <td colspan="4" class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
+                                        <td class="text-dark fs-3 fw-bolder text-end">{{$data['total']}} {{transAdmin('Sar')}}</td>
                                         </tr>
                                         <!--end::Grand total-->
                                         </tbody>
@@ -354,7 +388,9 @@
                                 </div>
                                 <div class="my-1 me-5">
                                     <!-- begin::Pint-->
-                                    <a type="button" class="btn btn-success my-1 me-12" href="{{route('admin.reservations.print',$data['id'])}}" target="_blank">{{transAdmin('Print Invoice')}}</a>
+                                    <a type="button" class="btn btn-success my-1 me-12"
+                                       href="{{route('admin.reservations.print',$data['id'])}}"
+                                       target="_blank">{{transAdmin('Print Invoice')}}</a>
                                     <!-- end::Pint-->
                                 </div>
                             </div>

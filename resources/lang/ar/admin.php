@@ -82,4 +82,5 @@ return [
     'All Yachts' => 'جميع اليخوت',
     'Gas Stations' => 'محطات الوقود',
     'Search Gas Stations' => 'البحث عن محطات الوقود',
+    'Guest Number' => 'عدد الضيوف',
 ];

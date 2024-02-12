@@ -99,11 +99,16 @@ class AuthApiController extends BaseApiController
     }
 
     public function updateProfile(UpdateUserRequest $request) {
+        //update
         $user = auth('api')->user();
         if($user) {
             // Update the user's name and email
             $user->name = $request->input('name');
+            $user->last_name = $request->input('last_name');
             $user->email = $request->input('email');
+            $user->dob = $request->input('dob');
+            $user->gender = $request->input('gender');
+            $user->nationality = $request->input('nationality');
 //            $user->phone = $request->input('phone');
 
             // Update the user's password if provided

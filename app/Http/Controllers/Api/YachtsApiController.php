@@ -9,6 +9,7 @@ use App\Http\Requests\Api\Yachts\UpdateYachtsStatusRequest;
 use App\Models\Yachts;
 use App\Models\YachtsSpecifications;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class YachtsApiController extends BaseApiController
 {
@@ -53,7 +54,8 @@ class YachtsApiController extends BaseApiController
         $inputs=$request->only([
             'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
             'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
-            'discount_value', 'city_id', 'country_id', 'longitude', 'latitude'
+            'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
+            'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num'
         ]);
         $inputs['provider_id']=$this->user->id;
         $yacht=Yachts::create($inputs);
@@ -63,6 +65,9 @@ class YachtsApiController extends BaseApiController
                     $yacht->addMedia($image)->toMediaCollection('cover');
                 }
             }
+        }
+        if($request->hasFile('captain_image') && $request->file('captain_image')->isValid()){
+            $yacht->addMediaFromRequest('captain_image')->toMediaCollection('captain_image');
         }
         if (is_array($request->specifications) && count($request->specifications)>0){
             foreach ($request->specifications as $specification){
@@ -83,7 +88,8 @@ class YachtsApiController extends BaseApiController
             $inputs=$request->only([
                 'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
                 'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
-                'discount_value', 'city_id', 'country_id', 'longitude', 'latitude'
+                'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
+                'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num'
             ]);
             $yacht->update($inputs);
             if (is_array($request->images) && count($request->images)>0){
@@ -92,6 +98,10 @@ class YachtsApiController extends BaseApiController
                         $yacht->addMedia($image)->toMediaCollection('cover');
                     }
                 }
+            }
+            if($request->hasFile('captain_image') && $request->file('captain_image')->isValid()){
+                Media::where('model_type',Yachts::class)->where('model_id',$id)->where('collection_name','captain_image')->delete();
+                $yacht->addMediaFromRequest('captain_image')->toMediaCollection('captain_image');
             }
             return $this->generateResponse(true,'Success');
          }else{

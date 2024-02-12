@@ -47,9 +47,16 @@
 
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.first_name')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name" placeholder="{{trans('labels.inputs.name')}}" value="" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name" placeholder="{{trans('labels.inputs.first_name')}}" value="{{old('name')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.last_name')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="last_name" placeholder="{{trans('labels.inputs.last_name')}}" value="{{old('last_name')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
@@ -77,7 +84,34 @@
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.email')}} </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="" class="form-control form-control-lg form-control-solid" />
+                                <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="{{old('email')}}" class="form-control form-control-lg form-control-solid" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
+                                <span class="required">{{trans('labels.inputs.gender')}}</span>
+                            </label>
+                            <div class="col-lg-8 fv-row">
+                                <select name="gender" aria-label="{{trans('labels.inputs.select')}} {{trans('labels.inputs.gender')}}" data-control="select2" data-placeholder="{{trans('labels.inputs.select')}} {{trans('labels.inputs.gender')}}..." class="form-select form-select-solid form-select-lg fw-semibold">
+                                    <option value="">{{trans('labels.inputs.select')}}</option>
+                                    <option value='male'>{{trans('labels.labels.male')}}</option>
+                                    <option value='female'>{{trans('labels.labels.female')}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.nationality')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="nationality" placeholder="{{trans('labels.inputs.nationality')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{old('nationality')}}"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.dob')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="date" name="dob" placeholder="{{trans('labels.inputs.dob')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" id="dob" value="{{old('dob')}}"/>
                             </div>
                         </div>
 

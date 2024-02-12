@@ -9,34 +9,35 @@
 @endsection
 
 @section('breadcrumb')
-<div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
-    <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.profile')}} </h1>
-    <!--end::Title-->
-    <!--begin::Breadcrumb-->
-    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
-        <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin.yachts.index')}}" class="text-muted text-hover-primary">{{transAdmin('Yachts')}}</a>
-        </li>
-        <!--end::Item-->
-        <!--begin::Item-->
-        <li class="breadcrumb-item">
-            <span class="bullet bg-gray-400 w-5px h-2px"></span>
-        </li>
-        <!--end::Item-->
-        <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">{{trans('labels.labels.profile')}}</li>
-        <!--end::Item-->
-    </ul>
-    <!--end::Breadcrumb-->
-</div>
+    <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
+        <!--begin::Title-->
+        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.profile')}} </h1>
+        <!--end::Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-muted">
+                <a href="{{route('admin.yachts.index')}}"
+                   class="text-muted text-hover-primary">{{transAdmin('Yachts')}}</a>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-muted">{{trans('labels.labels.profile')}}</li>
+            <!--end::Item-->
+        </ul>
+        <!--end::Breadcrumb-->
+    </div>
 @endsection
 
 @section('content')
 
-<div id="kt_app_content_container" class="app-container container-fluid">
-    <div class="card">
+    <div id="kt_app_content_container" class="app-container container-fluid">
+        <div class="card">
 
 
             <div class="card-body p-9">
@@ -46,10 +47,10 @@
                         <div class="symbol symbol-100px">
                             @if ($data->getMedia('cover')->count())
                                 @foreach($data->getMedia('cover') as $image)
-                                    <img src="{{$image->getFullUrl()}}" >
+                                    <img src="{{$image->getFullUrl()}}">
                                 @endforeach
                             @else
-                                <img src="assets/media/svg/avatars/blank.svg" >
+                                <img src="assets/media/svg/avatars/blank.svg">
                             @endif
                         </div>
                     </div>
@@ -62,13 +63,15 @@
                         <div class="fs-6 fw-semibold">{{transAdmin('Provider Name')}}</div>
                     </div>
                     <div class="col-lg-9">
-                        <div class="fw-bold fs-5"><a href="{{route('admin.providers.show',$data->provider->id)}}">{{$data->provider->name}}</a></div>
+                        <div class="fw-bold fs-5"><a
+                                href="{{route('admin.providers.show',$data->provider->id)}}">{{$data->provider->name}}</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}}  ( AR )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} ( AR )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->name_ar}}</div>
@@ -77,7 +80,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}}  ( En )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} ( En )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->name_en}}</div>
@@ -86,7 +89,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.description')}}  ( AR )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.description')}} ( AR )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->description_ar}}</div>
@@ -95,7 +98,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.description')}}  ( En )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.description')}} ( En )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->description_en}}</div>
@@ -104,7 +107,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.add_info')}}  ( AR )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.add_info')}} ( AR )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->add_info_ar}}</div>
@@ -113,7 +116,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.add_info')}}  ( En )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.add_info')}} ( En )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->add_info_en}}</div>
@@ -131,7 +134,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.booking_info')}}  ( En )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.booking_info')}} ( En )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->booking_info_en}}</div>
@@ -149,7 +152,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.address')}}  ( En )</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.address')}} ( En )</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->address_en}}</div>
@@ -217,6 +220,69 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.num_guests')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->num_guests}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.owner_name')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->owner_name}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.id_num')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->id_num}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.license_num')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->license_num}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.captain_name')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->captain_name}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.captain_id_num')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->captain_id_num}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.captain_license_num')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->captain_license_num}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
                         <div class="fs-6 fw-semibold">{{trans('labels.labels.specifications')}}</div>
                     </div>
                     <div class="col-lg-9">
@@ -241,8 +307,8 @@
 
             </div>
 
+        </div>
     </div>
-</div>
 
 @endsection
 

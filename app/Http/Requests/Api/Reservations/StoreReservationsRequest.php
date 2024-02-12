@@ -20,6 +20,7 @@ class StoreReservationsRequest extends FormRequest
             'start_day' => 'required|date',
             'end_day' => 'required|date',
             'note' => 'nullable|string',
+            'num_guests' => 'nullable|int',
         ];
     }
     public function failedValidation(Validator $validator)

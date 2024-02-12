@@ -47,9 +47,15 @@
                     <div class="card-body border-top p-9">
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.first_name')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name" placeholder="{{trans('labels.inputs.name')}}" value="{{$data->name}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name" placeholder="{{trans('labels.inputs.first_name')}}" value="{{$data->name}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                            </div>
+                        </div>
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.last_name')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="last_name" placeholder="{{trans('labels.inputs.last_name')}}" value="{{$data->last_name}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
@@ -78,6 +84,32 @@
                             <label class="col-lg-2 col-form-label fw-semibold fs-6"> {{trans('labels.inputs.email')}}</label>
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="email" placeholder="{{trans('labels.inputs.email')}}" value="{{$data->email}}" class="form-control form-control-lg form-control-solid" />
+                            </div>
+                        </div>
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
+                                <span class="required">{{trans('labels.inputs.gender')}}</span>
+                            </label>
+                            <div class="col-lg-8 fv-row">
+                                <select name="gender" aria-label="{{trans('labels.inputs.select')}} {{trans('labels.inputs.gender')}}" data-control="select2" data-placeholder="{{trans('labels.inputs.select')}} {{trans('labels.inputs.gender')}}..." class="form-select form-select-solid form-select-lg fw-semibold">
+                                    <option value="">{{trans('labels.inputs.select')}}</option>
+                                    <option value='male' @if($data->gender == 'male') selected @endif>{{trans('labels.labels.male')}}</option>
+                                    <option value='female' @if($data->gender == 'female') selected @endif>{{trans('labels.labels.female')}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.nationality')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="nationality" placeholder="{{trans('labels.inputs.nationality')}}" value="{{$data->nationality}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.dob')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="date" name="dob" placeholder="{{trans('labels.inputs.dob')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" id="dob" value="{{$data->dob}}"/>
                             </div>
                         </div>
 

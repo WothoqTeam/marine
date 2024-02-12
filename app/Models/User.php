@@ -27,7 +27,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         'email', 'phone',
         'password', 'is_active',
         'fcm_token','language',
-        'google_id','twitter_id'
+        'google_id','twitter_id',
+        'last_name','dob','gender',
+        'nationality'
     ];
 
     protected $hidden=[

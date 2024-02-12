@@ -32,7 +32,14 @@ class Yachts extends Model implements HasMedia
         'status',
         'longitude',
         'latitude',
-        'is_approved'
+        'is_approved',
+        'num_guests',
+        'owner_name',
+        'id_num',
+        'license_num',
+        'captain_name',
+        'captain_id_num',
+        'captain_license_num',
     ];
 
     protected $hidden=[

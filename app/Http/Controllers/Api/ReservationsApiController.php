@@ -53,6 +53,7 @@ class ReservationsApiController extends BaseApiController
             'start_day'=>$request->start_day,
             'end_day'=>$request->end_day,
             'note'=>$request->note,
+            'num_guests'=>$request->num_guests,
         ]);
         $data=[
             'title_en'=>'New reservations #'.$reservations->id,
@@ -72,6 +73,7 @@ class ReservationsApiController extends BaseApiController
                 'start_day'=>$request->start_day,
                 'end_day'=>$request->end_day,
                 'note'=>$request->note,
+                'num_guests'=>$request->num_guests,
             ]);
             return $this->generateResponse(true,'Success');
         }else{

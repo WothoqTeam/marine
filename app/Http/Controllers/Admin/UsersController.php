@@ -112,12 +112,16 @@ class UsersController extends Controller
         $validate = Validator::make($request->all(), $rule);
         if ($validate->fails()) {
             $request->request->set('phone',$phone);
-            return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error');
+            return redirect()->back()->with('message', $validate->messages()->first())->with('status', 'error')->withInput($request->all());
         }
         $row = User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
             'password' => Hash::make($request->password),
             'is_active' => $request->is_active ?? '0',
         ]);
@@ -157,8 +161,12 @@ class UsersController extends Controller
         $data = User::find($request->id);
         $data->update([
             'name' => $request->name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
             'password' => ($request->password) ? Hash::make($request->password): $data->password,
             'is_active' => $request->is_active ?? '0',
         ]);
