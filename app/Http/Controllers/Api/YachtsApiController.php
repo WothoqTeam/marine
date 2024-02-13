@@ -67,7 +67,7 @@ class YachtsApiController extends BaseApiController
             }
         }
         if($request->hasFile('captain_image') && $request->file('captain_image')->isValid()){
-            $yacht->addMediaFromRequest('captain_image')->toMediaCollection('captain_image');
+            $yacht->addMedia($request->file('captain_image'))->toMediaCollection('captain_image');
         }
         if (is_array($request->specifications) && count($request->specifications)>0){
             foreach ($request->specifications as $specification){
