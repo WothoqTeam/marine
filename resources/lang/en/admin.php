@@ -81,5 +81,6 @@ return [
     'Active Yachts' => 'Active Yachts',
     'All Yachts' => 'All Yachts',  
   'Gas Stations' => 'Gas Stations',  
-  'Search Gas Stations' => 'Search Gas Stations',
+  'Search Gas Stations' => 'Search Gas Stations',  
+  'Export Reservations' => 'Export Reservations',
 ];

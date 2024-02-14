@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ReservationsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Reservations;
 use App\Models\Setting;
 use App\Models\Yachts;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReservationsController extends Controller
 {
@@ -28,5 +30,10 @@ class ReservationsController extends Controller
     {
         $data=Reservations::with('user','yacht')->find($id)->toArray();
         return view('admin.reservations.print', compact('data'));
+    }
+
+    public function exportToExcel()
+    {
+        return Excel::download(new ReservationsExport, 'Reservations.xlsx');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\MarasiReservationsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reservations\UpdateRequest;
 use App\Http\Requests\Api\Reservations\ReservationsRequest;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Models\Yachts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MarasiReservationsController extends Controller
 {
@@ -101,5 +103,10 @@ class MarasiReservationsController extends Controller
         }else{
             return response()->json(['message' => 'error']);
         }
+    }
+
+    public function exportToExcel()
+    {
+        return Excel::download(new MarasiReservationsExport, 'Marasi Reservations.xlsx');
     }
 }

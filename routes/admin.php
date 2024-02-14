@@ -154,6 +154,7 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::get('/', 'ReservationsController@index')->name('index');
             Route::get('/show/{id}', 'ReservationsController@show')->name('show');
             Route::get('/print/{id}', 'ReservationsController@print')->name('print');
+            Route::get('/export-excel', 'ReservationsController@exportToExcel')->name('exportReservations');
         });
 
         Route::name('mReservations.')->prefix('mReservations')->group(function () {
@@ -161,6 +162,7 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::get('/show/{id}', 'MarasiReservationsController@show')->name('show');
             Route::get('/print/{id}', 'MarasiReservationsController@print')->name('print');
             Route::post('/update', 'MarasiReservationsController@updateRequests')->name('update');
+            Route::get('/export-excel', 'MarasiReservationsController@exportToExcel')->name('export');
         });
 
         Route::name('gasStations.')->prefix('gasStations')->group(function () {

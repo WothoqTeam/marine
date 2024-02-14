@@ -68,6 +68,12 @@
                         </select>
                         <!--end::Select2-->
                     </div>
+                    <!--begin::Add customer-->
+                    <div class="w-100 mw-150px">
+                        <a href="{{route('admin.reservations.exportReservations')}}" type="button" class="btn btn-sm btn-primary btn-active-dark">
+                            {{transAdmin('Export Reservations')}}</a>
+                    </div>
+                    <!--end::Add customer-->
                 </div>
                 <!--end::Card toolbar-->
             </div>
