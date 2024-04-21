@@ -22,7 +22,7 @@
                 <div class="col-md-6 col-sm-6">
                     <!-- Header Content start -->
                     <div class="header-content wow fadeInUp">
-                        <h2>يونافيد مارين</h2>
+                        <h2>يخوت محيط الأحلام</h2>
                         <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.</p>
                         <p>حمل التطبيق الان <br><span>متاح لتطبيقات الاندرويد والايفون والاي باد</span></p>
 
@@ -53,7 +53,7 @@
                 <div class="col-md-6 col-sm-6">
                     <!-- Header Content start -->
                     <div class="header-content wow fadeInUp">
-                        <h2>يونافيد مارين</h2>
+                        <h2>يخوت محيط الأحلام</h2>
                         <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.</p>
                         <p>حمل التطبيق الان <br><span>متاح لتطبيقات الاندرويد والايفون والاي باد</span></p>
 
@@ -293,7 +293,7 @@
             <div class="col-md-6 col-sm-6">
                 <!-- Header Content start -->
                 <div class="header-content wow fadeInUp">
-                    <h2>Unified marine</h2>
+                    <h2>Oceanic Dream Yachts</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                     <p>Get The App Now <br><span>*Available on iphone, ipad and all android devices</span></p>
 
@@ -330,7 +330,7 @@
             <div class="col-md-6 col-sm-6">
                 <!-- Header Content start -->
                 <div class="header-content wow fadeInUp">
-                    <h2>Unified marine</h2>
+                    <h2>Oceanic Dream Yachts</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                     <p>Get The App Now <br><span>*Available on iphone, ipad and all android devices</span></p>
 

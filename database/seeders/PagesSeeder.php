@@ -35,5 +35,12 @@ class PagesSeeder extends Seeder
             'content_en'=>'test',
             'content_ar'=>'تجريبي',
         ]);
+        Pages::updateOrCreate(
+            ['id' => 4],[
+            'name_en'=>'Service provider usage policy',
+            'name_ar'=>'سياسة استخدام مقدم الخدمة',
+            'content_en'=>'test',
+            'content_ar'=>'تجريبي',
+        ]);
     }
 }

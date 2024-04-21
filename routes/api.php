@@ -41,6 +41,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/updateUserImage', [AuthApiController::class, 'updateUserImage']);
     Route::post('/updateStatus', [AuthApiController::class, 'updateStatus']);
     Route::post('/checkPhone', [AuthApiController::class, 'checkPhone']);
+    Route::post('/checkEmail', [AuthApiController::class, 'checkEmail']);
     Route::post('/updatePassword', [AuthApiController::class, 'updatePassword']);
     Route::post('/checkVerification', [AuthApiController::class, 'checkVerification']);
 });

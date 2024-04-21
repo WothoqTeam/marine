@@ -6,6 +6,7 @@ use App\Http\Requests\Api\Auth\UpdatePasswordRequest;
 use App\Http\Requests\Api\Auth\UpdateUserRequest;
 use App\Http\Requests\Api\Auth\UserLoginRequest;
 use App\Http\Requests\Api\Auth\UserRegisterRequest;
+use App\Mail\SendOtpMail;
 use App\Models\Role;
 use App\Models\Specifications;
 use App\Models\Verification;
@@ -168,9 +169,38 @@ class AuthApiController extends BaseApiController
 
     }
 
+    public function checkEmail(Request $request)
+    {
+        if ($request->exist){
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|exists:users'
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|unique:users'
+            ]);
+        }
+
+        if ($validator->fails()) {
+            return $this->generateResponse(false,'Invalid credentials',$validator->errors(),422);
+        }
+        $code=1234;
+        //send otp here
+//        if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
+            $code=rand(1000,9999);
+            $lang=strtolower(request()->header('Language', 'ar'));
+            //send Email Here
+            Mail::to($request->email)->send(new SendOtpMail($code));
+//        }
+        Verification::create(['key'=>$request->email,'code'=>$code]);
+        return $this->generateResponse(true,'Success',[]);
+
+    }
+
     public function checkVerification(Request $request)
     {
-        $check=Verification::where('key',$request->phone)->where('code',$request->code)->where('verify',0)->latest()->first();
+//        $check=Verification::where('key',$request->phone)->where('code',$request->code)->where('verify',0)->latest()->first();
+        $check=Verification::where('key',$request->email)->where('code',$request->code)->where('verify',0)->latest()->first();
         if ($check){
             $check->verify=1;
             $check->save();

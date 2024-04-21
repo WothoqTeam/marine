@@ -15,7 +15,7 @@ class SettingsSeeder extends Seeder
     {
         Setting::updateOrCreate(
             ['id' => 1],[
-            'name_ar' => 'يونافيد مارين',
+            'name_ar' => 'يخوت محيط الأحلام',
             'name_en' => 'Unified Marine',
             'vat' => '3',
             'service_fee' => '2',
