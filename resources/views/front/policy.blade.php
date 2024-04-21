@@ -35,7 +35,7 @@
                 $content=$page->content_en;
 //            }
 			@endphp
-            {{$content}}
+            <pre>{{$content}}</pre>
 		</div>
 		<!--end::Root-->
 		<!--begin::Javascript-->
