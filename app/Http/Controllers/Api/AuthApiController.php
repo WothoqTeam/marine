@@ -186,12 +186,12 @@ class AuthApiController extends BaseApiController
         }
         $code=1234;
         //send otp here
-//        if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
+        if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
             $code=rand(1000,9999);
             $lang=strtolower(request()->header('Language', 'ar'));
             //send Email Here
             Mail::to($request->email)->send(new SendOtpMail($code));
-//        }
+        }
         Verification::create(['key'=>$request->email,'code'=>$code]);
         return $this->generateResponse(true,'Success',[]);
 
