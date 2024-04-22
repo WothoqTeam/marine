@@ -110,7 +110,7 @@ class AuthApiController extends BaseApiController
             $user->dob = $request->input('dob');
             $user->gender = $request->input('gender');
             $user->nationality = $request->input('nationality');
-            $user->phone = $request->input('phone');
+//            $user->phone = $request->input('phone');
 
             // Update the user's password if provided
             if ($request->input('password')) {
