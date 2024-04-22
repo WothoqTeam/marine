@@ -126,7 +126,7 @@ class AuthApiController extends BaseApiController
     }
 
     public function updatePassword(UpdatePasswordRequest $request) {
-        $user = User::where('phone',$request->email)->first();
+        $user = User::where('email',$request->email)->first();
         if($user) {
             $user->password = Hash::make($request->input('password'));
 
