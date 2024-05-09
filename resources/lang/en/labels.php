@@ -100,9 +100,13 @@ return [
         'percent' => 'Percent',
         'fixed' => 'Fixed',
         'all' => 'All',
+        'type'=>'Type',
         'reply_mail' => 'Reply by email',
         'Dashboard' => 'Dashboard',
         'Search Providers' => 'Search Providers',
         'specifications'=>'Specifications',
+        'yacht'=>'Yacht',
+        'boat'=>'Boat',
+        'jet-ski'=>'Jet Ski',
     ]
 ];

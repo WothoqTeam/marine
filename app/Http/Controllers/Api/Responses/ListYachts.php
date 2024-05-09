@@ -21,6 +21,7 @@ class ListYachts extends DataInterface
     public string|null $add_info;
     public string|null $booking_info;
     public bool $status;
+    public string $service_type;
     public float|null $longitude;
     public float|null $latitude;
     public string|null $num_guests;
@@ -62,6 +63,7 @@ class ListYachts extends DataInterface
         $this->add_info = $language == 'en' ? $yacht->add_info_en : $yacht->add_info_ar;
         $this->booking_info = $language == 'en' ? $yacht->booking_info_en : $yacht->booking_info_ar;
         $this->status=$yacht->status;
+        $this->service_type=$yacht->service_type;
         $this->longitude=$yacht->longitude;
         $this->latitude=$yacht->latitude;
         $this->num_guests=$yacht->num_guests;

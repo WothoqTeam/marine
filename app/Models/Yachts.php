@@ -40,6 +40,7 @@ class Yachts extends Model implements HasMedia
         'captain_name',
         'captain_id_num',
         'captain_license_num',
+        'service_type'
     ];
 
     protected $hidden=[

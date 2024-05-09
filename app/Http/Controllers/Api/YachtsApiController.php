@@ -17,6 +17,8 @@ class YachtsApiController extends BaseApiController
         $yachts = Yachts::with('city','country','provider','specifications')->orderBy('id','DESC')->where('status',true);
         //Filter By Provider ID
         if (!empty($request->provider_id)){ $yachts->where('provider_id',$request->provider_id); }
+        //Filter By Service Type
+        if (!empty($request->service_type)){ $yachts->where('service_type',$request->service_type); }
         //Filter By Name
         if (!empty($request->name)){ $yachts->where('name_en','LIKE', '%'.$request->name.'%')->orwhere('name_ar','LIKE', '%'.$request->name.'%'); }
         //Filter By limit
@@ -55,7 +57,7 @@ class YachtsApiController extends BaseApiController
             'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
             'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
             'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
-            'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num'
+            'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','service_type'
         ]);
         $inputs['provider_id']=$this->user->id;
         $yacht=Yachts::create($inputs);
@@ -89,7 +91,7 @@ class YachtsApiController extends BaseApiController
                 'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
                 'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
                 'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
-                'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num'
+                'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','service_type'
             ]);
             $yacht->update($inputs);
             if (is_array($request->images) && count($request->images)>0){
