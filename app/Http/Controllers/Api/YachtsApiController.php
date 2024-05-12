@@ -15,6 +15,8 @@ class YachtsApiController extends BaseApiController
 {
     public function list(Request $request){
         $yachts = Yachts::with('city','country','provider','specifications')->orderBy('id','DESC')->where('status',true);
+        //Filter By Country ID
+        if (!empty($request->country_id)){ $yachts->where('country_id',$request->country_id); }
         //Filter By Provider ID
         if (!empty($request->provider_id)){ $yachts->where('provider_id',$request->provider_id); }
         //Filter By Service Type
