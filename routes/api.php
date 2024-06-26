@@ -72,6 +72,13 @@ Route::get('/providers', [ProviderApiController::class, 'list']);
 //Return yachts
 Route::get('/yachts', [YachtsApiController::class, 'list']);
 
+//Return yachts
+Route::get('/listTypes', [YachtsApiController::class, 'listTypes']);
+
+//Yachts Prices
+Route::get('/getYachtDates', [YachtsApiController::class, 'getYachtDates']);
+Route::get('/getYachtTimes', [YachtsApiController::class, 'getYachtTimes']);
+
 //Rating
 Route::get('/rate/list', [RatingsApiController::class, 'list']);
 

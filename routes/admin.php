@@ -150,6 +150,16 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
             Route::post('/update', 'SpecificationsController@update')->name('update');
         });
 
+        Route::name('serviceTypes.')->prefix('serviceTypes')->group(function () {
+            Route::get('/', 'ServiceTypesController@index')->name('index');
+            Route::get('/show/{id}', 'ServiceTypesController@show')->name('show');
+            Route::post('/delete', 'ServiceTypesController@destroy')->name('delete');
+            Route::get('/create', 'ServiceTypesController@create')->name('create');
+            Route::post('/store', 'ServiceTypesController@store')->name('store');
+            Route::get('/edit/{id}', 'ServiceTypesController@edit')->name('edit');
+            Route::post('/update', 'ServiceTypesController@update')->name('update');
+        });
+
         Route::name('reservations.')->prefix('reservations')->group(function () {
             Route::get('/', 'ReservationsController@index')->name('index');
             Route::get('/show/{id}', 'ReservationsController@show')->name('show');

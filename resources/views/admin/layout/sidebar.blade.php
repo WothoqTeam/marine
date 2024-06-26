@@ -136,6 +136,17 @@
                 </div>
             @endif
 
+            @if(can_manager('serviceTypes.index'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/serviceTypes*')) active @endif " href="{{route('admin.serviceTypes.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('serviceTypes')}}</span>
+                    </a>
+                </div>
+            @endif
+
             @if(can_manager('yachts.index'))
             <div class="menu-item">
                 <a class="menu-link @if(Request::is('admin/yachts*')) active @endif " href="{{route('admin.yachts.index')}}">

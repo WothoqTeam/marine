@@ -84,4 +84,5 @@ return [
     'Search Gas Stations' => 'البحث عن محطات الوقود',
     'Guest Number' => 'عدد الضيوف',
     'Export Reservations' => 'تصدير اكسل الحجوزات',
+    'serviceTypes' => 'انواع الخدمات',
 ];

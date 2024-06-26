@@ -71,15 +71,6 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.labels.type')}}</div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="fw-bold fs-5">{{trans('labels.labels.'.$data->service_type)}}</div>
-                    </div>
-                </div>
-
-                <div class="row mb-8">
-                    <div class="col-xl-2">
                         <div class="fs-6 fw-semibold">{{trans('labels.inputs.name')}} ( AR )</div>
                     </div>
                     <div class="col-lg-9">
@@ -192,6 +183,16 @@
                         $name_lang='name_ar';
                     }
                 @endphp
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.labels.type')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->serviceTypes?$data->serviceTypes->$name_lang:''}}</div>
+                    </div>
+                </div>
+
                 <div class="row mb-8">
                     <div class="col-xl-2">
                         <div class="fs-6 fw-semibold">{{trans('labels.inputs.country')}}</div>

@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\Responses\ListYachts;
 use App\Http\Requests\Api\Yachts\StoreYachtsRequest;
 use App\Http\Requests\Api\Yachts\UpdateYachtsRequest;
 use App\Http\Requests\Api\Yachts\UpdateYachtsStatusRequest;
+use App\Models\ServiceTypes;
 use App\Models\Yachts;
+use App\Models\YachtsPrices;
 use App\Models\YachtsSpecifications;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -20,7 +22,7 @@ class YachtsApiController extends BaseApiController
         //Filter By Provider ID
         if (!empty($request->provider_id)){ $yachts->where('provider_id',$request->provider_id); }
         //Filter By Service Type
-        if (!empty($request->service_type)){ $yachts->where('service_type',$request->service_type); }
+        if (!empty($request->type_id)){ $yachts->where('type_id',$request->type_id); }
         //Filter By Name
         if (!empty($request->name)){ $yachts->where('name_en','LIKE', '%'.$request->name.'%')->orwhere('name_ar','LIKE', '%'.$request->name.'%'); }
         //Filter By limit
@@ -59,7 +61,7 @@ class YachtsApiController extends BaseApiController
             'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
             'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
             'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
-            'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','service_type'
+            'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','type_id'
         ]);
         $inputs['provider_id']=$this->user->id;
         $yacht=Yachts::create($inputs);
@@ -83,6 +85,18 @@ class YachtsApiController extends BaseApiController
                 }
             }
         }
+
+        if (is_array($request->prices) && count($request->prices)>0){
+            foreach ($request->prices as $price){
+                YachtsPrices::create([
+                    'yacht_id'=>$yacht->id,
+                    'date'=>$price->date,
+                    'start_time'=>$price->start_time,
+                    'end_time'=>$price->end_time,
+                    'price'=>$price->price,
+                ]);
+            }
+        }
         return $this->generateResponse(true,'Success');
     }
 
@@ -93,7 +107,7 @@ class YachtsApiController extends BaseApiController
                 'name_en', 'name_ar', 'description_en', 'description_ar', 'add_info_en', 'add_info_ar',
                 'booking_info_en', 'booking_info_ar', 'address_en', 'address_ar', 'price', 'is_discount',
                 'discount_value', 'city_id', 'country_id', 'longitude', 'latitude','num_guests',
-                'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','service_type'
+                'owner_name','id_num','license_num','captain_name','captain_id_num','captain_license_num','type_id'
             ]);
             $yacht->update($inputs);
             if (is_array($request->images) && count($request->images)>0){
@@ -107,6 +121,20 @@ class YachtsApiController extends BaseApiController
                 Media::where('model_type',Yachts::class)->where('model_id',$id)->where('collection_name','captain_image')->delete();
                 $yacht->addMediaFromRequest('captain_image')->toMediaCollection('captain_image');
             }
+
+            if (is_array($request->prices) && count($request->prices)>0){
+                YachtsPrices::where('yacht_id',$yacht->id)->delete();
+                foreach ($request->prices as $price){
+                    YachtsPrices::create([
+                        'yacht_id'=>$yacht->id,
+                        'date'=>$price->date,
+                        'start_time'=>$price->start_time,
+                        'end_time'=>$price->end_time,
+                        'price'=>$price->price,
+                    ]);
+                }
+            }
+
             return $this->generateResponse(true,'Success');
          }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
@@ -123,4 +151,21 @@ class YachtsApiController extends BaseApiController
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
         }
     }
+
+    public function listTypes(){
+        $types=ServiceTypes::select('id','name_'.$this->language.' as name')->get();
+        return $this->generateResponse(true,'Success',$types);
+    }
+
+    public function getYachtDates(Request $request){
+        $dates=YachtsPrices::select('id','date')->where('yacht_id',$request->yacht_id)->groupBy('date')->get();
+        return $this->generateResponse(true,'Success',$dates);
+    }
+
+    public function getYachtTimes(Request $request){
+        $dates=YachtsPrices::where('yacht_id',$request->yacht_id)->whereDate('date',$request->date)->select('id','start_time','end_time')->get();
+        return $this->generateResponse(true,'Success',$dates);
+    }
+
+
 }

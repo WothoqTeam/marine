@@ -40,7 +40,6 @@ class Yachts extends Model implements HasMedia
         'captain_name',
         'captain_id_num',
         'captain_license_num',
-        'service_type'
     ];
 
     protected $hidden=[
@@ -49,6 +48,10 @@ class Yachts extends Model implements HasMedia
 
     public function provider() {
         return $this->belongsTo(User::class,'provider_id');
+    }
+
+    public function serviceTypes() {
+        return $this->belongsTo(ServiceTypes::class,'type_id');
     }
 
     public function city()
@@ -64,6 +67,11 @@ class Yachts extends Model implements HasMedia
     public function specifications()
     {
         return $this->belongsToMany(Specifications::class, 'yachts_specifications','yacht_id','specification_id');
+    }
+
+    public function yachtsPrices()
+    {
+        return $this->hasMany(YachtsPrices::class, 'yacht_id');
     }
 
     public function reservations(){

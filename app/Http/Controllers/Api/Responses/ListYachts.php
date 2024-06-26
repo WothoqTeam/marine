@@ -39,6 +39,7 @@ class ListYachts extends DataInterface
     public float $rate;
     public array|null $provider;
     public object|null $specifications;
+    public object|null $yachtsPrices;
 
     /**
      * @param Yachts $yacht
@@ -63,7 +64,7 @@ class ListYachts extends DataInterface
         $this->add_info = $language == 'en' ? $yacht->add_info_en : $yacht->add_info_ar;
         $this->booking_info = $language == 'en' ? $yacht->booking_info_en : $yacht->booking_info_ar;
         $this->status=$yacht->status;
-        $this->service_type=$yacht->service_type;
+        $this->service_type=$language == 'en' ? $yacht->serviceTypes->name_en : $yacht->serviceTypes->name_ar;
         $this->longitude=$yacht->longitude;
         $this->latitude=$yacht->latitude;
         $this->num_guests=$yacht->num_guests;
@@ -84,5 +85,6 @@ class ListYachts extends DataInterface
             'image' => $yacht->provider->image,
         ];
         $this->specifications = $yacht->specifications;
+        $this->yachtsPrices = $yacht->yachtsPrices;
     }
 }
