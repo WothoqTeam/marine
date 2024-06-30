@@ -25,7 +25,7 @@ class ReservationDetails extends DataInterface
     public float $total;
     public string|null $note;
     public object|null $yacht;
-
+    public object|null $times;
     /**
      * @param Reservations $reservation
      * @param User $user
@@ -62,5 +62,6 @@ class ReservationDetails extends DataInterface
         $this->total = $reservation->total;
         $this->note = $reservation->note;
         $this->yacht =  new ListYachts($reservation->yacht,$language,$user);
+        $this->times = $reservation->times;
     }
 }
