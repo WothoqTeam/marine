@@ -11,8 +11,10 @@ use App\Http\Requests\Api\Reservations\UpdateReservationsRequest;
 use App\Models\Employee;
 use App\Models\Payments;
 use App\Models\Reservations;
+use App\Models\ReservationTimes;
 use App\Models\User;
 use App\Models\Yachts;
+use App\Models\YachtsPrices;
 use Illuminate\Http\Request;
 use URWay\Client;
 
@@ -47,14 +49,29 @@ class ReservationsApiController extends BaseApiController
 
     public function store(StoreReservationsRequest $request){
         $user=auth('api')->user();
+        if (is_array($request->times) && count($request->times)>0){
+            $total=YachtsPrices::whereIn('id',$request->times)->sum('price');
+        }
         $reservations=Reservations::create([
             'user_id'=>$user->id,
             'yacht_id'=>$request->yacht_id,
-            'start_day'=>$request->start_day,
-            'end_day'=>$request->end_day,
+//            'start_day'=>$request->start_day,
+//            'end_day'=>$request->end_day,
+            'total'=>$total??0,
             'note'=>$request->note,
             'num_guests'=>$request->num_guests,
         ]);
+
+        if (is_array($request->times) && count($request->times)>0){
+            foreach ($request->times as $time){
+                if ($time){
+                    ReservationTimes::create([
+                        'reservations_id'=>$reservations->id,
+                        'times_id'=>$time,
+                    ]);
+                }
+            }
+        }
         $data=[
             'title_en'=>'New reservations #'.$reservations->id,
             'title_ar'=>'حجز جديد #'.$reservations->id,
@@ -69,12 +86,26 @@ class ReservationsApiController extends BaseApiController
         $user=auth('api')->user();
         $reservations=Reservations::where('user_id',$user->id)->WhereIn('reservations_status',['pending','rejected'])->find($id);
         if($reservations){
+            if (is_array($request->times) && count($request->times)>0){
+                $total=YachtsPrices::whereIn('id',$request->times)->sum('price');
+            }
             $reservations->update([
-                'start_day'=>$request->start_day,
-                'end_day'=>$request->end_day,
                 'note'=>$request->note,
+                'total'=>$total??0,
                 'num_guests'=>$request->num_guests,
             ]);
+
+            if (is_array($request->times) && count($request->times)>0){
+                ReservationTimes::where('reservations_id',$id)->delete();
+                foreach ($request->times as $time){
+                    if ($time){
+                        ReservationTimes::create([
+                            'reservations_id'=>$id,
+                            'times_id'=>$time,
+                        ]);
+                    }
+                }
+            }
             return $this->generateResponse(true,'Success');
         }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);

@@ -17,8 +17,8 @@ class StoreReservationsRequest extends FormRequest
     {
         return [
             'yacht_id' => 'required|Int|exists:yachts,id',
-            'start_day' => 'required|date',
-            'end_day' => 'required|date',
+            'times'=>'nullable',
+            'times.*' => 'nullable|int|exists:yachts_prices,id',
             'note' => 'nullable|string',
             'num_guests' => 'nullable|int',
         ];

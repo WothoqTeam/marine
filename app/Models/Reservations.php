@@ -36,4 +36,9 @@ class Reservations extends Model
     public function yacht() {
         return $this->belongsTo(Yachts::class,'yacht_id');
     }
+
+    public function times()
+    {
+        return $this->belongsToMany(YachtsPrices::class, 'reservation_times','reservations_id','times_id');
+    }
 }

@@ -16,8 +16,8 @@ class UpdateReservationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_day' => 'required|date',
-            'end_day' => 'required|date',
+            'times'=>'required',
+            'times.*' => 'required|int|exists:yachts_prices,id',
             'note' => 'nullable|string',
             'num_guests' => 'nullable|int',
         ];

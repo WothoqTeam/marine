@@ -20,7 +20,7 @@ class ListUserReservations extends DataInterface
     public string|null $payment_method;
     public string|null $payment_status;
     public string|null $reservations_status;
-
+    public object|null $times;
     /**
      * @param Reservations $reservation
      * @param string $language
@@ -44,5 +44,6 @@ class ListUserReservations extends DataInterface
         $this->payment_method = $reservation->payment_method;
         $this->payment_status = $reservation->payment_status;
         $this->total = $reservation->total;
+        $this->times = $reservation->times;
     }
 }

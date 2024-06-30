@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('yacht_id');
-            $table->dateTime('start_day');
-            $table->dateTime('end_day');
+            $table->dateTime('start_day')->nullable();
+            $table->dateTime('end_day')->nullable();
             $table->text('note')->nullable();
             $table->string('payment_method')->nullable();
             $table->enum('reservations_status',['pending','in progress','rejected','canceled','completed'])->default('pending');
