@@ -38,7 +38,7 @@ class YachtsApiController extends BaseApiController
     }
 
     public function details($id){
-        $yacht = Yachts::with('city','country','provider','specifications')->where('provider_id',$this->user->id)->findOrFail($id);
+        $yacht = Yachts::with('city','country','provider','specifications','yachtsPrices')->where('provider_id',$this->user->id)->findOrFail($id);
         return $this->generateResponse(true,'Success',$yacht);
     }
 
@@ -90,10 +90,10 @@ class YachtsApiController extends BaseApiController
             foreach ($request->prices as $price){
                 YachtsPrices::create([
                     'yacht_id'=>$yacht->id,
-                    'date'=>$price->date,
-                    'start_time'=>$price->start_time,
-                    'end_time'=>$price->end_time,
-                    'price'=>$price->price,
+                    'date'=>$price['date'],
+                    'start_time'=>$price['start_time'],
+                    'end_time'=>$price['end_time'],
+                    'price'=>$price['price'],
                 ]);
             }
         }
@@ -127,16 +127,16 @@ class YachtsApiController extends BaseApiController
                 foreach ($request->prices as $price){
                     YachtsPrices::create([
                         'yacht_id'=>$yacht->id,
-                        'date'=>$price->date,
-                        'start_time'=>$price->start_time,
-                        'end_time'=>$price->end_time,
-                        'price'=>$price->price,
+                        'date'=>$price['date'],
+                        'start_time'=>$price['start_time'],
+                        'end_time'=>$price['end_time'],
+                        'price'=>$price['price'],
                     ]);
                 }
             }
 
             return $this->generateResponse(true,'Success');
-         }else{
+        }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
         }
     }
