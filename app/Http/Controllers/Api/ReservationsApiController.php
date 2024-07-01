@@ -57,7 +57,7 @@ class ReservationsApiController extends BaseApiController
             'yacht_id'=>$request->yacht_id,
 //            'start_day'=>$request->start_day,
 //            'end_day'=>$request->end_day,
-            'total'=>$total??0,
+            'sub_total'=>$total??0,
             'note'=>$request->note,
             'num_guests'=>$request->num_guests,
         ]);
@@ -91,7 +91,7 @@ class ReservationsApiController extends BaseApiController
             }
             $reservations->update([
                 'note'=>$request->note,
-                'total'=>$total??0,
+                'sub_total'=>$total??0,
                 'num_guests'=>$request->num_guests,
             ]);
 
