@@ -11,7 +11,7 @@ class ReportsController extends Controller
 {
     public function create()
     {
-        return view('admin.reports.reservations');
+        return view('admin.Reports.reservations');
     }
 
     public function search(Request $request)
