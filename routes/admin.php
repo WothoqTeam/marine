@@ -188,6 +188,11 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
         Route::name('ratings.')->prefix('ratings')->group(function () {
             Route::get('/', 'RatingsController@index')->name('index');
         });
+
+        Route::name('reports.')->prefix('reports')->group(function () {
+            Route::get('/reservations', 'ReportsController@create')->name('reservations');
+            Route::post('/search', 'ReportsController@search')->name('search');
+        });
     });
 
 });

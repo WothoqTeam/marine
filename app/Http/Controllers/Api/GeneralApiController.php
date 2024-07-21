@@ -55,7 +55,7 @@ class GeneralApiController extends BaseApiController
     }
 
     public function contactUs(ContactUsRequest $request){
-        $details=$request->only('first_name','last_name','email','phone','message');
+        $details=$request->only('first_name','last_name','email','phone','message','title','user_type');
         ContactUs::create($details);
         $data=[
             'title_en'=>'New Contact Us Message',

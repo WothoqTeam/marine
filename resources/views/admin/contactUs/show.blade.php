@@ -11,13 +11,13 @@
 @section('breadcrumb')
 <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
     <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.labels.profile')}} </h1>
+    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{trans('labels.contactUs_tap')}} </h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin.faqs.index')}}" class="text-muted text-hover-primary">{{trans('labels.settings.faq_tap')}} </a>
+            <a href="{{route('admin.contactUs.index')}}" class="text-muted text-hover-primary">{{trans('labels.contactUs_tap')}} </a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -26,7 +26,7 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">{{trans('labels.labels.profile')}} </li>
+        <li class="breadcrumb-item text-muted">{{trans('labels.labels.view')}} </li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -40,6 +40,15 @@
 
 
             <div class="card-body p-9">
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('admin.userType')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">@if(!empty($data->user_type)) {{trans('admin.'.$data->user_type)}} @endif</div>
+                    </div>
+                </div>
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
@@ -61,10 +70,19 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.phone')}} EN</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.phone')}}</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->phone}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.title')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->title}}</div>
                     </div>
                 </div>
 
@@ -89,7 +107,7 @@
 
             </div>
         <div class="card-footer d-flex justify-content-end py-6 px-9 center">
-            <a class="btn btn-primary center" href="mailto:{{$data->email}}?&subject=Mail from Manasat Admin&body=Some body text here">{{trans('labels.labels.reply_mail')}}</a>
+            <a class="btn btn-primary center" href="mailto:{{$data->email}}?&subject=Mail from {{settings()->name_en}} Admin&body=Some body text here">{{trans('labels.labels.reply_mail')}}</a>
         </div>
     </div>
 </div>

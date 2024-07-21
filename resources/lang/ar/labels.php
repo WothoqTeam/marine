@@ -97,6 +97,7 @@ return [
         'female' => 'انثى',
         'view_video'=>'شاهد الفيديو',
         'view_cv'=>'شاهد ملف السيرة الذاتية',
+        'view' => 'عرض',
         'added_successfully'=>'تم الاضافة بنجاح',
         'modified_successfully'=>'تم التعديل بنجاح',
         'percent'=>'نسبة',

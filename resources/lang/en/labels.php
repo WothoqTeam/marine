@@ -95,6 +95,7 @@ return [
         'female' => 'Female',
         'view_video' => 'View Video',
         'view_cv' => 'View Cv',
+        'view' => 'View',
         'added_successfully' => 'Added Successfully',
         'modified_successfully' => 'Modified Successfully',
         'percent' => 'Percent',

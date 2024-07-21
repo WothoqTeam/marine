@@ -562,7 +562,90 @@
 </section>
 <!-- Screenshot section ends -->
 @endif
+<!-- Contact Us section starts -->
+<section class="contact-us" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>{{trans('admin.Contact Us')}}</h2>
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactReason">{{trans('admin.userType')}}</label>
+                        <select class="form-control" id="contactReason" name="user_type">
+                            <option value="Marasi Owners">{{trans('admin.Marasi Owners')}}</option>
+                            <option value="Gas Stations">{{trans('admin.Gas Stations')}}</option>
+                            <option value="complaints and inquiries">{{trans('admin.complaints and inquiries')}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">{{trans('labels.inputs.name')}}</label>
+                        <input type="text" class="form-control" id="name" name="first_name" placeholder="{{trans('labels.inputs.name')}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">{{trans('labels.inputs.phone')}}</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="{{trans('labels.inputs.phone')}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">{{trans('labels.inputs.email')}}</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="{{trans('labels.inputs.email')}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">{{trans('labels.inputs.title')}}</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{trans('labels.inputs.title')}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">{{trans('labels.inputs.content')}}</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="{{trans('labels.inputs.content')}}" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-contact">{{trans('labels.inputs.submit')}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Us section ends -->
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- AJAX form submission script -->
+    <script>
+        $(document).ready(function() {
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                $.ajax({
+                    url: '{{url('api/contactUs')}}',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        // Assuming the response contains a 'success' property
+                        if(response.success) {
+                            Swal.fire(
+                                '{{trans('lang.Success')}}',
+                                '{{trans('lang.Message sent successfully')}}',
+                                'success'
+                            );
+                            $('#contactForm')[0].reset(); // Clear the form inputs
+                        } else {
+                            Swal.fire(
+                                '{{trans('lang.fail')}}',
+                                '{{trans('lang.There was an error sending your message. Please try again later.')}}',
+                                'error'
+                            );
+                        }
+                    },
+                    error: function() {
+                        Swal.fire(
+                            '{{trans('lang.fail')}}',
+                            '{{trans('lang.There was an error sending your message. Please try again later.')}}',
+                            'error'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

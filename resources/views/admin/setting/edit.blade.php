@@ -10,11 +10,11 @@
 @section('breadcrumb')
 <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pt-6">
     <!--begin::Title-->
-    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">الاعدادات</h1>
+    <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">{{transAdmin('Settings')}}</h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
-        <li class="breadcrumb-item text-muted">اعدادات النظام</li>
+        <li class="breadcrumb-item text-muted">{{transAdmin('System Settings')}}</li>
     </ul>
     <!--end::Breadcrumb-->
 </div>
@@ -37,25 +37,25 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark text-active-primary pb-5 active" data-bs-toggle="tab" href="#setting">
                                     <i class="las la-cog text-primary fs-3"></i>
-                                    الاعدادات العامة
+                                    {{transAdmin('System Settings')}}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark text-active-primary pb-5" data-bs-toggle="tab" href="#media">
                                     <i class="las la-image text-primary fs-3"></i>
-                                    ميديا
+                                    {{transAdmin('Media')}}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark text-active-primary pb-5" data-bs-toggle="tab" href="#social">
                                     <i class="las la-hashtag text-primary fs-3"></i>
-                                    سوشيال ميديا
+                                    {{transAdmin('Social Media')}}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark text-active-primary pb-5" data-bs-toggle="tab" href="#description">
                                     <i class="las la-comment text-primary fs-3"></i>
-                                    الوصــف
+                                    {{transAdmin('Description')}}
                                 </a>
                             </li>
                             <!--end:::Tab item-->
@@ -70,7 +70,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>اسم الموقع</span>
+                                                <span>{{transAdmin('Site Name')}} AR</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -80,7 +80,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>اسم الموقع انجليزي</span>
+                                                <span>{{transAdmin('Site Name')}} EN</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -132,7 +132,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>واتس اب</span>
+                                                <span>{{transAdmin('Whats App')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -143,7 +143,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>العنوان</span>
+                                                <span>{{transAdmin('Address')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -154,7 +154,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>العنوان 2</span>
+                                                <span>{{transAdmin('Address')}} 2</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -165,7 +165,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>الموقع على الخريطة</span>
+                                                <span>{{transAdmin('Map Location')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -176,7 +176,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Vat</span>
+                                                <span>{{transAdmin('VAT')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -187,18 +187,28 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Service Fee</span>
+                                                <span>{{transAdmin('Service Fee')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text" name="service_fee" value="{{$data->service_fee}}" class="form-control form-control-solid" />
                                         </div>
                                     </div>
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <label class="fs-6 fw-semibold form-label mt-3">
+                                                <span>{{trans('admin.Platform Ratio')}}</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="platform_ratio" value="{{$data->platform_ratio}}" class="form-control form-control-solid" />
+                                        </div>
+                                    </div>
                                     <div class="row py-5">
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">
                                                 <button type="submit" data-kt-ecommerce-settings-type="submit" class="btn btn-primary">
-                                                    <span class="indicator-label">Save</span>
+                                                    <span class="indicator-label">{{transAdmin('Save')}}</span>
                                                     <span class="indicator-progress">Please wait...
                                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                 </button>
@@ -216,7 +226,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>اللوجو</span>
+                                                <span>{{transAdmin('Logo')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -244,7 +254,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>  اللوجو غامق</span>
+                                                <span>{{transAdmin('Dark Logo')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -273,7 +283,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>favicon</span>
+                                                <span>{{transAdmin('Fav Icon')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -302,7 +312,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>breadcrumb</span>
+                                                <span>{{transAdmin('Breadcrumb')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -332,7 +342,7 @@
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">
                                                 <button type="submit" data-kt-ecommerce-settings-type="submit" class="btn btn-primary">
-                                                    <span class="indicator-label">Save</span>
+                                                    <span class="indicator-label">{{transAdmin('Save')}}</span>
                                                     <span class="indicator-progress">Please wait...
                                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                 </button>
@@ -349,7 +359,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Facebook</span>
+                                                <span>{{transAdmin('Facebook')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -359,7 +369,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Twitter</span>
+                                                <span>{{transAdmin('Twitter')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -369,7 +379,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Youtube</span>
+                                                <span>{{transAdmin('Youtube')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -379,7 +389,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Linkedin</span>
+                                                <span>{{transAdmin('Linkedin')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -389,7 +399,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Instagram</span>
+                                                <span>{{transAdmin('Instagram')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -399,7 +409,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Snapchat</span>
+                                                <span>{{transAdmin('Snapchat')}}</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -411,7 +421,7 @@
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">
                                                 <button type="submit" data-kt-ecommerce-settings-type="submit" class="btn btn-primary">
-                                                    <span class="indicator-label">Save</span>
+                                                    <span class="indicator-label">{{transAdmin('Save')}}</span>
                                                     <span class="indicator-progress">Please wait...
                                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                 </button>
@@ -429,7 +439,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>keywords ar</span>
+                                                <span>{{transAdmin('keywords')}} AR</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -440,7 +450,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>description ar</span>
+                                                <span>{{transAdmin('Description')}} AR</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -451,7 +461,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>keywords en</span>
+                                                <span>{{transAdmin('keywords')}} EN</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -462,7 +472,7 @@
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>description en</span>
+                                                <span>{{transAdmin('Description')}} EN</span>
                                             </label>
                                         </div>
                                         <div class="col-md-9">
@@ -474,7 +484,7 @@
                                         <div class="col-md-9 offset-md-3">
                                             <div class="d-flex">
                                                 <button type="submit" data-kt-ecommerce-settings-type="submit" class="btn btn-primary">
-                                                    <span class="indicator-label">Save</span>
+                                                    <span class="indicator-label">{{transAdmin('Save')}}</span>
                                                     <span class="indicator-progress">Please wait...
                                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                 </button>
