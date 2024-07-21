@@ -222,6 +222,16 @@
                     </a>
                 </div>
             @endif
+            @if(can_manager('reports.reservations'))
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/reports*')) active @endif "  href="{{route('admin.reports.reservations')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('reports')}}</span>
+                    </a>
+                </div>
+            @endif
             @if(can_manager('ratings.index') && Auth::guard('admin')->user()->role_id==2)
                 <div class="menu-item">
                     <a class="menu-link @if(Request::is('admin/ratings*')) active @endif "  href="{{route('admin.ratings.index')}}">

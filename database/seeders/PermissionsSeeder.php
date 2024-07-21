@@ -109,5 +109,9 @@ class PermissionsSeeder extends Seeder
 
         // Ratings
         Permission::updateOrCreate(['name' => 'ratings_index', /*'guard_name' => 'web',*/ 'slug' => 'ratings.index','status' => false ]);
+
+        // Reports
+        Permission::updateOrCreate(['name' => 'reports_index', /*'guard_name' => 'web',*/ 'slug' => 'reports.reservations','status' => true ]);
+        Permission::updateOrCreate(['name' => 'reports_update', /*'guard_name' => 'web',*/ 'slug' => 'reports.search','status' => true ]);
     }
 }
