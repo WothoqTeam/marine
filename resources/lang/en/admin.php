@@ -114,5 +114,11 @@ return [
     'Total amount for reservations'=>'Total Reservations Amount',
     'Total platform ratio'=>'Total Platform Ratio',
     'Results'=>'Results',
-    'sar'=>'SAR'
+    'sar'=>'SAR',  
+  'Name' => 'Name',  
+  'Total Reservations Amount' => 'Total Reservations Amount',  
+  'Total Platform Ratio' => 'Total Platform Ratio',  
+  'Date From' => 'Date From',  
+  'Date To' => 'Date To',  
+  'SAR' => 'SAR',
 ];

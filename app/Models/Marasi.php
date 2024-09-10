@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\App;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -36,6 +37,16 @@ class Marasi extends Model implements HasMedia
         'deleted_at','created_at','updated_at'
     ];
 
+    protected $appends=['name'];
+
+    public function getNameAttribute()
+    {
+        if (App::getLocale() == "ar") {
+            return $this->name_ar;
+        } else {
+            return $this->name_en;
+        }
+    }
     public function employee() {
         return $this->belongsTo(Employee::class,'employee_id');
     }

@@ -26,7 +26,7 @@ class Employee extends Authenticatable implements HasMedia
     ];
 
     protected $appends=[
-        'image'
+        'image','name'
     ];
     public function registerMediaCollections(Media $media = null): void
     {

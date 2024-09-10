@@ -192,6 +192,7 @@ Route::name('admin.')->middleware(['auth:admin','CheckPermission'])->group(funct
         Route::name('reports.')->prefix('reports')->group(function () {
             Route::get('/reservations', 'ReportsController@create')->name('reservations');
             Route::post('/search', 'ReportsController@search')->name('search');
+            Route::post('/export', 'ReportsController@export')->name('export');
         });
     });
 
