@@ -108,7 +108,7 @@
                         <input type="hidden" name="endDate" id="exportEndDate">
                     </form>
 
-                    <button id="exportButton" class="btn btn-success mt-3">Export to Excel</button>
+                    <button id="exportButton" class="btn btn-success mt-3">{{transAdmin('Export to Excel')}}</button>
                 </div>
             </div>
         </div>

@@ -120,4 +120,11 @@ return [
     'Total platform ratio'=>'إجمالي نسبة المنصة',
     'Results'=>'النتائج',
     'sar'=>'ريال',
+    'Name' => 'الاسم',
+    'Total Reservations Amount' => 'إجمالي مبلغ الحجوزات',
+    'Total Platform Ratio' => 'إجمالي نسبة المنصة',
+    'Date From' => 'التاريخ من',
+    'Date To' => 'التاريخ إلى',
+    'SAR' => 'ريال',
+    'Export to Excel' => 'تصدير إلى إكسل',
 ];
