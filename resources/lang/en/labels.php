@@ -39,6 +39,7 @@ return [
         'phone' => 'Phone',
         'phoneCode' => 'Phone Code',
         'price' => 'Price',
+        'metrePrice' => 'Metre Price',
         'status' => 'Status',
         'pdf' => 'PDF',
         'video' => 'Video',

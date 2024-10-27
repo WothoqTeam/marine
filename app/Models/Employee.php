@@ -40,7 +40,7 @@ class Employee extends Authenticatable implements HasMedia
     {
         return $this->getFirstMediaUrl('profile');
     }
-    public function getAppendNameAttribute()
+    public function getNameAttribute()
     {
         if ($locale = App::getLocale() == "ar") {
             return $this->name_ar;

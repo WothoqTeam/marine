@@ -18,7 +18,7 @@ class ReservationsRequest extends FormRequest
         return [
             'reservation_id' => 'required|Int',
             'yacht_id' => 'required|Int',
-            'status' => 'required|in:in progress,rejected,completed',
+            'status' => 'required|in:in progress,rejected,canceled,completed',
         ];
     }
 

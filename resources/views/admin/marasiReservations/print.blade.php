@@ -122,7 +122,8 @@
                                         <div class="card-body pt-0">
                                             <div class="table-responsive">
                                                 <!--begin::Table-->
-                                                <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                                <table
+                                                    class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
                                                     <!--begin::Table body-->
                                                     <tbody class="fw-semibold text-gray-600">
                                                     <!--begin::Date-->
@@ -224,7 +225,8 @@
                                         <div class="card-body pt-0">
                                             <div class="table-responsive">
                                                 <!--begin::Table-->
-                                                <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
+                                                <table
+                                                    class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
                                                     <!--begin::Table body-->
                                                     <tbody class="fw-semibold text-gray-600">
                                                     <!--begin::Customer name-->
@@ -322,7 +324,8 @@
                                 <!--begin::Tab content-->
                                 <div class="tab-content">
                                     <!--begin::Tab pane-->
-                                    <div class="tab-pane fade show active" id="kt_ecommerce_sales_order_summary" role="tab-panel">
+                                    <div class="tab-pane fade show active" id="kt_ecommerce_sales_order_summary"
+                                         role="tab-panel">
                                         <!--begin::Orders-->
                                         <div class="d-flex flex-column gap-7 gap-lg-10">
                                             <!--begin::Product List-->
@@ -338,11 +341,14 @@
                                                 <div class="card-body pt-0">
                                                     <div class="table-responsive">
                                                         <!--begin::Table-->
-                                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                        <table
+                                                            class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                                             <!--begin::Table head-->
                                                             <thead>
                                                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                                                 <th class="min-w-175px">{{transAdmin('Marasi')}}</th>
+                                                                <th class="min-w-175px">{{transAdmin('Services')}}</th>
+                                                                <th class="min-w-175px">{{transAdmin('Number Meters')}}</th>
                                                                 <th class="min-w-100px text-end">{{transAdmin('Total')}}</th>
                                                             </tr>
                                                             </thead>
@@ -361,20 +367,43 @@
                                                                         <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}"
                                                                            class="symbol symbol-50px">
                                                                             @if ($data['marasi']->getMedia('covers')->count())
-                                                                                <span class="symbol-label" style="background-image:url({{$data['marasi']->getFirstMediaUrl('covers')}});"></span>
+                                                                                <span class="symbol-label"
+                                                                                      style="background-image:url({{$data['marasi']->getFirstMediaUrl('covers')}});"></span>
                                                                             @else
-                                                                                <span class="symbol-label" style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
+                                                                                <span class="symbol-label"
+                                                                                      style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
                                                                             @endif
                                                                         </a>
                                                                         <!--end::Thumbnail-->
                                                                         <!--begin::Title-->
                                                                         <div class="ms-5">
-                                                                            <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}" class="fw-bold text-gray-600 text-hover-primary">@if (\Illuminate\Support\Facades\App::getLocale() == 'en') {{$data['marasi']['name_en']}} @else {{$data['marasi']['name_ar']}} @endif</a>
+                                                                            <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}"
+                                                                               class="fw-bold text-gray-600 text-hover-primary">@if (\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                                    {{$data['marasi']['name_en']}}
+                                                                                @else
+                                                                                    {{$data['marasi']['name_ar']}}
+                                                                                @endif</a>
                                                                         </div>
                                                                         <!--end::Title-->
                                                                     </div>
                                                                 </td>
                                                                 <!--end::Product-->
+                                                                <!--begin::Services-->
+                                                                <td>
+                                                                    <ul class="list-unstyled">
+                                                                        @foreach($services as $service)
+                                                                            @if (\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                                <li>{{ $service->services->name_en }}</li>
+                                                                            @else
+                                                                                <li>{{ $service->services->name_ar }}</li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </td>
+                                                                <!--end::Services-->
+                                                                <!--begin::Sub Total-->
+                                                                <td class="list-unstyled">{{$data['num_meters']}}</td>
+                                                                <!--end::Sub Total-->
                                                                 <!--begin::Total-->
                                                                 <td class="text-end">{{$data['sub_total']}}</td>
                                                                 <!--end::Total-->
@@ -382,25 +411,29 @@
                                                             <!--end::Products-->
                                                             <!--begin::Subtotal-->
                                                             <tr>
-                                                                <td colspan="4" class="text-end">{{transAdmin('Subtotal')}}</td>
+                                                                <td colspan="4"
+                                                                    class="text-end">{{transAdmin('Subtotal')}}</td>
                                                                 <td class="text-end">{{$data['sub_total']}}</td>
                                                             </tr>
                                                             <!--end::Subtotal-->
                                                             <!--begin::VAT-->
                                                             <tr>
-                                                                <td colspan="4" class="text-end">{{transAdmin('Vat')}}</td>
+                                                                <td colspan="4"
+                                                                    class="text-end">{{transAdmin('Vat')}}</td>
                                                                 <td class="text-end">{{$data['vat']}}</td>
                                                             </tr>
                                                             <!--end::VAT-->
                                                             <!--begin::Shipping-->
                                                             <tr>
-                                                                <td colspan="4" class="text-end">{{transAdmin('Service Fee')}}</td>
+                                                                <td colspan="4"
+                                                                    class="text-end">{{transAdmin('Service Fee')}}</td>
                                                                 <td class="text-end">{{$data['service_fee']}}</td>
                                                             </tr>
                                                             {{--                                        <!--end::Shipping-->--}}
                                                             {{--                                        <!--begin::Grand total-->--}}
                                                             {{--                                        <tr>--}}
-                                                            <td colspan="4" class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
+                                                            <td colspan="4"
+                                                                class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
                                                             <td class="text-dark fs-3 fw-bolder text-end">{{$data['total']}} {{transAdmin('Sar')}}</td>
                                                             </tr>
                                                             <!--end::Grand total-->
@@ -413,15 +446,19 @@
                                                         @if(Auth::guard('admin')->user()->role_id==2)
                                                             @if($data['reservations_status']=='pending')
                                                                 <!-- begin::Accept-->
-                                                                <button href="" type="button" class="btn btn-success my-1 me-12" onclick="updateReservationsStatus('in progress')">{{transAdmin('Accept')}}</button>
+                                                                <button href="" type="button"
+                                                                        class="btn btn-success my-1 me-12"
+                                                                        onclick="updateReservationsStatus('in progress')">{{transAdmin('Accept')}}</button>
                                                                 <!-- end::Pint-->
 
                                                                 <!-- begin::Rejected-->
-                                                                <button type="button" class="btn btn-danger my-1 me-12" onclick="updateReservationsStatus('rejected')">{{transAdmin('Rejected')}}</button>
+                                                                <button type="button" class="btn btn-danger my-1 me-12"
+                                                                        onclick="updateReservationsStatus('rejected')">{{transAdmin('Rejected')}}</button>
                                                                 <!-- end::Pint-->
                                                             @elseif($data['reservations_status']=='in progress')
                                                                 <!-- begin::Completed-->
-                                                                <button type="button" class="btn btn-success my-1 me-12" onclick="updateReservationsStatus('completed')">{{transAdmin('Completed')}}</button>
+                                                                <button type="button" class="btn btn-success my-1 me-12"
+                                                                        onclick="updateReservationsStatus('completed')">{{transAdmin('Completed')}}</button>
                                                                 <!-- end::Pint-->
                                                             @endif
                                                         @endif

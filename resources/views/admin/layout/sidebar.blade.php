@@ -146,6 +146,16 @@
                     </a>
                 </div>
             @endif
+            @if(can_manager('Services.index') && Auth::guard('admin')->user()->role_id==2)
+                <div class="menu-item">
+                    <a class="menu-link @if(Request::is('admin/Services*')) active @endif " href="{{route('admin.Services.index')}}">
+                    <span class="menu-icon">
+                        <i class="fonticon-setting fs-2"></i>
+                    </span>
+                        <span class="menu-title">{{transAdmin('marasiServices')}}</span>
+                    </a>
+                </div>
+            @endif
 
             @if(can_manager('yachts.index'))
             <div class="menu-item">

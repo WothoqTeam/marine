@@ -20,7 +20,7 @@ class UpdateRequest extends FormRequest
             'id' => 'required|Int',
             'marasi_id' => 'required|Int',
             'employee_id' => 'required|Int',
-            'status' => 'required|in:in progress,rejected,completed',
+            'status' => 'required|in:in progress,rejected,canceled,completed',
         ];
     }
 

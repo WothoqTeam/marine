@@ -64,4 +64,8 @@ class Marasi extends Model implements HasMedia
     public function reservations(){
         return $this->hasMany(MarasiReservations::class, 'marasi_id');
     }
+    public function services()
+    {
+        return $this->belongsToMany(Services::class, 'marasi_services','marasi_id','services_id');
+    }
 }

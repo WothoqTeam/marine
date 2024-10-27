@@ -112,12 +112,14 @@ class ReservationsApiController extends BaseApiController
         }
     }
 
-    public function cancel($id){
+    public function cancel($id,Request $request){
         $user=auth('api')->user();
         $reservations=Reservations::where('user_id',$user->id)->WhereIn('reservations_status',['pending','in progress'])->find($id);
         if($reservations){
             $reservations->update([
                 'reservations_status'=>'canceled',
+                'canceled_by'=> $user->id,
+                'canceled_reason'=> $request->canceled_reason
             ]);
             $data=[
                 'title_en'=>'Reservations Cancelled #'.$reservations->id,

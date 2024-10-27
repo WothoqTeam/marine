@@ -142,9 +142,30 @@
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.price')}}</label>
+                            <label class="col-lg-2 col-form-label fw-semibold fs-6">
+                                <span class="required">{{transAdmin('marasiServices')}}</span>
+                            </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="number" step=0.01 name="price" placeholder="{{trans('labels.inputs.price')}}" value="{{$data['marasi']->price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <select name="services[]"
+                                        aria-label="{{transAdmin('marasiServices')}}"
+                                        data-control="select2"
+                                        data-placeholder="{{transAdmin('marasiServices')}}..."
+                                        class="form-select form-select-solid form-select-lg fw-semibold" multiple>
+                                    <option value="">{{trans('labels.inputs.select')}}</option>
+                                    @foreach($data['services'] as $services)
+                                        <option value="{{$services->id}}"
+                                            @if(in_array($services->id, $data['selectedServices'])) selected @endif>
+                                            {{$services->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-6">
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.metrePrice')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="number" step=0.01 name="price" placeholder="{{trans('labels.inputs.metrePrice')}}" value="{{$data['marasi']->price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 

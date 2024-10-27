@@ -122,4 +122,9 @@ return [
     'Date To' => 'Date To',
     'SAR' => 'SAR',
     'Export to Excel' => 'Export to Excel',
+    'marasiServices'=>'Marasi Services',
+    'Services'=>'Services',
+    'Enter Cancellation Reason' => 'Enter Cancellation Reason',
+    'Submit Cancellation' => 'Submit Cancellation',
+    'Number Meters' => 'Number Meters',
 ];

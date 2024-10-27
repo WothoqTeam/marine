@@ -7,6 +7,8 @@ use App\Models\Cities;
 use App\Models\Countries;
 use App\Models\Employee;
 use App\Models\Marasi;
+use App\Models\MarasiServices;
+use App\Models\Services;
 use App\Models\YachtsMarasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -19,7 +21,6 @@ class MarasiController extends Controller
 {
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
             $data = Marasi::query();
             $emp=Auth::guard('admin')->user();
@@ -104,9 +105,11 @@ class MarasiController extends Controller
      */
     public function create()
     {
+        $emp=Auth::guard('admin')->user();
         $data['countries'] = Countries::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
         $data['cities'] = Cities::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
         $data['owner'] = Employee::select('id', 'name_ar as name')->where('role_id','2')->where('is_active', '1')->get();
+        $data['services'] = Services::where('employee_id',$emp->id)->select('id',  'name_' . App::getLocale() . ' as name') ->where('status', true)->get();
         return view('admin.marasi.create',compact('data'));
     }
 
@@ -164,6 +167,17 @@ class MarasiController extends Controller
             }
         }
 
+        if (is_array($request->services) && count($request->services)>0){
+            foreach ($request->services as $services){
+                if ($services){
+                    MarasiServices::create([
+                        'marasi_id'=>$row->id,
+                        'services_id'=>$services,
+                    ]);
+                }
+            }
+        }
+
         return redirect('admin/marasi')->with('message', trans('labels.labels.added_successfully'))->with('status', 'success');
     }
     /**
@@ -179,6 +193,8 @@ class MarasiController extends Controller
         }
         $data['countries'] = Countries::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
         $data['cities'] = Cities::select('id', 'name_' . App::getLocale() . ' as name')->where('status', 1)->get();
+        $data['services'] = Services::where('employee_id',$emp->id)->select('id',  'name_' . App::getLocale() . ' as name') ->where('status', true)->get();
+        $data['selectedServices']=MarasiServices::where('marasi_id',$id)->pluck('services_id')->toArray();
         return view('admin.marasi.edit', compact('data'));
     }
 
@@ -235,6 +251,18 @@ class MarasiController extends Controller
         if (is_array($request->file('covers')) and count($request->file('covers')) > 0){
             foreach ($request->file('covers') as $image) {
                 $data->addMedia($image)->toMediaCollection('cover');
+            }
+        }
+
+        MarasiServices::where('marasi_id',$data->id)->delete();
+        if (is_array($request->services) && count($request->services)>0){
+            foreach ($request->services as $services){
+                if ($services){
+                    MarasiServices::create([
+                        'marasi_id'=>$data->id,
+                        'services_id'=>$services,
+                    ]);
+                }
             }
         }
         return redirect('admin/marasi')->with('message', trans('labels.labels.modified_successfully'))->with('status', 'success');

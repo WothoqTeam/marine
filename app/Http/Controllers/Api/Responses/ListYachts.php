@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Base\Interfaces\DataInterface;
 use App\Models\Favourites;
 use App\Models\Ratings;
 use App\Models\Reservations;
+use App\Models\ReservationTimes;
 use App\Models\User;
 use App\Models\Yachts;
 
@@ -40,7 +41,7 @@ class ListYachts extends DataInterface
     public array|null $provider;
     public object|null $specifications;
     public object|null $yachtsPrices;
-
+    public int $totalHours;
     /**
      * @param Yachts $yacht
      * @param string $language
@@ -53,6 +54,8 @@ class ListYachts extends DataInterface
         foreach ($medias as $image) {
             $images[] = $image->getFullUrl();
         }
+        $yachtReservations=Reservations::where('yacht_id',$yacht->id)->where('reservations_status','completed')->pluck('id')->toArray();
+        $totalHours=ReservationTimes::whereIn('reservations_id',$yachtReservations)->count();
         $is_fav=Favourites::where('yacht_id',$yacht->id)->where('user_id',$user?->id)->count();
         $this->id = $yacht->id;
         $this->name = $language == 'en' ? $yacht->name_en : $yacht->name_ar;
@@ -86,5 +89,6 @@ class ListYachts extends DataInterface
         ];
         $this->specifications = $yacht->specifications;
         $this->yachtsPrices = $yacht->yachtsPrices;
+        $this->totalHours = $totalHours;
     }
 }

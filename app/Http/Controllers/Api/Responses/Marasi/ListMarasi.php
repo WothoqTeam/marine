@@ -23,6 +23,7 @@ class ListMarasi extends DataInterface
     public array $image;
     public int $reservations;
     public float $rate;
+     public object|null $services;
     public array|null $employee;
 
     /**
@@ -50,6 +51,7 @@ class ListMarasi extends DataInterface
         $this->image = $images;
         $this->reservations = MarasiReservations::where('marasi_id',$marasi->id)->count();
         $this->rate = number_format(Ratings::where('model_type',Marasi::class)->where('model_id',$marasi->id)->avg('stars'),1);
+        $this->services = $marasi->services;
         $this->employee = [
             'id' => $marasi->employee->id,
             'name' => $language == 'en' ? $marasi->employee->name_en : $marasi->employee->name_ar,

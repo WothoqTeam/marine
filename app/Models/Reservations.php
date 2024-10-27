@@ -19,6 +19,8 @@ class Reservations extends Model
         'payment_method',
         'payment_status',
         'reservations_status',
+        'canceled_by',
+        'canceled_reason',
         'sub_total',
         'vat',
         'service_fee',

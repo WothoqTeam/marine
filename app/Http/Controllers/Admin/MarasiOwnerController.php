@@ -27,7 +27,7 @@ class MarasiOwnerController extends Controller
                     return $checkbox;
                 })
                 ->addColumn('name', function ($row) {
-                    $name = '<div class="d-flex flex-column"><a href="javascript:;" class="text-gray-800 text-hover-primary mb-1">' . $row->append_name . '</a>';
+                    $name = '<div class="d-flex flex-column"><a href="javascript:;" class="text-gray-800 text-hover-primary mb-1">' . $row->name . '</a>';
                     $name .= '<span>' . $row->email . '</span></div>';
                     return $name;
                 })

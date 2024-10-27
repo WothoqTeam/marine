@@ -288,6 +288,8 @@
                                         <thead>
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="min-w-175px">{{transAdmin('Marasi')}}</th>
+                                            <th class="min-w-175px">{{transAdmin('Services')}}</th>
+                                            <th class="min-w-175px">{{transAdmin('Number Meters')}}</th>
                                             <th class="min-w-100px text-end">{{transAdmin('Total')}}</th>
                                         </tr>
                                         </thead>
@@ -306,23 +308,53 @@
                                                     <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}"
                                                        class="symbol symbol-50px">
                                                         @if ($data['marasi']->getMedia('covers')->count())
-                                                            <span class="symbol-label" style="background-image:url({{$data['marasi']->getFirstMediaUrl('covers')}});"></span>
+                                                            <span class="symbol-label"
+                                                                  style="background-image:url({{$data['marasi']->getFirstMediaUrl('covers')}});"></span>
                                                         @else
-                                                            <span class="symbol-label" style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
+                                                            <span class="symbol-label"
+                                                                  style="background-image:url(assets/media/svg/avatars/blank.svg);"></span>
                                                         @endif
                                                     </a>
                                                     <!--end::Thumbnail-->
                                                     <!--begin::Title-->
                                                     <div class="ms-5">
-                                                        <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}" class="fw-bold text-gray-600 text-hover-primary">@if (\Illuminate\Support\Facades\App::getLocale() == 'en') {{$data['marasi']['name_en']}} @else {{$data['marasi']['name_ar']}} @endif</a>
+                                                        <a href="{{route('admin.marasi.show', $data['marasi']['id'])}}"
+                                                           class="fw-bold text-gray-600 text-hover-primary">
+                                                            @if (\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                {{$data['marasi']['name_en']}}
+                                                            @else
+                                                                {{$data['marasi']['name_ar']}}
+                                                            @endif
+                                                        </a>
                                                     </div>
                                                     <!--end::Title-->
                                                 </div>
                                             </td>
                                             <!--end::Product-->
-                                            <!--begin::Total-->
+                                            <!--begin::Services-->
+                                            <td>
+                                                <ul class="list-unstyled">
+                                                    @foreach($services as $service)
+                                                        <li>
+                                                            <a href="{{route('admin.Services.show', $service->services->id)}}"
+                                                               class="fw-bold text-gray-600 text-hover-primary">
+                                                                @if (\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                    {{ $service->services->name_en }}
+                                                                @else
+                                                                    {{ $service->services->name_ar }}
+                                                                @endif
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                            <!--end::Services-->
+                                            <!--begin::Sub Total-->
+                                            <td class="list-unstyled">{{$data['num_meters']}}</td>
+                                            <!--end::Sub Total-->
+                                            <!--begin::Sub Total-->
                                             <td class="text-end">{{$data['sub_total']}}</td>
-                                            <!--end::Total-->
+                                            <!--end::Sub Total-->
                                         </tr>
                                         <!--end::Products-->
                                         <!--begin::Subtotal-->
@@ -342,11 +374,11 @@
                                             <td colspan="4" class="text-end">{{transAdmin('Service Fee')}}</td>
                                             <td class="text-end">{{$data['service_fee']}}</td>
                                         </tr>
-{{--                                        <!--end::Shipping-->--}}
-{{--                                        <!--begin::Grand total-->--}}
-{{--                                        <tr>--}}
-                                            <td colspan="4" class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
-                                            <td class="text-dark fs-3 fw-bolder text-end">{{$data['total']}} {{transAdmin('Sar')}}</td>
+                                        {{--                                        <!--end::Shipping-->--}}
+                                        {{--                                        <!--begin::Grand total-->--}}
+                                        {{--                                        <tr>--}}
+                                        <td colspan="4" class="fs-3 text-dark text-end">{{transAdmin('Total')}}</td>
+                                        <td class="text-dark fs-3 fw-bolder text-end">{{$data['total']}} {{transAdmin('Sar')}}</td>
                                         </tr>
                                         <!--end::Grand total-->
                                         </tbody>
@@ -358,21 +390,45 @@
                                     @if(Auth::guard('admin')->user()->role_id==2)
                                         @if($data['reservations_status']=='pending')
                                             <!-- begin::Accept-->
-                                            <button href="" type="button" class="btn btn-success my-1 me-12" onclick="updateReservationsStatus('in progress')">{{transAdmin('Accept')}}</button>
-                                            <!-- end::Pint-->
+                                            <button href="" type="button" class="btn btn-success my-1 me-12"
+                                                    onclick="updateReservationsStatus('in progress')">{{transAdmin('Accept')}}</button>
+                                            <!-- end::Accept-->
 
                                             <!-- begin::Rejected-->
-                                            <button type="button" class="btn btn-danger my-1 me-12" onclick="updateReservationsStatus('rejected')">{{transAdmin('Rejected')}}</button>
-                                            <!-- end::Pint-->
+                                            <button type="button" class="btn btn-danger my-1 me-12"
+                                                    onclick="updateReservationsStatus('rejected')">{{transAdmin('Rejected')}}</button>
+                                            <!-- end::Rejected-->
+                                            <br/>
+                                            <!-- begin::Canceled-->
+                                            <button type="button" class="btn btn-danger my-1 me-12"
+                                                    onclick="updateReservationsStatus('canceled')">{{transAdmin('canceled')}}</button>
+                                            <!-- end::Canceled-->
+
                                         @elseif($data['reservations_status']=='in progress')
+                                            <!-- begin::Canceled-->
+                                            <button type="button" class="btn btn-danger my-1 me-12"
+                                                    onclick="updateReservationsStatus('canceled')">{{transAdmin('canceled')}}</button>
+                                            <!-- end::Canceled-->
+
                                             <!-- begin::Completed-->
-                                            <button type="button" class="btn btn-success my-1 me-12" onclick="updateReservationsStatus('completed')">{{transAdmin('Completed')}}</button>
-                                            <!-- end::Pint-->
+                                            <button type="button" class="btn btn-success my-1 me-12"
+                                                    onclick="updateReservationsStatus('completed')">{{transAdmin('Completed')}}</button>
+                                            <!-- end::Completed-->
                                         @endif
                                     @endif
                                     <!-- begin::Pint-->
-                                        <a type="button" class="btn btn-success my-1 me-12" href="{{route('admin.mReservations.print',$data['id'])}}" target="_blank">{{transAdmin('Print Invoice')}}</a>
+                                    <a type="button" class="btn btn-success my-1 me-12"
+                                       href="{{route('admin.mReservations.print',$data['id'])}}"
+                                       target="_blank">{{transAdmin('Print Invoice')}}</a>
                                     <!-- end::Pint-->
+                                    <!-- Cancellation Reason Textarea -->
+                                    <div id="cancelReasonContainer" style="display: none; margin-top: 10px;">
+                                        <textarea id="cancelReason" class="form-control"
+                                                  placeholder="{{ transAdmin('Enter Cancellation Reason') }}"></textarea>
+                                        <button type="button" class="btn btn-primary my-2"
+                                                onclick="submitCancellation()">{{ transAdmin('Submit Cancellation') }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <!--end::Card body-->
@@ -393,7 +449,24 @@
 
 @section('script')
     <script>
-        function updateReservationsStatus(status){
+        function updateReservationsStatus(status) {
+            if (status === 'canceled') {
+                document.getElementById('cancelReasonContainer').style.display = 'block';
+            } else {
+                submitStatusUpdate(status, null);
+            }
+        }
+
+        function submitCancellation() {
+            const reason = document.getElementById('cancelReason').value;
+            if (reason.trim() === '') {
+                toastr.error("Please enter a reason for cancellation.");
+                return;
+            }
+            submitStatusUpdate('canceled', reason);
+        }
+
+        function submitStatusUpdate(status, reason) {
             $.ajax(
                 {
                     url: "{{route('admin.mReservations.update')}}",
@@ -402,6 +475,7 @@
                     data: {
                         "id": '{{$data['id']}}',
                         "status": status,
+                        "canceled_reason": reason, // Add the reason to the data payload
                         "marasi_id": {{$data['marasi']['id']}},
                         "employee_id": {{Auth::guard('admin')->user()->id}},
                         "_method": 'post',

@@ -10,6 +10,7 @@ use App\Http\Requests\Api\Reservations\Provider\UpdateMarasiReservationsRequest;
 use App\Models\Employee;
 use App\Models\MarasiReservations;
 use App\Models\Payments;
+use App\Models\ReservationServices;
 use Illuminate\Http\Request;
 use URWay\Client;
 
@@ -46,6 +47,16 @@ class MarasiReservationsApiController extends BaseApiController
             'body_en'=>'A New Marasi Reservations has been added #'.$reservations->id,
             'body_ar'=>'تم اضافة حجز مرسى جديد #'.$reservations->id,
         ];
+        if (is_array($request->services) && count($request->services)>0){
+            foreach ($request->services as $service){
+                if ($service){
+                    ReservationServices::create([
+                        'reservations_id'=>$reservations->id,
+                        'services_id'=>$service,
+                    ]);
+                }
+            }
+        }
         $this->sendNotifications(Employee::class,[$reservations->marasi->employee_id],$data);
         return $this->generateResponse(true,'Success');
     }
@@ -59,18 +70,31 @@ class MarasiReservationsApiController extends BaseApiController
                 'end_day'=>$request->end_day,
                 'note'=>$request->note,
             ]);
+            if (is_array($request->services) && count($request->services)>0){
+                ReservationServices::where('reservations_id',$id)->delete();
+                foreach ($request->services as $service){
+                    if ($service){
+                        ReservationServices::create([
+                            'reservations_id'=>$id,
+                            'services_id'=>$service,
+                        ]);
+                    }
+                }
+            }
             return $this->generateResponse(true,'Success');
         }else{
             return $this->generateResponse(false,"User Cannot Take This Action",[],410);
         }
     }
 
-    public function cancel($id){
+    public function cancel($id,Request $request){
         $user=auth('api')->user();
         $reservations=MarasiReservations::where('provider_id',$user->id)->WhereIn('reservations_status',['pending','in progress'])->find($id);
         if($reservations){
             $reservations->update([
                 'reservations_status'=>'canceled',
+                'canceled_by'=> $user->id,
+                'canceled_reason'=> $request->canceled_reason
             ]);
             $data=[
                 'title_en'=>'Marasi Reservations Cancelled #'.$reservations->id,

@@ -126,7 +126,7 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
-                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.price')}}</div>
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.metrePrice')}}</div>
                     </div>
                     <div class="col-lg-9">
                         <div class="fw-bold fs-5">{{$data->price}}</div>

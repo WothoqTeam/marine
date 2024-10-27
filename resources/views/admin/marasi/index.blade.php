@@ -96,7 +96,7 @@
                             </div>
                         </th>
                         <th class="min-w-125px text-start">{{transAdmin('Marasi')}}</th>
-                        <th class="min-w-125px text-start">{{trans('labels.inputs.price')}}</th>
+                        <th class="min-w-125px text-start">{{trans('labels.inputs.metrePrice')}}</th>
                         <th class="min-w-125px text-start">{{transAdmin('Is Approved')}}</th>
                         <th class="min-w-125px text-start">{{trans('labels.inputs.actions')}}</th>
                     </tr>

@@ -9,6 +9,7 @@ use App\Http\Requests\Api\Reservations\ReservationsRequest;
 use App\Models\Marasi;
 use App\Models\MarasiReservations;
 use App\Models\Reservations;
+use App\Models\ReservationServices;
 use App\Models\User;
 use App\Models\Yachts;
 use Illuminate\Http\Request;
@@ -41,8 +42,9 @@ class MarasiReservationsController extends Controller
         }
         $data=$data->find($id);
         if ($data){
+            $services=ReservationServices::where('reservations_id',$id)->get();
             $data=$data->toArray();
-            return view('admin.marasiReservations.show', compact('data'));
+            return view('admin.marasiReservations.show', compact('data','services'));
         }else{
             abort(403, 'Unauthorized');
         }
@@ -58,8 +60,9 @@ class MarasiReservationsController extends Controller
         }
         $data=$data->find($id);
         if ($data){
+            $services=ReservationServices::where('reservations_id',$id)->get();
             $data=$data->toArray();
-            return view('admin.marasiReservations.print', compact('data'));
+            return view('admin.marasiReservations.print', compact('data','services'));
         }else{
             abort(403, 'Unauthorized');
         }
@@ -72,12 +75,22 @@ class MarasiReservationsController extends Controller
             $marasi_id = $request->marasi_id;
             $employee_id = $emp->id;
             $status = $request->status;
+            $canceled_reason = $request->canceled_reason;
             $checkMarasi = Marasi::where('employee_id', $employee_id)->find($marasi_id);
             $reservations = MarasiReservations::find($id);
             if ($reservations && $checkMarasi) {
-                $reservations->update([
-                    'reservations_status' => $status,
-                ]);
+
+                if ($status == 'canceled'){
+                    $reservations->update([
+                        'reservations_status' => $status,
+                        'canceled_by'=> $emp->id,
+                        'canceled_reason'=> $canceled_reason,
+                    ]);
+                }else{
+                    $reservations->update([
+                        'reservations_status' => $status,
+                    ]);
+                }
 
                 if ($status == 'in progress') {
                     $statusNameAr = 'الموافقه على';
