@@ -58,5 +58,7 @@ class MarasiReservationsDetails extends DataInterface
         $this->total = $reservation->total;
         $this->note = $reservation->note;
         $this->marasi =  new ListMarasi($reservation->marasi,$language);
+        $this->num_meters = $reservation->num_meters;
+        $this->services = $reservation->services;
     }
 }
