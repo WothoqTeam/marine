@@ -17,6 +17,7 @@ class ListProviderReservations extends DataInterface
     public string|null $payment_method;
     public string|null $payment_status;
     public string|null $reservations_status;
+    public object|null $services;
 
     /**
      * @param MarasiReservations $reservation
@@ -38,5 +39,6 @@ class ListProviderReservations extends DataInterface
         $this->payment_status = $reservation->payment_status;
         $this->total = $reservation->total;
         $this->num_meters = $reservation->num_meters;
+        $this->services = $reservation->services;
     }
 }

@@ -39,4 +39,9 @@ class MarasiReservations extends Model
     public function marasi() {
         return $this->belongsTo(Marasi::class,'marasi_id');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(Services::class, 'reservation_services','reservations_id','services_id');
+    }
 }
