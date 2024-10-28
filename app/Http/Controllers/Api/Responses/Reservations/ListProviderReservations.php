@@ -13,7 +13,7 @@ class ListProviderReservations extends DataInterface
     public string $marasi_name;
     public array|null $user;
     public float $total;
-    public float $num_meters;
+    public float|null $num_meters;
     public string|null $payment_method;
     public string|null $payment_status;
     public string|null $reservations_status;
