@@ -40,6 +40,7 @@ class MarasiReservationsApiController extends BaseApiController
             'start_day'=>$request->start_day,
             'end_day'=>$request->end_day,
             'note'=>$request->note,
+            'num_meters'=>$request->num_meters,
         ]);
         $data=[
             'title_en'=>'New Marasi Reservations #'.$reservations->id,
@@ -68,6 +69,7 @@ class MarasiReservationsApiController extends BaseApiController
             $reservations->update([
                 'start_day'=>$request->start_day,
                 'end_day'=>$request->end_day,
+                'num_meters'=>$request->num_meters,
                 'note'=>$request->note,
             ]);
             if (is_array($request->services) && count($request->services)>0){
