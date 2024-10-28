@@ -18,6 +18,8 @@ class ListProviderReservations extends DataInterface
     public string|null $payment_status;
     public string|null $reservations_status;
     public object|null $services;
+    public int|null $canceled_by;
+    public string|null $canceled_reason;
 
     /**
      * @param MarasiReservations $reservation
@@ -40,5 +42,7 @@ class ListProviderReservations extends DataInterface
         $this->total = $reservation->total;
         $this->num_meters = $reservation->num_meters;
         $this->services = $reservation->services;
+        $this->canceled_by =$reservation->canceled_by;
+        $this->canceled_reason =$reservation->canceled_reason;
     }
 }

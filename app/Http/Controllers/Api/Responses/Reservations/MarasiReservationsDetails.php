@@ -27,6 +27,8 @@ class MarasiReservationsDetails extends DataInterface
     public float $total;
     public string|null $note;
     public object|null $yacht;
+    public int|null $canceled_by;
+    public string|null $canceled_reason;
 
     /**
      * @param MarasiReservations $reservation
@@ -60,5 +62,7 @@ class MarasiReservationsDetails extends DataInterface
         $this->marasi =  new ListMarasi($reservation->marasi,$language);
         $this->num_meters = $reservation->num_meters;
         $this->services = $reservation->services;
+        $this->canceled_by =$reservation->canceled_by;
+        $this->canceled_reason =$reservation->canceled_reason;
     }
 }
