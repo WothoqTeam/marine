@@ -127,4 +127,5 @@ return [
     'Enter Cancellation Reason' => 'Enter Cancellation Reason',
     'Submit Cancellation' => 'Submit Cancellation',
     'Number Meters' => 'Number Meters',
+    'Cancel Reason' =>'Cancel Reason',
 ];

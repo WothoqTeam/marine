@@ -128,8 +128,9 @@ return [
     'SAR' => 'ريال',
     'Export to Excel' => 'تصدير إلى إكسل',
     'marasiServices' => 'خدمات المراسى',
-    'Services'=>'الخدمات',
+    'Services' => 'الخدمات',
     'Enter Cancellation Reason' => 'برجاء ادخال سبب الالغاء',
     'Submit Cancellation' => 'إرسال الإلغاء',
     'Number Meters' => 'عدد الامتار',
+    'Cancel Reason' => 'سبب الرفض',
 ];
