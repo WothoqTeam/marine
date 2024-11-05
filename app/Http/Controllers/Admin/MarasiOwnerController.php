@@ -117,7 +117,7 @@ class MarasiOwnerController extends Controller
             'is_active' => $request->is_active ?? '0',
         ]);
         $permissions=[
-            'yachts.index',
+//            'yachts.index',
             'marasi.index',
             'marasi.create',
             'marasi.update',

@@ -133,4 +133,5 @@ return [
     'Submit Cancellation' => 'إرسال الإلغاء',
     'Number Meters' => 'عدد الامتار',
     'Cancel Reason' => 'سبب الرفض',
+    'Person Who Cancelled' => 'الشخص الذي ألغى',
 ];

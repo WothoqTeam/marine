@@ -25,7 +25,7 @@ class MarasiReservationsApiController extends BaseApiController
         if (!empty($request->limit)){ $reservations->limit($request->limit); }
         //Filter By sort
         if ($request->sort_by=='desc'){ $reservations ->orderBy('id', 'DESC');}
-        $reservations=$reservations->get();
+        $reservations=$reservations->orderBy('id','DESC')->get();
         $reservations = $reservations->map(function (MarasiReservations $reservation) {
             return new ListProviderReservations($reservation,$this->language);
         })->values();
@@ -41,6 +41,10 @@ class MarasiReservationsApiController extends BaseApiController
             'end_day'=>$request->end_day,
             'note'=>$request->note,
             'num_meters'=>$request->num_meters,
+            'sub_total'=>$request->sub_total,
+            'vat'=>$request->vat,
+            'service_fee'=>$request->service_fee,
+            'total'=>$request->total
         ]);
         $data=[
             'title_en'=>'New Marasi Reservations #'.$reservations->id,

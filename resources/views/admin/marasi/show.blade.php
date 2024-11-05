@@ -44,6 +44,9 @@
                 <div class="row mb-8">
                     <div class="col-xl-3">
                         <div class="symbol symbol-100px">
+                            @if ($data->getMedia('profile')->count())
+                                <img src="{{$data->getFirstMediaUrl('profile')}}" >
+                            @endif
                             @if ($data->getMedia('cover')->count())
                                 @foreach($data->getMedia('cover') as $image)
                                     <img src="{{$image->getFullUrl()}}" >

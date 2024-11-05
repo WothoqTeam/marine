@@ -643,38 +643,38 @@
         @else
             <div class="row gy-5 g-xl-10">
                 <!--begin::Col-->
-                <div class="col-sm-6 col-xl-2 mb-xl-10">
-                    <!--begin::Card widget 2-->
-                    <div class="card h-lg-70">
-                        <!--begin::Body-->
-                        <div class="card-body d-flex justify-content-between align-items-start flex-column">
-                            <!--begin::Icon-->
-                            <div class="m-0">
-                                <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->
-                                <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
-                                        d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>
-                            </span>
-                                <!--end::Svg Icon-->
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Section-->
-                            <div class="d-flex flex-column my-7">
-                                <!--begin::Number-->
-                                <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{$data['yachts_count']}}</span>
-                                <!--end::Number-->
-                                <!--begin::Follower-->
-                                <div class="m-0">
-                                    <span class="fw-semibold fs-6 text-gray-400">{{transAdmin('Yachts')}}</span>
-                                </div>
-                                <!--end::Follower-->
-                            </div>
-                            <!--end::Section-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card widget 2-->
-                </div>
+{{--                <div class="col-sm-6 col-xl-2 mb-xl-10">--}}
+{{--                    <!--begin::Card widget 2-->--}}
+{{--                    <div class="card h-lg-70">--}}
+{{--                        <!--begin::Body-->--}}
+{{--                        <div class="card-body d-flex justify-content-between align-items-start flex-column">--}}
+{{--                            <!--begin::Icon-->--}}
+{{--                            <div class="m-0">--}}
+{{--                                <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->--}}
+{{--                                <span class="svg-icon svg-icon-2hx svg-icon-gray-600">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path--}}
+{{--                                        d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>--}}
+{{--                            </span>--}}
+{{--                                <!--end::Svg Icon-->--}}
+{{--                            </div>--}}
+{{--                            <!--end::Icon-->--}}
+{{--                            <!--begin::Section-->--}}
+{{--                            <div class="d-flex flex-column my-7">--}}
+{{--                                <!--begin::Number-->--}}
+{{--                                <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{$data['yachts_count']}}</span>--}}
+{{--                                <!--end::Number-->--}}
+{{--                                <!--begin::Follower-->--}}
+{{--                                <div class="m-0">--}}
+{{--                                    <span class="fw-semibold fs-6 text-gray-400">{{transAdmin('Yachts')}}</span>--}}
+{{--                                </div>--}}
+{{--                                <!--end::Follower-->--}}
+{{--                            </div>--}}
+{{--                            <!--end::Section-->--}}
+{{--                        </div>--}}
+{{--                        <!--end::Body-->--}}
+{{--                    </div>--}}
+{{--                    <!--end::Card widget 2-->--}}
+{{--                </div>--}}
                 <!--end::Col-->
                 <!--begin::Col-->
                 <div class="col-sm-6 col-xl-2 mb-xl-10">

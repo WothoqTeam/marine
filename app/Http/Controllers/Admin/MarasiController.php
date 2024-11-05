@@ -249,6 +249,7 @@ class MarasiController extends Controller
         }
 
         if (is_array($request->file('covers')) and count($request->file('covers')) > 0){
+            Media::where('model_type',Marasi::class)->where('model_id',$request->id)->where('collection_name','cover')->delete();
             foreach ($request->file('covers') as $image) {
                 $data->addMedia($image)->toMediaCollection('cover');
             }

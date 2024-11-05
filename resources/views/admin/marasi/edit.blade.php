@@ -53,8 +53,8 @@
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">{{trans('labels.inputs.image')}}</label>
                             <div class="col-lg-8">
                                 <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
-                                    @if ($data['marasi']->getMedia('cover')->count())
-                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{$data['marasi']->getFirstMediaUrl('cover', 'thumb')}})"></div>
+                                    @if ($data['marasi']->getMedia('profile')->count())
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{$data['marasi']->getFirstMediaUrl('profile', 'thumb')}})"></div>
                                     @else
                                     <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{asset('dash/assets/media/avatars/blank.png')}})"></div>
                                     @endif
