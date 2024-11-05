@@ -11,6 +11,7 @@ use App\Models\Employee;
 use App\Models\MarasiReservations;
 use App\Models\Payments;
 use App\Models\ReservationServices;
+use App\Models\Services;
 use Illuminate\Http\Request;
 use URWay\Client;
 
@@ -55,9 +56,11 @@ class MarasiReservationsApiController extends BaseApiController
         if (is_array($request->services) && count($request->services)>0){
             foreach ($request->services as $service){
                 if ($service){
+                    $ser=Services::find($service);
                     ReservationServices::create([
                         'reservations_id'=>$reservations->id,
                         'services_id'=>$service,
+                        'price'=>$ser->price
                     ]);
                 }
             }
@@ -80,9 +83,11 @@ class MarasiReservationsApiController extends BaseApiController
                 ReservationServices::where('reservations_id',$id)->delete();
                 foreach ($request->services as $service){
                     if ($service){
+                        $ser=Services::find($service);
                         ReservationServices::create([
                             'reservations_id'=>$id,
                             'services_id'=>$service,
+                            'price'=>$ser->price
                         ]);
                     }
                 }

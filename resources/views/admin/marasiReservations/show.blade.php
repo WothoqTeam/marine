@@ -402,9 +402,9 @@
                                                             <a href="{{route('admin.Services.show', $service->services->id)}}"
                                                                class="fw-bold text-gray-600 text-hover-primary">
                                                                 @if (\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                                    {{ $service->services->name_en }}
+                                                                    {{ $service->services->name_en }} | {{$service->price}} {{transAdmin('Sar')}}
                                                                 @else
-                                                                    {{ $service->services->name_ar }}
+                                                                    {{ $service->services->name_ar }} | {{$service->price}} {{transAdmin('Sar')}}
                                                                 @endif
                                                             </a>
                                                         </li>

@@ -13,6 +13,7 @@ class ReservationServices extends Model
     protected $fillable=[
         'reservations_id',
         'services_id',
+        'price'
     ];
 
     public function reservations() {
