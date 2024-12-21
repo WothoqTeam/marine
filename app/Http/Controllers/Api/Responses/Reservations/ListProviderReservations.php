@@ -14,6 +14,7 @@ class ListProviderReservations extends DataInterface
     public array|null $user;
     public float $total;
     public float|null $num_meters;
+    public float|null $num_hours;
     public string|null $payment_method;
     public string|null $payment_status;
     public string|null $reservations_status;
@@ -41,6 +42,7 @@ class ListProviderReservations extends DataInterface
         $this->payment_status = $reservation->payment_status;
         $this->total = $reservation->total;
         $this->num_meters = $reservation->num_meters;
+        $this->num_hours = $reservation->num_hours;
         $this->services = $reservation->services;
         $this->canceled_by =$reservation->canceled_by;
         $this->canceled_reason =$reservation->canceled_reason;

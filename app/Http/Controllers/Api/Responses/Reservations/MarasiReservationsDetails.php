@@ -61,6 +61,7 @@ class MarasiReservationsDetails extends DataInterface
         $this->note = $reservation->note;
         $this->marasi =  new ListMarasi($reservation->marasi,$language);
         $this->num_meters = $reservation->num_meters;
+        $this->num_hours = $reservation->num_hours;
         $this->services = $reservation->services;
         $this->canceled_by =$reservation->canceled_by;
         $this->canceled_reason =$reservation->canceled_reason;

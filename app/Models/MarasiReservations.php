@@ -22,6 +22,7 @@ class MarasiReservations extends Model
         'canceled_by',
         'canceled_reason',
         'num_meters',
+        'num_hours',
         'sub_total',
         'vat',
         'service_fee',

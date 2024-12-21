@@ -13,6 +13,7 @@ class ListMarasi extends DataInterface
     public string $name;
     public string $profile;
     public float $price;
+    public float $hour_price;
     public float $is_discount;
     public float $discount_value;
     public string|null $address;
@@ -43,6 +44,7 @@ class ListMarasi extends DataInterface
         $this->name = $language == 'en' ? $marasi->name_en : $marasi->name_ar;
         $this->profile=$marasi->getFirstMediaUrl('profile','thumb');
         $this->price = $marasi->price;
+        $this->hour_price= $marasi->hour_price;
         $this->is_discount = $marasi->is_discount;
         $this->discount_value = $marasi->discount_value;
         $this->address = $language == 'en' ? $marasi->address_en : $marasi->address_ar;

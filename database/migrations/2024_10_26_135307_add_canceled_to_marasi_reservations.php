@@ -15,6 +15,7 @@ return new class extends Migration
             $table->integer('canceled_by')->after('total')->nullable();
             $table->text('canceled_reason')->after('canceled_by')->nullable();
             $table->float('num_meters')->after('canceled_reason')->nullable();
+            $table->float('num_hours')->after('num_meters')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropColumn('canceled_by');
             $table->dropColumn('canceled_reason');
             $table->dropColumn('num_meters');
+            $table->dropColumn('num_hours');
         });
     }
 };

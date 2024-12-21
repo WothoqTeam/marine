@@ -23,6 +23,7 @@ class Marasi extends Model implements HasMedia
         'address_en',
         'address_ar',
         'price',
+        'hour_price',
         'is_discount',
         'discount_value',
         'city_id',

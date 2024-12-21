@@ -132,6 +132,7 @@ return [
     'Enter Cancellation Reason' => 'برجاء ادخال سبب الالغاء',
     'Submit Cancellation' => 'إرسال الإلغاء',
     'Number Meters' => 'عدد الامتار',
+    'Number Hours' => 'عدد الساعات',
     'Cancel Reason' => 'سبب الرفض',
     'Person Who Cancelled' => 'الشخص الذي ألغى',
 ];

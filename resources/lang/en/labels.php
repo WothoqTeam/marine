@@ -40,6 +40,7 @@ return [
         'phoneCode' => 'Phone Code',
         'price' => 'Price',
         'metrePrice' => 'Metre Price',
+        'hourPrice' => 'Hour Price',
         'status' => 'Status',
         'pdf' => 'PDF',
         'video' => 'Video',

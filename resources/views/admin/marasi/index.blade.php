@@ -97,6 +97,7 @@
                         </th>
                         <th class="min-w-125px text-start">{{transAdmin('Marasi')}}</th>
                         <th class="min-w-125px text-start">{{trans('labels.inputs.metrePrice')}}</th>
+                        <th class="min-w-125px text-start">{{trans('labels.inputs.hourPrice')}}</th>
                         <th class="min-w-125px text-start">{{transAdmin('Is Approved')}}</th>
                         <th class="min-w-125px text-start">{{trans('labels.inputs.actions')}}</th>
                     </tr>
@@ -231,6 +232,7 @@
                     {data: 'checkbox', name: 'checkbox'},
                     {data: 'name', name: 'name'},
                     {data: 'price', name: 'price'},
+                    {data: 'hour_price', name: 'hour_price'},
                     {data: 'is_approved', name: 'is_approved'},
                     {data: 'actions', name: 'actions'},
                 ]

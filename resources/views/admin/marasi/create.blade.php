@@ -223,6 +223,15 @@
                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"/>
                             </div>
                         </div>
+                        <div class="row mb-6">
+                            <label
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.hourPrice')}}</label>
+                            <div class="col-lg-8 fv-row">
+                                <input type="number" step=0.01 name="hour_price"
+                                       placeholder="{{trans('labels.inputs.hourPrice')}}" value="{{old('hour_price')}}"
+                                       class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"/>
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <label

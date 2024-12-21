@@ -349,6 +349,7 @@
                                                                 <th class="min-w-175px">{{transAdmin('Marasi')}}</th>
                                                                 <th class="min-w-175px">{{transAdmin('Services')}}</th>
                                                                 <th class="min-w-175px">{{transAdmin('Number Meters')}}</th>
+                                                                <th class="min-w-175px">{{transAdmin('Number Hours')}}</th>
                                                                 <th class="min-w-100px text-end">{{transAdmin('Total')}}</th>
                                                             </tr>
                                                             </thead>
@@ -403,6 +404,9 @@
                                                                 <!--end::Services-->
                                                                 <!--begin::Sub Total-->
                                                                 <td class="list-unstyled">{{$data['num_meters']}}</td>
+                                                                <!--end::Sub Total-->
+                                                                <!--begin::Sub Total-->
+                                                                <td class="list-unstyled">{{$data['num_hours']}}</td>
                                                                 <!--end::Sub Total-->
                                                                 <!--begin::Total-->
                                                                 <td class="text-end">{{$data['sub_total']}}</td>

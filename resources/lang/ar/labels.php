@@ -38,6 +38,7 @@ return [
         'password' => 'كلمه المرور',
         'price' => 'السعر',
         'metrePrice' => 'سعر المتر',
+        'hourPrice' => 'سعر الساعة',
         'gender'=>'الجنس',
         'phone' => 'رقم الهاتف',
         'phoneCode' => 'كود الهاتف',

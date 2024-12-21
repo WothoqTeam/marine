@@ -51,6 +51,12 @@ class MarasiController extends Controller
 
                     return $price;
                 })
+                ->addColumn('hour_price', function ($row) {
+
+                    $hour_price = $row->hour_price;
+
+                    return $hour_price;
+                })
                 ->addColumn('is_approved', function ($row) {
                     $is_approved = '<select name="is_approved" id="changeStatus" data-control="select2" data-hide-search="true" class="form-select form-select-solid fw-bold" onchange="changeMarasiStatus(' . $row->id . ')"> <option value="1"';
                     $is_approved .= $row->is_approved == 1 ? "selected" : "";
@@ -83,7 +89,7 @@ class MarasiController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['name', 'price', 'is_approved', 'checkbox', 'actions'])
+                ->rawColumns(['name', 'price','hour_price', 'is_approved', 'checkbox', 'actions'])
                 ->make(true);
         }
         return view('admin.marasi.index');
@@ -127,6 +133,7 @@ class MarasiController extends Controller
             'address_en' => 'required|string',
             'address_ar' => 'required|string',
             'price' => 'required|numeric',
+            'hour_price' => 'required|numeric',
             'photo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'country_id' => 'required|int|exists:countries,id',
             'city_id' => 'required|int|exists:cities,id',
@@ -151,6 +158,7 @@ class MarasiController extends Controller
             'longitude'=>$request->longitude,
             'latitude'=>$request->latitude,
             'price'=>$request->price,
+            'hour_price'=>$request->hour_price,
             'country_id'=>$request->country_id,
             'city_id'=>$request->city_id,
             'is_discount'=>is_null($request->is_discount) ? 0 : 1,
@@ -211,6 +219,7 @@ class MarasiController extends Controller
             'address_en' => 'required|string',
             'address_ar' => 'required|string',
             'price' => 'required|numeric',
+            'hour_price' => 'required|numeric',
             'photo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'country_id' => 'required|int|exists:countries,id',
             'city_id' => 'required|int|exists:cities,id',
@@ -236,6 +245,7 @@ class MarasiController extends Controller
             'longitude'=>$request->longitude,
             'latitude'=>$request->latitude,
             'price'=>$request->price,
+            'hour_price'=>$request->hour_price,
             'country_id'=>$request->country_id,
             'city_id'=>$request->city_id,
             'is_discount'=>is_null($request->is_discount) ? 0 : 1,

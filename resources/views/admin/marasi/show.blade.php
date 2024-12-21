@@ -138,6 +138,15 @@
 
                 <div class="row mb-8">
                     <div class="col-xl-2">
+                        <div class="fs-6 fw-semibold">{{trans('labels.inputs.hourPrice')}}</div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="fw-bold fs-5">{{$data->hour_price}}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-8">
+                    <div class="col-xl-2">
                         <div class="fs-6 fw-semibold">{{trans('labels.inputs.discount')}}</div>
                     </div>
                     <div class="col-lg-9">

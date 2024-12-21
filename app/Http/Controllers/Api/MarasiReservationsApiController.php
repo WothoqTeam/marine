@@ -42,6 +42,7 @@ class MarasiReservationsApiController extends BaseApiController
             'end_day'=>$request->end_day,
             'note'=>$request->note,
             'num_meters'=>$request->num_meters,
+            'num_hours'=>$request->num_hours,
             'sub_total'=>$request->sub_total,
             'vat'=>$request->vat,
             'service_fee'=>$request->service_fee,
@@ -77,6 +78,7 @@ class MarasiReservationsApiController extends BaseApiController
                 'start_day'=>$request->start_day,
                 'end_day'=>$request->end_day,
                 'num_meters'=>$request->num_meters,
+                'num_hours'=>$request->num_hours,
                 'note'=>$request->note,
             ]);
             if (is_array($request->services) && count($request->services)>0){
