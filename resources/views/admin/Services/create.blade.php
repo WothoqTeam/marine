@@ -44,15 +44,15 @@
                     <!--begin::Card body-->
                     <div class="card-body border-top p-9">
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}} EN</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.nameMarasiServices')}} E</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.name')}} EN" value="{{old('name_en')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.nameMarasiServices')}} E" value="{{old('name_en')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}} AR</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.nameMarasiServices')}} ع </label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.name')}} AR" value="{{old('name_ar')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.nameMarasiServices')}} ع " value="{{old('name_ar')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
                         <div class="row mb-6">

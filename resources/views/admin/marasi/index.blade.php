@@ -95,7 +95,7 @@
                                        data-kt-check-target="#kt_datatable_table .form-check-input" value="1"/>
                             </div>
                         </th>
-                        <th class="min-w-125px text-start">{{transAdmin('Marasi')}}</th>
+                        <th class="min-w-125px text-start">{{transAdmin('MarasiName')}}</th>
                         <th class="min-w-125px text-start">{{trans('labels.inputs.metrePrice')}}</th>
                         <th class="min-w-125px text-start">{{trans('labels.inputs.hourPrice')}}</th>
                         <th class="min-w-125px text-start">{{transAdmin('Is Approved')}}</th>

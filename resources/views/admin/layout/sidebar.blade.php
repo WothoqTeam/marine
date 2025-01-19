@@ -196,7 +196,7 @@
                     <span class="menu-icon">
                         <i class="fonticon-setting fs-2"></i>
                     </span>
-                    <span class="menu-title">{{transAdmin('Marasi')}}</span>
+                    <span class="menu-title">{{transAdmin('MarasiNav')}}</span>
                 </a>
             </div>
             @endif

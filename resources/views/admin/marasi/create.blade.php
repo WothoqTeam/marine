@@ -106,20 +106,18 @@
                         @endif
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}
-                                EN</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiName_en')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.name')}} EN"
+                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.marasiName_en')}}"
                                        value="{{old('name_en')}}"
                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"/>
                             </div>
                         </div>
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}}
-                                AR</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiName_ar')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.name')}} AR"
+                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.marasiName_ar')}}"
                                        value="{{old('name_ar')}}"
                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"/>
                             </div>
@@ -162,19 +160,17 @@
 
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.description')}}
-                                EN</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiDescription_en')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <textarea name="description_en" placeholder="{{trans('labels.inputs.description')}} EN"
+                                <textarea name="description_en" placeholder="{{trans('labels.inputs.marasiDescription_en')}}"
                                           class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">{{old('description_en')}}</textarea>
                             </div>
                         </div>
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.description')}}
-                                AR</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiDescription_ar')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <textarea name="description_ar" placeholder="{{trans('labels.inputs.description')}} AR"
+                                <textarea name="description_ar" placeholder="{{trans('labels.inputs.marasiDescription_ar')}}"
                                           class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">{{old('description_ar')}}</textarea>
                             </div>
                         </div>
@@ -199,13 +195,13 @@
                         </div>
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">
-                                <span class="required">{{transAdmin('marasiServices')}}</span>
+                                <span class="required">{{transAdmin('marasiServicesForm')}}</span>
                             </label>
                             <div class="col-lg-8 fv-row">
                                 <select name="services[]"
-                                        aria-label="{{transAdmin('marasiServices')}}"
+                                        aria-label="{{transAdmin('marasiServicesForm')}}"
                                         data-control="select2"
-                                        data-placeholder="{{transAdmin('marasiServices')}}..."
+                                        data-placeholder="{{transAdmin('marasiServicesForm')}}..."
                                         class="form-select form-select-solid form-select-lg fw-semibold" multiple>
                                     <option value="">{{trans('labels.inputs.select')}}</option>
                                     @foreach($data['services'] as $services)
@@ -216,16 +212,16 @@
                         </div>
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.metrePrice')}}</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.metrePriceForm')}}</label>
                             <div class="col-lg-8 fv-row">
                                 <input type="number" step=0.01 name="price"
-                                       placeholder="{{trans('labels.inputs.metrePrice')}}" value="{{old('price')}}"
+                                       placeholder="{{trans('labels.inputs.metrePriceForm')}}" value="{{old('price')}}"
                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"/>
                             </div>
                         </div>
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.hourPrice')}}</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.hourPriceForm')}}</label>
                             <div class="col-lg-8 fv-row">
                                 <input type="number" step=0.01 name="hour_price"
                                        placeholder="{{trans('labels.inputs.hourPrice')}}" value="{{old('hour_price')}}"
@@ -264,9 +260,9 @@
 
                         <div class="row mb-6">
                             <label
-                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{transAdmin('Cover Images')}}</label>
+                                class="col-lg-2 col-form-label required fw-semibold fs-6">{{transAdmin('marasiImagesForm')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="file" name="covers[]" placeholder="{{transAdmin('Cover Images')}}"
+                                <input type="file" name="covers[]" placeholder="{{transAdmin('marasiImagesForm')}}"
                                        accept=".png, .jpg, .jpeg"
                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                        multiple="multiple"/>

@@ -62,7 +62,7 @@
                                     </div>
                                 </th>
                                 <th class="min-w-125px text-start">{{transAdmin('marasiServices')}}</th>
-                                <th class="min-w-125px text-start">{{trans('labels.inputs.price')}}</th>
+                                <th class="min-w-125px text-start">{{trans('labels.inputs.priceMarasiServices')}}</th>
                                 <th class="min-w-125px text-start">{{trans('labels.inputs.status')}}</th>
                                 <th class="min-w-125px text-start">{{trans('labels.inputs.actions')}}</th>
                             </tr>

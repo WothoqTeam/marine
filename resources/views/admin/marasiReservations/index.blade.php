@@ -90,8 +90,8 @@
                             </div>
                         </th>
                         <th class="min-w-125px text-start">{{transAdmin('id')}}</th>
-                        <th class="min-w-100px text-start">{{transAdmin('Providers')}}</th>
-                        <th class="text-end min-w-70px">{{trans('labels.inputs.status')}}</th>
+                        <th class="min-w-100px text-start">{{transAdmin('mReservationsProviders')}}</th>
+                        <th class="text-end min-w-70px">{{trans('labels.inputs.mReservationsStatus')}}</th>
                         <th class="text-end min-w-100px">{{transAdmin('Total')}}</th>
                         <th class="text-end min-w-100px">{{transAdmin('Date Added')}}</th>
                         <th class="text-end min-w-100px">{{transAdmin('Date Modified')}}</th>

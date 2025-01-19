@@ -248,7 +248,7 @@
                                                           rx="2" fill="currentColor"/>
                                                 </svg>
                                             </span>
-                                                                <!--end::Svg Icon-->{{transAdmin('Provider Name')}}
+                                                                <!--end::Svg Icon-->{{transAdmin('Name')}}
                                                             </div>
                                                         </td>
                                                         <td class="fw-bold text-end">
@@ -346,7 +346,7 @@
                                                             <!--begin::Table head-->
                                                             <thead>
                                                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                                                <th class="min-w-175px">{{transAdmin('Marasi')}}</th>
+                                                                <th class="min-w-175px">{{transAdmin('MarasiName')}}</th>
                                                                 <th class="min-w-175px">{{transAdmin('Services')}}</th>
                                                                 <th class="min-w-175px">{{transAdmin('Number Meters')}}</th>
                                                                 <th class="min-w-175px">{{transAdmin('Number Hours')}}</th>

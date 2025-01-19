@@ -76,15 +76,15 @@
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}} EN</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiName_en')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.name')}} EN" value="{{$data['marasi']->name_en}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name_en" placeholder="{{trans('labels.inputs.marasiName_en')}} EN" value="{{$data['marasi']->name_en}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.name')}} AR</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiName_ar')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.name')}} AR" value="{{$data['marasi']->name_ar}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="text" name="name_ar" placeholder="{{trans('labels.inputs.marasiName_ar')}} AR" value="{{$data['marasi']->name_ar}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
@@ -116,15 +116,15 @@
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.description')}} EN</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiDescription_en')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <textarea name="description_en" placeholder="{{trans('labels.inputs.description')}} EN" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" >{{$data['marasi']->description_en}}</textarea>
+                                <textarea name="description_en" placeholder="{{trans('labels.inputs.marasiDescription_en')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" >{{$data['marasi']->description_en}}</textarea>
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.description')}} AR</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.marasiDescription_ar')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <textarea name="description_ar" placeholder="{{trans('labels.inputs.description')}} AR" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" >{{$data['marasi']->description_ar}}</textarea>
+                                <textarea name="description_ar" placeholder="{{trans('labels.inputs.marasiDescription_ar')}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" >{{$data['marasi']->description_ar}}</textarea>
                             </div>
                         </div>
 
@@ -143,13 +143,13 @@
 
                         <div class="row mb-6">
                             <label class="col-lg-2 col-form-label fw-semibold fs-6">
-                                <span class="required">{{transAdmin('marasiServices')}}</span>
+                                <span class="required">{{transAdmin('marasiServicesForm')}}</span>
                             </label>
                             <div class="col-lg-8 fv-row">
                                 <select name="services[]"
-                                        aria-label="{{transAdmin('marasiServices')}}"
+                                        aria-label="{{transAdmin('marasiServicesForm')}}"
                                         data-control="select2"
-                                        data-placeholder="{{transAdmin('marasiServices')}}..."
+                                        data-placeholder="{{transAdmin('marasiServicesForm')}}..."
                                         class="form-select form-select-solid form-select-lg fw-semibold" multiple>
                                     <option value="">{{trans('labels.inputs.select')}}</option>
                                     @foreach($data['services'] as $services)
@@ -163,16 +163,16 @@
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.metrePrice')}}</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.metrePriceForm')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="number" step=0.01 name="price" placeholder="{{trans('labels.inputs.metrePrice')}}" value="{{$data['marasi']->price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="number" step=0.01 name="price" placeholder="{{trans('labels.inputs.metrePriceForm')}}" value="{{$data['marasi']->price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.hourPrice')}}</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{trans('labels.inputs.hourPriceForm')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="number" step=0.01 name="hour_price" placeholder="{{trans('labels.inputs.hourPrice')}}" value="{{$data['marasi']->hour_price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
+                                <input type="number" step=0.01 name="hour_price" placeholder="{{trans('labels.inputs.hourPriceForm')}}" value="{{$data['marasi']->hour_price}}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" />
                             </div>
                         </div>
 
@@ -199,9 +199,9 @@
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{transAdmin('Cover Images')}}</label>
+                            <label class="col-lg-2 col-form-label required fw-semibold fs-6">{{transAdmin('marasiImagesForm')}}</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="file" name="covers[]" placeholder="{{transAdmin('Cover Images')}}" accept=".png, .jpg, .jpeg" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" multiple="multiple" />
+                                <input type="file" name="covers[]" placeholder="{{transAdmin('marasiImagesForm')}}" accept=".png, .jpg, .jpeg" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" multiple="multiple" />
                             </div>
                         </div>
                         <div class="row mb-0">
