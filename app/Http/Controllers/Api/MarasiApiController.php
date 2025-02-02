@@ -14,6 +14,10 @@ class MarasiApiController extends BaseApiController
         if (!empty($request->employee_id)){ $marasi->where('employee_id',$request->employee_id); }
         //Filter By Name
         if (!empty($request->name)){ $marasi->where('name_en','LIKE', '%'.$request->name.'%')->orwhere('name_ar','LIKE', '%'.$request->name.'%'); }
+        //Filter By Country ID
+        if (!empty($request->country_id)){ $marasi->where('country_id',$request->country_id); }
+        //Filter By City ID
+        if (!empty($request->city_id)){ $marasi->where('city_id',$request->city_id); }
         //Filter By limit
         if (!empty($request->limit)){ $marasi->limit($request->limit); }
         //Filter By sort

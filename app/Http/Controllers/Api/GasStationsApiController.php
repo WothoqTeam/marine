@@ -9,18 +9,22 @@ use Illuminate\Http\Request;
 class GasStationsApiController extends BaseApiController
 {
     public function list(Request $request){
-        $marasi = GasStations::with('city','country')->orderBy('id','DESC')->where('status',true);
+        $stations = GasStations::with('city','country')->orderBy('id','DESC')->where('status',true);
         //Filter By Name
-        if (!empty($request->name)){ $marasi->where('name_en','LIKE', '%'.$request->name.'%')->orwhere('name_ar','LIKE', '%'.$request->name.'%'); }
+        if (!empty($request->name)){ $stations->where('name_en','LIKE', '%'.$request->name.'%')->orwhere('name_ar','LIKE', '%'.$request->name.'%'); }
+        //Filter By Country ID
+        if (!empty($request->country_id)){ $stations->where('country_id',$request->country_id); }
+        //Filter By City ID
+        if (!empty($request->city_id)){ $stations->where('city_id',$request->city_id); }
         //Filter By limit
-        if (!empty($request->limit)){ $marasi->limit($request->limit); }
+        if (!empty($request->limit)){ $stations->limit($request->limit); }
         //Filter By sort
-        if ($request->sort_by=='desc'){ $marasi ->orderBy('id', 'DESC');}
+        if ($request->sort_by=='desc'){ $stations ->orderBy('id', 'DESC');}
         elseif ($request->sort_by=='top'){}
-        $marasi=$marasi->get();
-        $marasi = $marasi->map(function (GasStations $row) {
+        $stations=$stations->get();
+        $stations = $stations->map(function (GasStations $row) {
             return new ListStations($row,$this->language);
         })->values();
-        return $this->generateResponse(true,'Success',$marasi);
+        return $this->generateResponse(true,'Success',$stations);
     }
 }

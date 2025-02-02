@@ -33,9 +33,9 @@ class ListStations extends DataInterface
         $this->name = $language == 'en' ? $gasStations->name_en : $gasStations->name_ar;
         $this->address = $language == 'en' ? $gasStations->address_en : $gasStations->address_ar;
         $this->description = $language == 'en' ? $gasStations->description_en : $gasStations->description_ar;
-        $this->status=$gasStations->status;
-        $this->longitude=$gasStations->longitude;
-        $this->latitude=$gasStations->latitude;
+        $this->status = $gasStations->status;
+        $this->longitude = $gasStations->longitude;
+        $this->latitude = $gasStations->latitude;
         $this->image = $images;
     }
 }
