@@ -153,12 +153,14 @@ class AuthApiController extends BaseApiController
         if ($validator->fails()) {
             return $this->generateResponse(false,'Invalid credentials',$validator->errors(),422);
         }
-        $code=1234;
-        Verification::create(['key'=>$request->phone,'code'=>$code]);
+        // $code=1234;
+        
         //send otp here
         if (getenv('APP_ENV')!='local' and getenv('APP_ENV')!='test'){
             $code=rand(1000,9999);
             $lang=strtolower(request()->header('Language', 'ar'));
+
+            Verification::create(['key'=>$request->phone,'code'=>$code]);
             //send Sms Here
             $sms= $this->sendSms($code,$request->phone,$lang);
             if (!$sms){
