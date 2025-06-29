@@ -201,8 +201,8 @@ class AuthApiController extends BaseApiController
 
     public function checkVerification(Request $request)
     {
-//        $check=Verification::where('key',$request->phone)->where('code',$request->code)->where('verify',0)->latest()->first();
-        $check=Verification::where('key',$request->email)->where('code',$request->code)->where('verify',0)->latest()->first();
+        $check=Verification::where('key',$request->phone)->where('code',$request->code)->where('verify',0)->latest()->first();
+        // $check=Verification::where('key',$request->email)->where('code',$request->code)->where('verify',0)->latest()->first();
         if ($check){
             $check->verify=1;
             $check->save();
